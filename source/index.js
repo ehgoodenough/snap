@@ -45,12 +45,35 @@ scene.add(new Slab({
     speed: 10,
 }))
 
+var input = new Object()
+document.addEventListener("click", (event) => {
+    input.isTapped = true
+})
+
+var game = {y: 0, direction: "x"}
 
 var loop = new Afloop((delta) => {
+    var delta = Math.min(delta, 1)
+    
     scene.children.forEach((object) => {
         if(object.update instanceof Function) {
-            object.update(delta)
+            object.update(delta, input)
         }
     })
+    
+    if(input.isTapped) {
+        game.y += 1
+        game.direction = game.direction == "x" ? "z" : "x"
+        scene.add(new Slab({
+            y: game.y,
+            direction: game.direction,
+            width: 10, height: 10,
+            color: 0x00CC00,
+            speed: 10,
+        }))
+    }
+    
     renderer.render(scene, camera)
+    
+    input.isTapped = false
 })

@@ -11,14 +11,19 @@ export class Slab extends Three.Mesh {
         this.speed = slab.speed || 1
         this.direction = slab.direction || "x"
         
-        this.position[this.direction] -= 20
+        this.position.y += slab.y || 0
+        this.position[this.direction] -= 25
     }
-    update(delta) {
+    update(delta, input) {
         if(!this.isFrozen) {
-            this.position[this.direction] += this.speed * delta
-            if(this.speed > 0 && this.position[this.direction] > +BOUNCE_POINT
-            || this.speed < 0 && this.position[this.direction] < -BOUNCE_POINT) {
-                this.speed *= -1
+            if(input.isTapped) {
+                this.isFrozen = true
+            } else {
+                this.position[this.direction] += this.speed * delta
+                if(this.speed > 0 && this.position[this.direction] > +BOUNCE_POINT
+                || this.speed < 0 && this.position[this.direction] < -BOUNCE_POINT) {
+                    this.speed *= -1
+                }
             }
         }
     }

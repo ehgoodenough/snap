@@ -20,12 +20,10 @@ var colors = [
     "#A7919D",
 ].map((color) => {
     return [
-        color.substring(1,3),
-        color.substring(3,5),
-        color.substring(5,7),
-    ].map((color) => {
-        return parseInt(color, 16)
-    })
+        parseInt(color.substring(1, 3), 16),
+        parseInt(color.substring(3, 5), 16),
+        parseInt(color.substring(5, 7), 16),
+    ]
 })
 
 var shuffle = Math.random() * colors.length
@@ -80,7 +78,7 @@ export class SlidingSlab extends Slab {
         this.position[this.direction] -= 25
     }
     update(delta, input) {
-        if(input.isTapped) {
+        if(input == true) {
             var slab = this.parent.children.filter((child) => {
                 return child instanceof Slab
             })[this.position.y - 1]
@@ -95,11 +93,14 @@ export class SlidingSlab extends Slab {
             var bx1 = slab.position.x + (slab.width / 2)
             var bz1 = slab.position.z + (slab.depth / 2)
             
+            var awesome = false
+            
             // snap
             if(this.direction == "x") {
                 if(Math.abs(ax0 - bx0) < SNAP_POINT
                 && Math.abs(ax1 - bx1) < SNAP_POINT) {
                     console.log("AWESOME")
+                    awesome = true
                     ax0 = bx0
                     ax1 = bx1
                 }
@@ -108,6 +109,7 @@ export class SlidingSlab extends Slab {
                 if(Math.abs(az0 - bz0) < SNAP_POINT
                 && Math.abs(az1 - bz1) < SNAP_POINT) {
                     console.log("AWESOME")
+                    awesome = true
                     az0 = bz0
                     az1 = bz1
                 }
@@ -161,5 +163,14 @@ export class SlidingSlab extends Slab {
                 this.speed *= -1
             }
         }
+    }
+}
+
+export class FallingSlab extends Slab {
+    constructor(slab) {
+        super(slab)
+        
+        this.speed = slab.speed || SPEED
+        this.direction = slab.direction || "x"
     }
 }

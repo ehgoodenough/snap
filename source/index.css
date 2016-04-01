@@ -32,9 +32,9 @@ html {
 #mount > .score {
     width: 100%;
     z-index: 999;
-    padding: 16px;
+    padding: 0.5em;
     position: absolute;
     
-    font-size: 64px;
+    font-size: 45em;
     text-align: center;
 }

@@ -59,10 +59,9 @@ scene.add(new SlidingSlab({
 scene.score = 0
 scene.combo = 0
 
-var input = new Object()
-document.addEventListener("click", (event) => {
-    input.isTapped = true
-})
+var input = false
+document.addEventListener("click", (event) => {input = true})
+document.addEventListener("keypress", (event) => {event.keyCode == 32 ? input = true : null})
 
 var loop = new Afloop((delta) => {
     var delta = Math.min(delta, 1)
@@ -75,7 +74,7 @@ var loop = new Afloop((delta) => {
     
     renderer.render(scene, camera)
     
-    input.isTapped = false
+    input = false
 })
 
 // smaller initial size (not ten by ten)

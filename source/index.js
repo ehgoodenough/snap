@@ -4,12 +4,13 @@
 
 import Three from "three"
 import Afloop from "afloop"
+import React from "react"
+import ReactDOM from "react-dom"
 
+import {Scene} from "./scripts/Scene.js"
 import {Camera} from "./scripts/Camera.js"
 import {Slab, SlidingSlab} from "./scripts/Slab.js"
-
-import beep from "./sounds/beep.wav"
-window.beep = new Audio(beep)
+import {MountComponent} from "./scripts/UI.js"
 
 /////////////////////////
 ///// Initializing /////
@@ -20,63 +21,30 @@ const HEIGHT = 4 * DETAIL, WIDTH = 3 * DETAIL
 const ASPECT = WIDTH / HEIGHT, NEAR = 0.1, FAR = 100000
 const ZOOM = 300
 
-var renderer = new Three.WebGLRenderer({alpha: true})
-renderer.shadowMap.enabled = false
-renderer.setSize(WIDTH, HEIGHT)
+window.WIDTH = WIDTH
+window.HEIGHT = HEIGHT
+window.DETAIL = DETAIL
+window.ASPECT = ASPECT
+window.ZOOM = ZOOM
+window.ASPECT = ASPECT
+window.NEAR = NEAR
+window.FAR = FAR
 
-document.getElementById("mount").appendChild(renderer.domElement)
-
-var scoreElement = document.createElement("div")
-scoreElement.className = "score"
-scoreElement.innerHTML = 0
-document.getElementById("mount").appendChild(scoreElement)
-window.scoreElement = scoreElement
-
-var scene = new Three.Scene()
-
-var camera = new Camera({
-    width: WIDTH, height: HEIGHT,
-    zoom: ZOOM, near: NEAR, far: FAR
+window.state = new Object({
+    scene: new Scene(),
 })
-scene.add(camera)
-
-var light = new Three.DirectionalLight(0xFFFFFF, 1.3)
-light.position.set(2, 3, 1.5)
-light.castShadow = true
-scene.add(light)
-
-scene.add(new Slab({
-    y: -49.5,
-    height: 100,
-    width: 7, depth: 7,
-    color: 0x888888,
-}))
-scene.add(new SlidingSlab({
-    width: 7, depth: 7,
-    y: 1
-}))
-
-scene.score = 0
-scene.combo = 0
 
 var input = false
 document.addEventListener("click", (event) => {input = true})
-document.addEventListener("keypress", (event) => {event.keyCode == 32 ? input = true : null})
+document.addEventListener("keypress", (event) => {event.keyCode == 32 ? input = true : "nothing"})
+
+var rendering = ReactDOM.render(<MountComponent/>, document.getElementById("mount"))
 
 var loop = new Afloop((delta) => {
     var delta = Math.min(delta, 1)
     
-    scene.children.forEach((object) => {
-        if(object.update instanceof Function) {
-            object.update(delta, input)
-        }
-    })
-    
-    renderer.render(scene, camera)
+    state.scene.update(delta, input)
+    rendering.setState(state)
     
     input = false
 })
-
-// smaller initial size (not ten by ten)
-// faster speeds (not so slow)
-// more zoomed in (less on the screen)

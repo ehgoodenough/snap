@@ -23,18 +23,42 @@ html {
     background-color: #222;
 }
 
-#mount > canvas {
+canvas {
     position: absolute;
     width: 100% !important;
     height: 100% !important;
 }
 
-#mount > .score {
-    width: 100%;
+.score {
+    top: 0px;
+    left: 0px;
+    right: 0px;
     z-index: 999;
     padding: 0.5em;
     position: absolute;
     
     font-size: 45em;
     text-align: center;
+}
+
+.message {
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 999;
+    padding: 0.5em;
+    position: absolute;
+    
+    font-size: 20em;
+    text-align: center;
+    
+    transition-duration: 1s;
+    transition-property: opacity;
+    transition-timing-function: ease;
+    
+    opacity: 1;
+}
+
+.empty.message {
+    opacity: 0;
 }

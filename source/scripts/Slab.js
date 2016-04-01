@@ -7,29 +7,11 @@ const BOUNCE_POINT = 13 // the position from the origin that a slab will bounce
 const SNAP_POINT = 0.2 // the fuzzy difference in two slabs to trigger a snap
 const SPEED = 20 // the rate per second to move the slab
 
-var colors = [
-    "#32292F",
-    "#575366",
-    "#6E7DAB",
-    "#5762D5",
-    "#1446AO",
-    "#27090F",
-    "#5C2E3D",
-    "#A9565E",
-    "#8A7783",
-    "#A7919D",
-].map((color) => {
-    return [
-        parseInt(color.substring(1, 3), 16),
-        parseInt(color.substring(3, 5), 16),
-        parseInt(color.substring(5, 7), 16),
-    ]
-})
+import Beep from "../sounds/beep.wav"
+window.beep = new Audio(Beep)
 
-var shuffle = Math.random() * colors.length
-for(var i = 0; i < shuffle; i++) {
-    colors.push(colors.shift())
-}
+import {Colors} from "./Colors.js"
+var colors = Colors
 
 function generateColor(y) {
     var p = y % COLOR_GRADIENT / COLOR_GRADIENT
@@ -148,10 +130,9 @@ export class SlidingSlab extends Slab {
                 }))
                 
                 this.parent.score += 1
-                window.scoreElement.innerHTML = this.parent.score
-                // window.beep.play()
+                window.beep.play()
             } else {
-                this.parent.isGameOver = true
+                this.parent.mode = "done"
             }
             
             this.parent.remove(this)

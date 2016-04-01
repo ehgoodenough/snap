@@ -1,5 +1,6 @@
 import Three from "three"
 
+const START_POINT = 100 // the position that the camera is initialized.
 const ZOOM_OUT = 0.25 // the ratio to zoom to after the game is over.
 
 export class Camera extends Three.OrthographicCamera {
@@ -10,8 +11,8 @@ export class Camera extends Three.OrthographicCamera {
         var south = camera.height / -camera.zoom
         super(east, west, north, south, camera.near, camera.far)
         
-        this.position.set(100, 100, 100)
-        this.lookAt(new Three.Vector3(0, 0, 0))
+        this.position.set(START_POINT, START_POINT, START_POINT)
+        this.lookAt(new Three.Vector3(0, 4, 0))
     }
     update(delta, input) {
         if(this.position.y < this.ty) {
@@ -20,7 +21,7 @@ export class Camera extends Three.OrthographicCamera {
                 this.position.y = this.ty
             }
         }
-        if(this.parent.isGameOver) {
+        if(this.parent.mode == "done") {
             if(this.zoom > ZOOM_OUT) {
                 this.zoom -= 3 * delta * (this.zoom - ZOOM_OUT)
                 if(this.zoom - ZOOM_OUT < 0.0005) {
@@ -31,6 +32,6 @@ export class Camera extends Three.OrthographicCamera {
         }
     }
     get ty() {
-        return 100 + this.parent.score
+        return START_POINT + this.parent.score
     }
 }

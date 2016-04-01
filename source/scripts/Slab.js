@@ -7,8 +7,18 @@ const BOUNCE_POINT = 13 // the position from the origin that a slab will bounce
 const SNAP_POINT = 0.25 // the fuzzy difference in two slabs to trigger a snap
 const SPEED = 20 // the rate per second to move the slab
 
-import Beep from "../sounds/beep.wav"
-window.beep = new Audio(Beep)
+var Sounds = {
+    beep1: new Audio(require("../sounds/beep.wav")),
+    beep2: new Audio(require("../sounds/boop.wav")),
+    combo1: new Audio(require("../sounds/combo1.wav")),
+    combo2: new Audio(require("../sounds/combo2.wav")),
+    combo3: new Audio(require("../sounds/combo3.wav")),
+    death: new Audio(require("../sounds/death.wav")),
+}
+
+for(var key in Sounds) {
+    Sounds[key].volume = 0.5
+}
 
 import {Colors} from "./Colors.js"
 var colors = Colors
@@ -81,7 +91,6 @@ export class SlidingSlab extends Slab {
             if(this.direction == "x") {
                 if(Math.abs(ax0 - bx0) < SNAP_POINT
                 && Math.abs(ax1 - bx1) < SNAP_POINT) {
-                    console.log("AWESOME")
                     awesome = true
                     ax0 = bx0
                     ax1 = bx1
@@ -90,7 +99,6 @@ export class SlidingSlab extends Slab {
             if(this.direction == "z") {
                 if(Math.abs(az0 - bz0) < SNAP_POINT
                 && Math.abs(az1 - bz1) < SNAP_POINT) {
-                    console.log("AWESOME")
                     awesome = true
                     az0 = bz0
                     az1 = bz1
@@ -162,7 +170,13 @@ export class SlidingSlab extends Slab {
                 }
                 
                 this.parent.score += 1
-                window.beep.play()
+                
+                if(this.parent.combo > 0) {
+                    var combo = Math.min(3, this.parent.combo)
+                    Sounds["combo" + combo].play()
+                } else {
+                    Sounds["beep" + Math.round(Math.random() + 1)].play()
+                }
             } else {
                 this.parent.mode = "done"
                 this.parent.recordScore()

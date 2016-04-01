@@ -19,8 +19,8 @@ html {
 }
 
 #mount {
-    @include aspect-ratio(240, 320);
     background-color: #222;
+    @include aspect-ratio(240, 320);
 }
 
 canvas {

@@ -12,6 +12,10 @@ import {Camera} from "./scripts/Camera.js"
 import {Slab, SlidingSlab} from "./scripts/Slab.js"
 import {MountComponent} from "./scripts/UI.js"
 
+// var music = new Audio(require("./sounds/music.mp3"))
+// music.volume = 0.25
+// music.play()
+
 /////////////////////////
 ///// Initializing /////
 ///////////////////////

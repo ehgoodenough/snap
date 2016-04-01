@@ -27,22 +27,18 @@ camera.position.set(100, 100, 100)
 camera.lookAt(new Three.Vector3(0, 0, 0))
 scene.add(camera)
 
-var FirstBlockGeometry = new Three.BoxGeometry(10, 100, 10)
-var FirstBlockMaterial = new Three.MeshLambertMaterial({color: 0xCCCCCC})
-var firstblock = new Three.Mesh(FirstBlockGeometry, FirstBlockMaterial)
-firstblock.position.y = -50.5
-scene.add(firstblock)
-
 var light = new Three.DirectionalLight(0xFFFFFF, 1.3)
 light.position.set(2, 3, 1.5)
 light.castShadow = true
 scene.add(light)
 
-import {Slab} from "./scripts/Slab.js"
-scene.add(new Slab({
+import {DynamicSlab, InitialSlab} from "./scripts/Slab.js"
+scene.add(new InitialSlab())
+scene.add(new DynamicSlab({
     width: 10, height: 10,
     color: 0xCC0000,
     speed: 10,
+    y: 1
 }))
 
 var input = new Object()
@@ -50,7 +46,7 @@ document.addEventListener("click", (event) => {
     input.isTapped = true
 })
 
-var game = {y: 0, direction: "x"}
+var game = {y: 1, direction: "x"}
 
 var loop = new Afloop((delta) => {
     var delta = Math.min(delta, 1)
@@ -64,7 +60,7 @@ var loop = new Afloop((delta) => {
     if(input.isTapped) {
         game.y += 1
         game.direction = game.direction == "x" ? "z" : "x"
-        scene.add(new Slab({
+        scene.add(new DynamicSlab({
             y: game.y,
             direction: game.direction,
             width: 10, height: 10,

@@ -15,6 +15,7 @@ var VIEW_ANGLE = 45, ASPECT = WIDTH / HEIGHT, NEAR = 0.1, FAR = 10000
 var ZOOM = 25 * DETAIL
 
 var renderer = new Three.WebGLRenderer({alpha: true})
+renderer.shadowMap.type = Three.PCFSoftShadowMap
 renderer.shadowMap.enabled = false
 renderer.setSize(WIDTH, HEIGHT)
 
@@ -32,10 +33,16 @@ light.position.set(2, 3, 1.5)
 light.castShadow = true
 scene.add(light)
 
-import {DynamicSlab, InitialSlab} from "./scripts/Slab.js"
-scene.add(new InitialSlab())
-scene.add(new DynamicSlab({
-    width: 10, height: 10,
+import {Slab, SlidingSlab} from "./scripts/Slab.js"
+scene.add(new Slab({
+    y: -49.5,
+    width: 10,
+    depth: 10,
+    height: 100,
+    color: 0xCCCCCC,
+}))
+scene.add(new SlidingSlab({
+    width: 10, depth: 10,
     color: 0xCC0000,
     speed: 10,
     y: 1
@@ -60,10 +67,11 @@ var loop = new Afloop((delta) => {
     if(input.isTapped) {
         game.y += 1
         game.direction = game.direction == "x" ? "z" : "x"
-        scene.add(new DynamicSlab({
+        // move this into SlidingSlab onTap?
+        scene.add(new SlidingSlab({
             y: game.y,
             direction: game.direction,
-            width: 10, height: 10,
+            width: 10, depth: 10,
             color: 0x00CC00,
             speed: 10,
         }))

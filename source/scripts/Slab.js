@@ -133,6 +133,7 @@ export class SlidingSlab extends Slab {
                 window.beep.play()
             } else {
                 this.parent.mode = "done"
+                this.parent.recordScore()
             }
             
             this.parent.remove(this)

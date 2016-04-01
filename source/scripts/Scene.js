@@ -1,7 +1,10 @@
 import Three from "three"
+import Firebase from "firebase"
 
 import {Camera} from "./Camera.js"
 import {Slab, SlidingSlab} from "./Slab.js"
+
+var firebase = new Firebase("https://yeahgoodenough.firebaseio.com/stack")
 
 export class Scene extends Three.Scene {
     constructor(scene = new Object()) {
@@ -79,11 +82,19 @@ export class Scene extends Three.Scene {
             }
         }
     }
+    recordScore() {
+        window.localStorage.highscore = Math.max(window.localStorage.highscore, this.score)
+        firebase.push(this.score).setPriority(this.score)
+    }
     get message() {
         if(this.mode == "new") {
             return "Tap to begin playing!"
         } else if(this.mode == "done") {
-            return "Game Over!"
+            if(this.score == window.localStorage.highscore) {
+                return "New High Score!!"
+            } else {
+                return "Game Over!"
+            }
         }
     }
 }

@@ -44,6 +44,7 @@ class InterfaceComponent extends React.Component {
             <div className="interface">
                 <div className="score">
                     {this.props.scene.score || 0}
+                    {this.props.scene.score >= window.localStorage.highscore ? "!" : null}
                 </div>
                 {!!this.props.scene.message ? (
                     <div key="message" className="message">

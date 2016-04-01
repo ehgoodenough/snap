@@ -15,7 +15,7 @@ import {Slab, SlidingSlab} from "./scripts/Slab.js"
 const DETAIL = 800
 const HEIGHT = 4 * DETAIL, WIDTH = 3 * DETAIL
 const ASPECT = WIDTH / HEIGHT, NEAR = 0.1, FAR = 100000
-const ZOOM = 250
+const ZOOM = 300
 
 var renderer = new Three.WebGLRenderer({alpha: true})
 renderer.shadowMap.enabled = false
@@ -44,7 +44,6 @@ scene.add(new Slab({
 }))
 scene.add(new SlidingSlab({
     width: 7, depth: 7,
-    color: 0xCC0000,
     y: 1
 }))
 
@@ -55,8 +54,6 @@ var input = new Object()
 document.addEventListener("click", (event) => {
     input.isTapped = true
 })
-
-var game = {y: 1, direction: "x"}
 
 var loop = new Afloop((delta) => {
     var delta = Math.min(delta, 1)

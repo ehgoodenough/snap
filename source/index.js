@@ -26,6 +26,12 @@ renderer.setSize(WIDTH, HEIGHT)
 
 document.getElementById("mount").appendChild(renderer.domElement)
 
+var scoreElement = document.createElement("div")
+scoreElement.className = "score"
+scoreElement.innerHTML = 0
+document.getElementById("mount").appendChild(scoreElement)
+window.scoreElement = scoreElement
+
 var scene = new Three.Scene()
 
 var camera = new Camera({

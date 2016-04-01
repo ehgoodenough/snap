@@ -28,6 +28,11 @@ var colors = [
     })
 })
 
+var shuffle = Math.random() * colors.length
+for(var i = 0; i < shuffle; i++) {
+    colors.push(colors.shift())
+}
+
 function generateColor(y) {
     var p = y % COLOR_GRADIENT / COLOR_GRADIENT
     var w = p * 2 - 1
@@ -141,6 +146,7 @@ export class SlidingSlab extends Slab {
                 }))
                 
                 this.parent.score += 1
+                window.scoreElement.innerHTML = this.parent.score
                 // window.beep.play()
             } else {
                 window.alert("GAME OVER")

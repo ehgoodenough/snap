@@ -1,7 +1,7 @@
 @import "./styles/AspectRatio.scss";
 @import "./styles/Font.scss";
 
-@include font(tiny);
+@include font(comfortaa);
 
 * {
     margin: 0;
@@ -15,10 +15,26 @@
 html {
     color: #EEE;
     background-color: #111;
-    font-family: tiny, monospace;
+    font-family: comfortaa;
+}
+
+#mount {
+    @include aspect-ratio(240, 320);
+    background-color: #222;
 }
 
 #mount > canvas {
-    @include aspect-ratio(240, 320);
-    background-color: #222;
+    position: absolute;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+#mount > .score {
+    width: 100%;
+    z-index: 999;
+    padding: 16px;
+    position: absolute;
+    
+    font-size: 64px;
+    text-align: center;
 }

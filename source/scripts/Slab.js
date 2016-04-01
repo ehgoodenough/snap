@@ -70,7 +70,7 @@ export class SlidingSlab extends Slab {
         this.position[this.direction] -= 25
     }
     update(delta, input) {
-        if(input == true) {
+        if(input == true && this.position[this.direction] > -(BOUNCE_POINT - 1)) {
             var slab = this.parent.children.filter((child) => {
                 return child instanceof Slab
             })[this.position.y - 1]

@@ -5,6 +5,21 @@ import {Camera} from "./Camera.js"
 import {Slab, SlidingSlab} from "./Slab.js"
 
 var firebase = new Firebase("https://yeahgoodenough.firebaseio.com/stack")
+firebase.on("value", function(snapshot) {
+    var values = snapshot.val()
+    var sum = 0
+    var count = 0
+    var maximum = 0
+    for(var key in values) {
+        sum += values[key]
+        count += 1
+        if(values[key] > maximum) {
+            maximum = values[key]
+        }
+    }
+    var average = sum / count
+    console.log(0, average.toFixed(2), maximum)
+})
 
 export class Scene extends Three.Scene {
     constructor(scene = new Object()) {

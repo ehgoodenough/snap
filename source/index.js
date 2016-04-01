@@ -64,19 +64,6 @@ var loop = new Afloop((delta) => {
         }
     })
     
-    if(input.isTapped) {
-        game.y += 1
-        game.direction = game.direction == "x" ? "z" : "x"
-        // move this into SlidingSlab onTap?
-        scene.add(new SlidingSlab({
-            y: game.y,
-            direction: game.direction,
-            width: 10, depth: 10,
-            color: 0x00CC00,
-            speed: 10,
-        }))
-    }
-    
     renderer.render(scene, camera)
     
     input.isTapped = false

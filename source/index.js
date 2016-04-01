@@ -6,6 +6,7 @@ import Three from "three"
 import Afloop from "afloop"
 import React from "react"
 import ReactDOM from "react-dom"
+import Hammer from "hammerjs"
 
 import {Scene} from "./scripts/Scene.js"
 import {Camera} from "./scripts/Camera.js"
@@ -41,6 +42,12 @@ window.state = new Object({
 var input = false
 document.addEventListener("click", (event) => {input = true})
 document.addEventListener("keypress", (event) => {event.keyCode == 32 ? input = true : "nothing"})
+
+var hammer = new Hammer.Manager(document.body)
+hammer.add(new Hammer.Tap({time: 500}))
+hammer.on("tap", (event) => {
+    input = true
+})
 
 var rendering = ReactDOM.render(<MountComponent/>, document.getElementById("mount"))
 

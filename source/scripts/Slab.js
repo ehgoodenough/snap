@@ -1,7 +1,9 @@
 import Three from "three"
 
+const MINIMUM_SIZE = 0.3 // the smallest size of a slab that won't end the game
 const BOUNCE_POINT = 13 // the position from the origin that a slab will bounce
 const SNAP_POINT = 0.2 // the fuzzy difference in two slabs to trigger a snap
+const SPEED = 20
 
 export class Slab extends Three.Mesh {
     constructor(slab) {
@@ -28,7 +30,7 @@ export class SlidingSlab extends Slab {
     constructor(slab) {
         super(slab)
         
-        this.speed = slab.speed || 10
+        this.speed = slab.speed || SPEED
         this.direction = slab.direction || "x"
         
         this.position[this.direction] -= 25
@@ -38,8 +40,6 @@ export class SlidingSlab extends Slab {
             var slab = this.parent.children.filter((child) => {
                 return child instanceof Slab
             })[this.position.y - 1]
-            
-            // given slab, how to get size? how to get color?
             
             var ax0 = this.position.x - (this.width / 2)
             var az0 = this.position.z - (this.depth / 2)
@@ -51,6 +51,7 @@ export class SlidingSlab extends Slab {
             var bx1 = slab.position.x + (slab.width / 2)
             var bz1 = slab.position.z + (slab.depth / 2)
             
+            // snap
             if(this.direction == "x") {
                 if(Math.abs(ax0 - bx0) < SNAP_POINT
                 && Math.abs(ax1 - bx1) < SNAP_POINT) {
@@ -68,6 +69,7 @@ export class SlidingSlab extends Slab {
                 }
             }
             
+            // trim
             if(ax0 < bx0) {ax0 = bx0}
             if(az0 < bz0) {az0 = bz0}
             if(ax1 > bx1) {ax1 = bx1}
@@ -79,28 +81,32 @@ export class SlidingSlab extends Slab {
             var z = az0 + (depth / 2)
             var y = this.position.y
             
-            if(width < 0 || depth < 0) {
-                throw "game over"
+            if(width > MINIMUM_SIZE
+            && depth > MINIMUM_SIZE) {
+                this.parent.add(new Slab({
+                    color: this.color,
+                    x: x,
+                    y: y,
+                    z: z,
+                    width: width,
+                    depth: depth,
+                }))
+                
+                this.parent.add(new SlidingSlab({
+                    color: 0x00CC00,
+                    x: x,
+                    y: y + 1,
+                    z: z,
+                    width: width,
+                    depth: depth,
+                    direction: this.direction == "x" ? "z" : "x",
+                }))
+                
+                this.parent.score += 1
+                //console.log(this.parent.score)
+            } else {
+                console.log("game over!")
             }
-            
-            this.parent.add(new Slab({
-                color: this.color,
-                x: x,
-                y: y,
-                z: z,
-                width: width,
-                depth: depth,
-            }))
-            
-            this.parent.add(new SlidingSlab({
-                color: 0x00CC00,
-                x: x,
-                y: y + 1,
-                z: z,
-                width: width,
-                depth: depth,
-                direction: this.direction == "x" ? "z" : "x",
-            }))
             
             this.parent.remove(this)
             

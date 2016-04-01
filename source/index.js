@@ -5,17 +5,19 @@
 import Three from "three"
 import Afloop from "afloop"
 
+import {Camera} from "./scripts/Camera.js"
+import {Slab, SlidingSlab} from "./scripts/Slab.js"
+
 /////////////////////////
 ///// Initializing /////
 ///////////////////////
 
-var DETAIL = 10
-var HEIGHT = 320 * DETAIL, WIDTH = 240 * DETAIL
-var VIEW_ANGLE = 45, ASPECT = WIDTH / HEIGHT, NEAR = 0.1, FAR = 10000
-var ZOOM = 25 * DETAIL
+const DETAIL = 800
+const HEIGHT = 4 * DETAIL, WIDTH = 3 * DETAIL
+const ASPECT = WIDTH / HEIGHT, NEAR = 0.1, FAR = 100000
+const ZOOM = 250
 
 var renderer = new Three.WebGLRenderer({alpha: true})
-renderer.shadowMap.type = Three.PCFSoftShadowMap
 renderer.shadowMap.enabled = false
 renderer.setSize(WIDTH, HEIGHT)
 
@@ -23,9 +25,10 @@ document.getElementById("mount").appendChild(renderer.domElement)
 
 var scene = new Three.Scene()
 
-var camera = new Three.OrthographicCamera(WIDTH / -ZOOM, WIDTH / +ZOOM, HEIGHT / +ZOOM, HEIGHT / -ZOOM, NEAR, FAR)
-camera.position.set(100, 100, 100)
-camera.lookAt(new Three.Vector3(0, 0, 0))
+var camera = new Camera({
+    width: WIDTH, height: HEIGHT,
+    zoom: ZOOM, near: NEAR, far: FAR
+})
 scene.add(camera)
 
 var light = new Three.DirectionalLight(0xFFFFFF, 1.3)
@@ -33,20 +36,20 @@ light.position.set(2, 3, 1.5)
 light.castShadow = true
 scene.add(light)
 
-import {Slab, SlidingSlab} from "./scripts/Slab.js"
 scene.add(new Slab({
     y: -49.5,
-    width: 10,
-    depth: 10,
+    width: 7, depth: 7,
     height: 100,
     color: 0xCCCCCC,
 }))
 scene.add(new SlidingSlab({
-    width: 10, depth: 10,
+    width: 7, depth: 7,
     color: 0xCC0000,
-    speed: 10,
     y: 1
 }))
+
+scene.score = 0
+scene.combo = 0
 
 var input = new Object()
 document.addEventListener("click", (event) => {
@@ -68,3 +71,7 @@ var loop = new Afloop((delta) => {
     
     input.isTapped = false
 })
+
+// smaller initial size (not ten by ten)
+// faster speeds (not so slow)
+// more zoomed in (less on the screen)

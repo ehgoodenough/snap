@@ -4,7 +4,7 @@ import LeftPad from "left-pad"
 const COLOR_GRADIENT = 7 // the number of stages in each gradient between colors
 const MINIMUM_SIZE = 0.3 // the smallest size of a slab that won't end the game
 const BOUNCE_POINT = 13 // the position from the origin that a slab will bounce
-const SNAP_POINT = 0.2 // the fuzzy difference in two slabs to trigger a snap
+const SNAP_POINT = 0.25 // the fuzzy difference in two slabs to trigger a snap
 const SPEED = 20 // the rate per second to move the slab
 
 import Beep from "../sounds/beep.wav"
@@ -97,6 +97,12 @@ export class SlidingSlab extends Slab {
                 }
             }
             
+            if(awesome == true) {
+                this.parent.combo += 1
+            } else {
+                this.parent.combo = 0
+            }
+            
             // trim
             if(ax0 < bx0) {ax0 = bx0}
             if(az0 < bz0) {az0 = bz0}
@@ -108,6 +114,21 @@ export class SlidingSlab extends Slab {
             var x = ax0 + (width / 2)
             var z = az0 + (depth / 2)
             var y = this.position.y
+            
+            if(this.parent.combo >= 3) {
+                var growth = +1
+                if(width < depth) {
+                    if(width + growth < 7) {
+                        width += growth
+                        x -= growth / 2
+                    }
+                } else {
+                    if(depth + growth < 7) {
+                        depth += growth
+                        z -= growth / 2
+                    }
+                }
+            } 
             
             if(width > MINIMUM_SIZE
             && depth > MINIMUM_SIZE) {
@@ -129,6 +150,17 @@ export class SlidingSlab extends Slab {
                     direction: this.direction == "x" ? "z" : "x",
                 }))
                 
+                for(var i = 0; i < Math.min(3, this.parent.combo); i++) {
+                    this.parent.add(new Highlight({
+                        x: x,
+                        y: y + (0.1 * i),
+                        z: z,
+                        width: width - i,
+                        depth: depth - i,
+                        colors: ["#FFFFFF", "#EEEEEE", "#CCCCCC"][i]
+                    }))
+                }
+                
                 this.parent.score += 1
                 window.beep.play()
             } else {
@@ -148,11 +180,22 @@ export class SlidingSlab extends Slab {
     }
 }
 
-export class FallingSlab extends Slab {
-    constructor(slab) {
-        super(slab)
-        
-        this.speed = slab.speed || SPEED
-        this.direction = slab.direction || "x"
+export class Highlight extends Three.Mesh {
+    constructor(highlight) {
+        var geometry = new Three.BoxGeometry(highlight.width, highlight.depth)
+        var material = new Three.MeshLambertMaterial({color: 0xFFFFFF, transparent: true})
+        super(geometry, material)
+        this.position.x = highlight.x
+        this.position.y = highlight.y - 0.5
+        this.position.z = highlight.z
+        this.rotation.x = Math.PI / 2
+    }
+    update(delta) {
+        this.scale.x += delta
+        this.scale.y += delta
+        this.material.opacity -= delta
+        if(this.material.opacity <= 0) {
+            this.parent.remove(this)
+        }
     }
 }

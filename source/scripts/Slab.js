@@ -151,7 +151,7 @@ export class SlidingSlab extends Slab {
                 window.scoreElement.innerHTML = this.parent.score
                 // window.beep.play()
             } else {
-                window.alert("GAME OVER")
+                this.parent.isGameOver = true
             }
             
             this.parent.remove(this)

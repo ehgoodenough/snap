@@ -36,10 +36,6 @@ function generateColor(y) {
     
     var color1 = colors[(Math.floor(y / COLOR_GRADIENT) + 1) % colors.length]
     var color2 = colors[(Math.floor(y / COLOR_GRADIENT)) % colors.length]
-    console.log(
-        Math.floor(y / COLOR_GRADIENT) % colors.length,
-        (Math.floor(y / COLOR_GRADIENT) + 1) % colors.length
-    )
     
     return "#" + [
         LeftPad(Math.round((color1[0] * w1) + (color2[0] * w2)).toString(16), 2, 0),
@@ -145,9 +141,9 @@ export class SlidingSlab extends Slab {
                 }))
                 
                 this.parent.score += 1
-                //console.log(this.parent.score)
+                // window.beep.play()
             } else {
-                console.log("game over!")
+                window.alert("GAME OVER")
             }
             
             this.parent.remove(this)

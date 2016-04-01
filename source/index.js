@@ -8,6 +8,9 @@ import Afloop from "afloop"
 import {Camera} from "./scripts/Camera.js"
 import {Slab, SlidingSlab} from "./scripts/Slab.js"
 
+import beep from "./sounds/beep.wav"
+window.beep = new Audio(beep)
+
 /////////////////////////
 ///// Initializing /////
 ///////////////////////
@@ -38,9 +41,9 @@ scene.add(light)
 
 scene.add(new Slab({
     y: -49.5,
-    width: 7, depth: 7,
     height: 100,
-    color: 0xCCCCCC,
+    width: 7, depth: 7,
+    color: 0x888888,
 }))
 scene.add(new SlidingSlab({
     width: 7, depth: 7,

@@ -38,6 +38,7 @@ body {
 
 .stack {
     margin-left: 50%;
+    margin-top: 20%;
     position: absolute;
 }
 
@@ -48,12 +49,10 @@ body {
     transition-duration: 2s;
     transition-property: transform;
 
-    perspective: 1000px;
+    perspective: 5000px;
     transform-origin: 0% 0%;
     transform-style: preserve-3d;
     transform: rotateX(65deg) rotateZ(45deg) translateZ(-100px);
-
-    /* background-color: orange; */
 }
 
 .box {
@@ -63,9 +62,4 @@ body {
 
 .box > .face {
     position: absolute;
-    box-sizing: border-box;
-
-    border-width: 1px;
-    border-color: #000;
-    border-style: solid;
 }

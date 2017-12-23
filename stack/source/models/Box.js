@@ -24,8 +24,16 @@ function generateColor(z) {
     ].join("")
 }
 
+// https://stackoverflow.com/questions/5560248/programmatically-lighten-or-darken-a-hex-color-or-rgb-and-blend-colors
+function shadeColor2(color, percent) {
+    var f=parseInt(color.slice(1),16),t=percent<0?0:255,p=percent<0?percent*-1:percent,R=f>>16,G=f>>8&0x00FF,B=f&0x0000FF
+    return "#"+(0x1000000+(Math.round((t-R)*p)+R)*0x10000+(Math.round((t-G)*p)+G)*0x100+(Math.round((t-B)*p)+B)).toString(16).slice(1)
+}
+
 export default class Box {
     constructor(box) {
+        this.vector = box.vector || "y"
+
         this.size = {
             x: box.width || 0,
             y: box.height || 0,
@@ -42,7 +50,9 @@ export default class Box {
         this.game = box.game
 
         this.color = box.color || generateColor(this.position.z)
-        this.vector = box.vector || "y"
+        this.darkerColor = shadeColor2(this.color, -0.25)
+        this.darkererColor = shadeColor2(this.color, -0.5)
+        this.color = shadeColor2(this.color, -0.1)
     }
     update(delta) {
         if(this.game.topBox === this) {

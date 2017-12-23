@@ -50,13 +50,13 @@ class Box extends React.Component {
                     width: this.props.box.size.z,
                     height: this.props.box.size.y,
                     transform: `rotateY(90deg) translateZ(${this.props.box.size.x - (this.props.box.size.z/2)}px)`,
-                    backgroundColor: this.props.box.color || "#0C0",
+                    backgroundColor: this.props.box.darkerColor || "#0C0",
                 }}/>
                 <div className="bottom face" style={{
                     width: this.props.box.size.x,
                     height: this.props.box.size.z,
                     transform: `rotateX(-90deg) translateZ(${this.props.box.size.y - (this.props.box.size.z/2)}px)`,
-                    backgroundColor: this.props.box.color || "#00C",
+                    backgroundColor: this.props.box.darkererColor || "#00C",
                 }}/>
             </div>
         )

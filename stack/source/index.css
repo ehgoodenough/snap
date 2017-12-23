@@ -49,7 +49,7 @@ body {
     transition-duration: 2s;
     transition-property: transform;
 
-    perspective: 5000px;
+    perspective: 500000px;
     transform-origin: 0% 0% 0;
     transform-style: preserve-3d;
 }
@@ -62,8 +62,8 @@ body {
 .box > .face {
     position: absolute;
 
-    border-width: 1px;
+    /* border-width: 1px;
     border-style: dashed;
     border-color: #111;
-    box-sizing: border-box;
+    box-sizing: border-box; */
 }

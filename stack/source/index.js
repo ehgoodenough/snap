@@ -21,41 +21,63 @@ class Box extends React.Component {
     render() {
         return (
             <div className="box">
-                <figure className="front" style={{
+                <div className="front face" style={{
+                    width: this.props.box.width,
+                    height: this.props.box.height,
                     transform: [
                         "rotateY(0deg)",
-                        "translateZ(100px)"
-                    ].join(" ")
+                        `translateZ(${this.props.box.depth/2}px)`
+                    ].join(" "),
+                    backgroundColor: "#C00",
                 }}/>
-                <figure className="back" style={{
+                <div className="back face" style={{
+                    width: this.props.box.width,
+                    height: this.props.box.height,
                     transform: [
                         "rotateX(180deg)",
-                        "translateZ(100px)"
-                    ].join(" ")
+                        `translateZ(${this.props.box.depth/2}px)`
+                    ].join(" "),
+                    backgroundColor: "#C00",
                 }}/>
-                <figure className="right" style={{
+                <div className="right face" style={{
+                    width: this.props.box.depth,
+                    height: this.props.box.height,
+                    left: this.props.box.height/2,
                     transform: [
                         "rotateY(90deg)",
-                        "translateZ(100px)"
-                    ].join(" ")
+                        `translateZ(${this.props.box.width/2}px)`
+                    ].join(" "),
+                    backgroundColor: "#0C0",
                 }}/>
-                <figure className="left" style={{
+                <div className="left face" style={{
+                    width: this.props.box.depth,
+                    height: this.props.box.height,
+                    left: this.props.box.height/2,
                     transform: [
                         "rotateY(-90deg)",
-                        "translateZ(100px)"
-                    ].join(" ")
+                        `translateZ(${this.props.box.width/2}px)`
+                    ].join(" "),
+                    backgroundColor: "#0C0",
                 }}/>
-                <figure className="top" style={{
+                <div className="top face" style={{
+                    width: this.props.box.width,
+                    height: this.props.box.depth,
+                    top: this.props.box.depth/2,
                     transform: [
                         "rotateX(90deg)",
-                        "translateZ(100px)"
-                    ].join(" ")
+                        `translateZ(${this.props.box.height/2}px)`
+                    ].join(" "),
+                    backgroundColor: "#00C",
                 }}/>
-                <figure className="bottom" style={{
+                <div className="bottom face" style={{
+                    width: this.props.box.width,
+                    height: this.props.box.depth,
+                    top: this.props.box.depth/2,
                     transform: [
                         "rotateX(-90deg)",
-                        "translateZ(100px)"
-                    ].join(" ")
+                        `translateZ(${this.props.box.height/2}px)`
+                    ].join(" "),
+                    backgroundColor: "#00C",
                 }}/>
             </div>
         )

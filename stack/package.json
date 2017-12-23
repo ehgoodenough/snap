@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "keyb": "^1.1.0",
+    "left-pad": "^1.2.0",
     "pixi.js": "^4.5.6",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

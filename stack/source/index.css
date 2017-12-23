@@ -35,3 +35,42 @@ body {
 #frame {
     background-color: #222;
 }
+
+.stack {
+    /* right: 0px; */
+    /* bottom: 0px; */
+    /* padding: 2em; */
+    position: absolute;
+
+    color: #EEE;
+    font-family: sans-serif;
+
+    perspective: 500px;
+    perspective: 5000px;
+    transform-origin: 50% 50%;
+    width: 100%; height: 100%;
+}
+
+.box {
+    /* width: 200px;
+    height: 200px; */
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transform: translate3d(98px, 98px, 98px) rotateX(65deg) rotateZ(45deg);
+}
+
+.box > figure {
+    background-color: #C00;
+
+    width: 200px;
+    height: 200px;
+    display: block;
+    position: absolute;
+    box-sizing: border-box;
+
+    border-width: 2px;
+    border-color: #000;
+    border-style: solid;
+}

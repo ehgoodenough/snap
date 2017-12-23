@@ -1,7 +1,7 @@
 {
   "name": "!!!",
   "version": "1.0.0",
-  "description": "Some twitch extensions",
+  "description": "A game of stacking.",
   "private": true,
   "contributors": [
     "Andrew McPherson <@ehgoodenough>"

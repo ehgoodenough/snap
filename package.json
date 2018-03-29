@@ -18,7 +18,7 @@
   "dependencies": {
     "keyb": "^1.1.0",
     "left-pad": "^1.2.0",
-    "pixi.js": "^4.5.6",
+    "pixi.js": "^4.7.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "statgrab": "^1.2.0",
@@ -26,6 +26,6 @@
   },
   "devDependencies": {
     "babel-preset-env": "^1.6.1",
-    "codeglue": "^1.3.1"
+    "codeglue": "^1.4.1"
   }
 }

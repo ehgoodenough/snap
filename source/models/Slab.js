@@ -1,7 +1,8 @@
 import Keyb from "keyb"
 
-const BOUNCE_POINT = 300
-const SNAP_POINT = 10
+const BOUNCE_POINT = 12
+const SNAP_POINT = 1
+const DEFAULT_SPEED = +0.5
 
 import Color from "utility/Color.js"
 
@@ -15,7 +16,7 @@ export default class Slab {
         slab.position.z = slab.position.z || 0
         slab.color = slab.color || Color.generate(slab.position.z)
         slab.axis = slab.axis || "y"
-        slab.speed = slab.speed || +5
+        slab.speed = slab.speed || DEFAULT_SPEED
 
         this.game = slab.game
 
@@ -89,7 +90,7 @@ export default class Slab {
                     "position": {
                         "x": this.axis != "x" ? -BOUNCE_POINT : this.position.x,
                         "y": this.axis != "y" ? -BOUNCE_POINT : this.position.y,
-                        "z": this.position.z + 25,
+                        "z": this.position.z + 1,
                     },
                     "speed": this.speed,
                     "axis": this.axis == "x" ? "y" : "x"

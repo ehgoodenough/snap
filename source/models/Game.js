@@ -1,5 +1,7 @@
 import Slab from "models/Slab.js"
 
+const CAMERA_OFFSET = 0
+
 export default class Game {
     constructor(game) {
         this.system = game.system
@@ -9,14 +11,14 @@ export default class Game {
         this.slabs = [
             new Slab({
                 game: this,
-                position: {z: 25},
-                size: {x: 200, y: 200, z: 25},
+                position: {z: 1},
+                size: {x: 8, y: 8, z: 1},
             }),
             new Slab({
                 game: this,
                 color: "#888888",
                 position: {z: 0},
-                size: {x: 200, y: 200, z: 200},
+                size: {x: 8, y: 8, z: 8},
                 isStartingBlock: true
             }),
         ]
@@ -26,7 +28,7 @@ export default class Game {
             slab.update(delta)
         })
 
-        this.camera.pan = this.currentSlab.position.z + (3*25)
+        this.camera.pan = this.currentSlab.position.z + CAMERA_OFFSET
     }
     end() {
         console.log("FREEZE, WAIT FOR INPUT, RESTART")
@@ -57,8 +59,6 @@ export default class Game {
 // TODO: Add UI elements when you beat your personal best highscore, stream highscore, all-time highscore.
 // TODO: Zoom out when the game is over.
 // ...TECH DEBT....
-// TODO: Refactor 25 as a constant upwards unit.
-// TODO: Rename the slabs into slabs, as per old codebase.
 // TODO: Refactor the X and Z to be horizontal and Y to be vertical.
 // TODO: Why are we offseting z/2 for the upwards transform, and not the others?
 // TODO: Why is the x/y origin in the top left?

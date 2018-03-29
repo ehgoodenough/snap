@@ -16,10 +16,12 @@ body {
     margin: auto;
     position: fixed;
     overflow: hidden;
+    font-size: 9px;
 }
 
 @media(min-aspect-ratio: 16/9) {
     #frame {
+        font-size: 11.111vh;
         width: 177.778vh;
         height: 100vh;
     }
@@ -27,6 +29,8 @@ body {
 
 @media(max-aspect-ratio: 16/9) {
     #frame {
+        font-size: 6.25vw;
+        font-size: 3.125vw;
         height: 56.25vw;
         width: 100vw;
     }

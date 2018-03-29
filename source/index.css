@@ -1,6 +1,9 @@
 * {
+    margin: 0px;
+    padding: 0px;
     cursor: default;
     user-select: none;
+    box-sizing: border-box;
     image-rendering: pixelated;
 }
 
@@ -70,4 +73,9 @@ body {
     // border-style: dashed;
     // border-color: #111;
     // box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "comfortaa";
+    src: url("fonts/comfortaa.ttf") format("truetype");
 }

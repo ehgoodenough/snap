@@ -95,6 +95,9 @@ export default class Slab {
                     "speed": this.speed,
                     "axis": this.axis == "x" ? "y" : "x"
                 }))
+
+                // Bump the score.
+                this.game.score += 1
             }
         }
     }

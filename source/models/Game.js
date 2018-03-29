@@ -1,6 +1,6 @@
 import Slab from "models/Slab.js"
 
-const CAMERA_OFFSET = 0
+const CAMERA_OFFSET = 2.5
 
 export default class Game {
     constructor(game) {

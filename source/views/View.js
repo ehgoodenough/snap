@@ -1,8 +1,11 @@
 import Preact from "preact"
 
+import Score from "views/Score.view.js"
+
 export default function View(props) {
     return (
         <div id="frame">
+            <Score score={props.system.game.score}/>
             <div className="stack">
                 <Camera camera={props.system.game.camera}>
                     {props.system.game.slabs.map((slab, key) => (

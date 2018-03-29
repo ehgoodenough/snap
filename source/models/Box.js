@@ -50,7 +50,7 @@ export default class Box {
             }
 
             // Listening for player input.
-            if(Keyb.isJustDown("<space>")) {
+            if(Keyb.isJustDown("<space>", delta.ms)) {
                 // If the current box is close enough to the previous box, snap it on top of it.
                 if(Math.abs(this.game.previousBox.position[axis] - this.position[axis]) < SNAP_POINT) {
                     this.position[axis] = this.game.previousBox.position[axis]
@@ -80,19 +80,19 @@ export default class Box {
                 // Create a new boxs, and put it
                 // at the top of the stack of boxes!
                 this.game.boxes.unshift(new Box({
+                    "game": this.game,
                     "size": {
                         "x": this.size.x,
                         "y": this.size.y,
                         "z": this.size.z,
                     },
                     "position": {
-                        "x": this.position.x,
-                        "y": this.position.y,
+                        "x": this.axis != "x" ? -BOUNCE_POINT : this.position.x,
+                        "y": this.axis != "y" ? -BOUNCE_POINT : this.position.y,
                         "z": this.position.z + 25,
                     },
-                    "game": this.game,
                     "speed": this.speed,
-                    "axis": axis == "x" ? "y" : "x"
+                    "axis": this.axis == "x" ? "y" : "x"
                 }))
             }
         }

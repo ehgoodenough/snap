@@ -55,11 +55,12 @@ export default class Game {
 // TODO: Why are we offseting z/2 for the upwards transform, and not the others?
 // TODO: Why is the x/y origin in the top left?
 // TODO: Confirm that the camera is panning for any number of layers.
+// TODO: Consider preact?
 // ...BALANCE...
 // TODO: Tweak bounce point. Tweak snap point.
 // TODO: Increase this.speed as this.position.z increases?
-// TODO: Set the starting position of each new block at the far ends.
 // TODO: Create a minimum delay between last box and next box to avoid accidental inputs.
+// TODO: Re-introduce "perfect" snaps, where your box grows out a bit.
 // ...DEPLOYMENT...
 // TODO: Integrate this with a twitch extension.
 // TODO: Get your twitch extension through review.

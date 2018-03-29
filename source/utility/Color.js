@@ -4,7 +4,6 @@ import Colors from "data/Colors.js"
 import LeftPad from "left-pad"
 
 function generate(i) {
-    i /= 25 // !!!!!!?? :<
 
     var p = i % COLOR_GRADIENT / COLOR_GRADIENT
     var w = p * 2 - 1

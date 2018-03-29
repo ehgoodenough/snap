@@ -1,5 +1,4 @@
-import React from "react"
-import ReactDOM from "react-dom"
+import Preact from "preact"
 import Yaafloop from "yaafloop"
 import Keyb from "keyb"
 
@@ -9,8 +8,10 @@ import System from "models/System.js"
 import "index.css"
 
 let system = new System()
-let view = ReactDOM.render(<View system={system}/>, frame)
+
+let mount = Preact.render(<View system={system}/>, document.body)
+
 let loop = new Yaafloop((delta) => {
     system.game.update(delta)
-    view.forceUpdate()
+    Preact.render(<View system={system}/>, document.body, mount)
 })

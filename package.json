@@ -19,12 +19,14 @@
     "keyb": "^1.1.0",
     "left-pad": "^1.2.0",
     "pixi.js": "^4.7.1",
+    "preact": "^8.2.7",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "statgrab": "^1.2.0",
     "yaafloop": "^1.1.0"
   },
   "devDependencies": {
+    "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.6.1",
     "codeglue": "^1.4.1"
   }

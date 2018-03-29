@@ -63,7 +63,6 @@ export default class Game {
 // TODO: Why are we offseting z/2 for the upwards transform, and not the others?
 // TODO: Why is the x/y origin in the top left?
 // TODO: Confirm that the camera is panning for any number of layers.
-// TODO: Consider preact?
 // ...DEPLOYMENT...
 // TODO: Integrate this with a twitch extension.
 // TODO: Get your twitch extension through review.

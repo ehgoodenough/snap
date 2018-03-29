@@ -4,8 +4,8 @@ export default class View extends React.Component {
     render() {
         return (
             <div className="stack">
-                <Camera camera={this.props.game.camera}>
-                    {this.props.game.boxes.map((box, key) => (
+                <Camera camera={this.props.system.game.camera}>
+                    {this.props.system.game.boxes.map((box, key) => (
                         <Box box={box} key={key}/>
                     ))}
                 </Camera>

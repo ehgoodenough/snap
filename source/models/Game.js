@@ -1,7 +1,9 @@
 import Box from "models/Box.js"
 
 export default class Game {
-    constructor() {
+    constructor(game) {
+        this.system = game.system
+
         this.score = 0
         this.camera = {pan: 0, zoom: 1}
         this.boxes = [
@@ -28,6 +30,7 @@ export default class Game {
     }
     end() {
         console.log("FREEZE, WAIT FOR INPUT, RESTART")
+        this.system.startNewGame()
     }
     get currentBox() {
         return this.boxes[0]
@@ -41,6 +44,12 @@ export default class Game {
 // TODO: Allow the Game model for restarts.
 // TODO: Render the score as a UI element.
 // TODO: Add click listener as input.
+// ...BALANCE...
+// TODO: Tweak bounce point. Tweak snap point.
+// TODO: Increase this.speed as this.position.z increases?
+// TODO: Create a minimum delay between last box and next box to avoid accidental inputs.
+// TODO: Re-introduce "perfect" snaps, where your box grows out a bit.
+// TODO: Track the chains in the Game model.
 /// ...CO-PLAY...
 // TODO: Integrate with Gamesparks Leaderboards.
 // TODO: Figure out how to center the view in the corner of the Twitch Extension.
@@ -51,16 +60,10 @@ export default class Game {
 // TODO: Refactor 25 as a constant upwards unit.
 // TODO: Rename the boxes into slabs, as per old codebase.
 // TODO: Refactor the X and Z to be horizontal and Y to be vertical.
-// TODO: Track the chains in the Game model.
 // TODO: Why are we offseting z/2 for the upwards transform, and not the others?
 // TODO: Why is the x/y origin in the top left?
 // TODO: Confirm that the camera is panning for any number of layers.
 // TODO: Consider preact?
-// ...BALANCE...
-// TODO: Tweak bounce point. Tweak snap point.
-// TODO: Increase this.speed as this.position.z increases?
-// TODO: Create a minimum delay between last box and next box to avoid accidental inputs.
-// TODO: Re-introduce "perfect" snaps, where your box grows out a bit.
 // ...DEPLOYMENT...
 // TODO: Integrate this with a twitch extension.
 // TODO: Get your twitch extension through review.

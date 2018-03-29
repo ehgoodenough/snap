@@ -42,19 +42,22 @@ export default class Game {
     }
 }
 
-// ...MVP...
-// TODO: Add click listener as input.
-// ...LOOK AND FEEL...
-// TODO: Add a gradient up the background of the game
-// TODO: Add sound effects for block-on-block or consecutive snaps
-// TODO: Add particile effect for consecutive snaps
+// ...DEPLOYMENT...
+// TODO: Integrate this with a twitch extension.
+// TODO: Get your twitch extension through review.
+// TODO: Setup an infinite twitch stream.
+// TODO: Put some sort of graphic on the twitch stream.
 // ...BALANCE...
 // TODO: Tweak bounce point. Tweak snap point.
 // TODO: Increase this.speed as this.position.z increases?
 // TODO: Create a minimum delay between last slab and next slab to avoid accidental inputs.
 // TODO: Re-introduce "perfect" snaps, where your slab grows out a bit.
+// ...LOOK AND FEEL...
+// TODO: Add a gradient up the background of the game
+// TODO: Add sound effects for block-on-block or consecutive snaps
+// TODO: Add particile effect for consecutive snaps
 /// ...CO-PLAY...
-// TODO: Integrate with Gamesparks Leaderboards.
+// TODO: Get a leaderboard.
 // TODO: Figure out how to center the view in the corner of the Twitch Extension.
 // TODO: Add UI elements explaining what username is leaderboarding. Explain hwo to auth to use your real identity.
 // TODO: Add UI elements when you beat your personal best highscore, stream highscore, all-time highscore.
@@ -64,11 +67,6 @@ export default class Game {
 // TODO: Why are we offseting z/2 for the upwards transform, and not the others?
 // TODO: Why is the x/y origin in the top left?
 // TODO: Confirm that the camera is panning for any number of layers.
-// ...DEPLOYMENT...
-// TODO: Integrate this with a twitch extension.
-// TODO: Get your twitch extension through review.
-// TODO: Setup an infinite twitch stream.
-// TODO: Put some sort of graphic on the twitch stream.
 // ...SCOPE CREEP...
 // Compare with your old jam version of Stack. Compare with the live official version of Stack.
 // See other player's towers that are just a bit taller than you are now in the leaderboards. Render their name on the tower.

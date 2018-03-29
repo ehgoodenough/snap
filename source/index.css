@@ -54,12 +54,12 @@ body {
     transform-style: preserve-3d;
 }
 
-.box {
+.slab {
     position: absolute;
     transform-style: preserve-3d;
 }
 
-.box > .face {
+.slab > .face {
     position: absolute;
 
     // border-width: 2px;

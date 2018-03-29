@@ -1,4 +1,4 @@
-import Box from "models/Box.js"
+import Slab from "models/Slab.js"
 
 export default class Game {
     constructor(game) {
@@ -6,13 +6,13 @@ export default class Game {
 
         this.score = 0
         this.camera = {pan: 0, zoom: 1}
-        this.boxes = [
-            new Box({
+        this.slabs = [
+            new Slab({
                 game: this,
                 position: {z: 25},
                 size: {x: 200, y: 200, z: 25},
             }),
-            new Box({
+            new Slab({
                 game: this,
                 color: "#888888",
                 position: {z: 0},
@@ -22,21 +22,21 @@ export default class Game {
         ]
     }
     update(delta) {
-        this.boxes.forEach((box) => {
-            box.update(delta)
+        this.slabs.forEach((slab) => {
+            slab.update(delta)
         })
 
-        this.camera.pan = this.currentBox.position.z + (3*25)
+        this.camera.pan = this.currentSlab.position.z + (3*25)
     }
     end() {
         console.log("FREEZE, WAIT FOR INPUT, RESTART")
         this.system.startNewGame()
     }
-    get currentBox() {
-        return this.boxes[0]
+    get currentSlab() {
+        return this.slabs[0]
     }
-    get previousBox() {
-        return this.boxes[1]
+    get previousSlab() {
+        return this.slabs[1]
     }
 }
 
@@ -47,8 +47,8 @@ export default class Game {
 // ...BALANCE...
 // TODO: Tweak bounce point. Tweak snap point.
 // TODO: Increase this.speed as this.position.z increases?
-// TODO: Create a minimum delay between last box and next box to avoid accidental inputs.
-// TODO: Re-introduce "perfect" snaps, where your box grows out a bit.
+// TODO: Create a minimum delay between last slab and next slab to avoid accidental inputs.
+// TODO: Re-introduce "perfect" snaps, where your slab grows out a bit.
 // TODO: Track the chains in the Game model.
 /// ...CO-PLAY...
 // TODO: Integrate with Gamesparks Leaderboards.
@@ -58,7 +58,7 @@ export default class Game {
 // TODO: Zoom out when the game is over.
 // ...TECH DEBT....
 // TODO: Refactor 25 as a constant upwards unit.
-// TODO: Rename the boxes into slabs, as per old codebase.
+// TODO: Rename the slabs into slabs, as per old codebase.
 // TODO: Refactor the X and Z to be horizontal and Y to be vertical.
 // TODO: Why are we offseting z/2 for the upwards transform, and not the others?
 // TODO: Why is the x/y origin in the top left?

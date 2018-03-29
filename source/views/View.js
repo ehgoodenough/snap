@@ -5,8 +5,8 @@ export default class View extends React.Component {
         return (
             <div className="stack">
                 <Camera camera={this.props.system.game.camera}>
-                    {this.props.system.game.boxes.map((box, key) => (
-                        <Box box={box} key={key}/>
+                    {this.props.system.game.slabs.map((slab, key) => (
+                        <Slab slab={slab} key={key}/>
                     ))}
                 </Camera>
             </div>
@@ -29,34 +29,34 @@ function Camera(props) {
     )
 }
 
-class Box extends React.Component {
+class Slab extends React.Component {
     render() {
         return (
-            <div className="box" style={{
-                opacity: this.props.box.isBroken ? 0 : 1,
+            <div className="slab" style={{
+                opacity: this.props.slab.isBroken ? 0 : 1,
                 transform: [
-                    `translateX(${this.props.box.position.x || 0}px)`,
-                    `translateY(${this.props.box.position.y || 0}px)`,
-                    `translateZ(${(this.props.box.position.z || 0) - (this.props.box.size.z/2)}px)`,
+                    `translateX(${this.props.slab.position.x || 0}px)`,
+                    `translateY(${this.props.slab.position.y || 0}px)`,
+                    `translateZ(${(this.props.slab.position.z || 0) - (this.props.slab.size.z/2)}px)`,
                 ].join(" ")
             }}>
                 <div className="front face" style={{
-                    width: this.props.box.size.x,
-                    height: this.props.box.size.y,
-                    transform: `translateZ(${this.props.box.size.z/2}px)`,
-                    backgroundColor: this.props.box.color || "#C00",
+                    width: this.props.slab.size.x,
+                    height: this.props.slab.size.y,
+                    transform: `translateZ(${this.props.slab.size.z/2}px)`,
+                    backgroundColor: this.props.slab.color || "#C00",
                 }}/>
                 <div className="right face" style={{
-                    width: this.props.box.size.z,
-                    height: this.props.box.size.y,
-                    transform: `rotateY(90deg) translateZ(${this.props.box.size.x - (this.props.box.size.z/2)}px)`,
-                    backgroundColor: this.props.box.darkerColor || "#0C0",
+                    width: this.props.slab.size.z,
+                    height: this.props.slab.size.y,
+                    transform: `rotateY(90deg) translateZ(${this.props.slab.size.x - (this.props.slab.size.z/2)}px)`,
+                    backgroundColor: this.props.slab.darkerColor || "#0C0",
                 }}/>
                 <div className="bottom face" style={{
-                    width: this.props.box.size.x,
-                    height: this.props.box.size.z,
-                    transform: `rotateX(-90deg) translateZ(${this.props.box.size.y - (this.props.box.size.z/2)}px)`,
-                    backgroundColor: this.props.box.darkererColor || "#00C",
+                    width: this.props.slab.size.x,
+                    height: this.props.slab.size.z,
+                    transform: `rotateX(-90deg) translateZ(${this.props.slab.size.y - (this.props.slab.size.z/2)}px)`,
+                    backgroundColor: this.props.slab.darkererColor || "#00C",
                 }}/>
             </div>
         )

@@ -2,106 +2,98 @@ import Keyb from "keyb"
 
 const BOUNCE_POINT = 300
 const SNAP_POINT = 10
-const COLOR_GRADIENT = 7
 
-import Colors from "data/Colors.js"
-import LeftPad from "left-pad"
-function generateColor(z) {
-    z /= 25 // !!!!!!?? :<
-
-    var p = z % COLOR_GRADIENT / COLOR_GRADIENT
-    var w = p * 2 - 1
-    var w1 = (w / 1  + 1) / 2
-    var w2 = 1 - w1
-
-    var color1 = Colors[(Math.floor(z / COLOR_GRADIENT) + 1) % Colors.length]
-    var color2 = Colors[(Math.floor(z / COLOR_GRADIENT)) % Colors.length]
-
-    return "#" + [
-        LeftPad(Math.round((color1[0] * w1) + (color2[0] * w2)).toString(16), 2, 0),
-        LeftPad(Math.round((color1[1] * w1) + (color2[1] * w2)).toString(16), 2, 0),
-        LeftPad(Math.round((color1[2] * w1) + (color2[2] * w2)).toString(16), 2, 0),
-    ].join("")
-}
-
-// https://stackoverflow.com/questions/5560248/programmatically-lighten-or-darken-a-hex-color-or-rgb-and-blend-colors
-function shadeColor2(color, percent) {
-    var f=parseInt(color.slice(1),16),t=percent<0?0:255,p=percent<0?percent*-1:percent,R=f>>16,G=f>>8&0x00FF,B=f&0x0000FF
-    return "#"+(0x1000000+(Math.round((t-R)*p)+R)*0x10000+(Math.round((t-G)*p)+G)*0x100+(Math.round((t-B)*p)+B)).toString(16).slice(1)
-}
+import Color from "utility/Color.js"
 
 export default class Box {
     constructor(box) {
-        this.vector = box.vector || "y"
-
-        this.size = {
-            x: box.width || 0,
-            y: box.height || 0,
-            z: box.depth || 0,
-        }
-        this.position = {
-            x: box.x || 0,
-            y: box.y || 0,
-            z: box.z || 0,
-        }
-
-        this.speed = box.speed || +5
+        box.size.x = box.size.x || 0
+        box.size.y = box.size.y || 0
+        box.size.z = box.size.z || 0
+        box.position.x = box.position.x || 0
+        box.position.y = box.position.y || 0
+        box.position.z = box.position.z || 0
+        box.color = box.color || Color.generate(box.position.z)
+        box.axis = box.axis || "y"
+        box.speed = box.speed || +5
 
         this.game = box.game
 
-        this.color = box.color || generateColor(this.position.z)
-        this.darkerColor = shadeColor2(this.color, -0.25)
-        this.darkererColor = shadeColor2(this.color, -0.5)
-        this.color = shadeColor2(this.color, -0.1)
+        this.size = box.size
+        this.position = box.position
+
+        this.color = Color.shade(box.color, -0.1)
+        this.darkerColor = Color.shade(box.color, -0.25)
+        this.darkererColor = Color.shade(box.color, -0.5)
+
+        this.axis = box.axis
+        this.speed = box.speed
     }
     update(delta) {
-        if(this.game.topBox === this) {
+        if(this === this.game.currentBox) {
 
-            let v = this.vector
+            // Alias the axis, since
+            // we'll be using it a lot.
+            let axis = this.axis
 
-            this.position[v] += this.speed * delta.f
+            // Translating the box along it's axis.
+            this.position[axis] += this.speed * delta.f
 
-            if(this.speed > 0 && this.position[v] > +BOUNCE_POINT) {
-                this.position[v] = +BOUNCE_POINT
+            // Bouncing the box at it's farthest points.
+            if(this.speed > 0 && this.position[axis] > +BOUNCE_POINT) {
+                this.position[axis] = +BOUNCE_POINT
                 this.speed *= -1
             }
-            if(this.speed < 0 && this.position[v] < -BOUNCE_POINT) {
-                this.position[v] = -BOUNCE_POINT
+            if(this.speed < 0 && this.position[axis] < -BOUNCE_POINT) {
+                this.position[axis] = -BOUNCE_POINT
                 this.speed *= -1
             }
 
+            // Listening for player input.
             if(Keyb.isJustDown("<space>")) {
-                if(Math.abs(this.game.previousBox.position[v] - this.position[v]) < SNAP_POINT) {
-                    this.position[v] = this.game.previousBox.position[v]
+                // If the current box is close enough to the previous box, snap it on top of it.
+                if(Math.abs(this.game.previousBox.position[axis] - this.position[axis]) < SNAP_POINT) {
+                    this.position[axis] = this.game.previousBox.position[axis]
                 }
 
-                let difference = this.game.previousBox.position[v] - this.position[v]
+                // Shrink the current box if it isn't perfectly covering the previous box.
+                let difference = this.game.previousBox.position[axis] - this.position[axis]
                 if(difference > 0) {
-                    this.size[v] -= difference
-                    this.position[v] += difference
+                    this.size[axis] -= difference
+                    this.position[axis] += difference
                 }
                 if(difference < 0) {
-                    this.size[v] += difference
+                    this.size[axis] += difference
                 }
 
-                if(this.size[v] < 0) {
-                    this.size[v] = 0
+                // Check if this has
+                // broken the box.
+                if(this.size[axis] < 0) {
+                    this.size[axis] = 0
                     this.isBroken = true
+
+                    // End the game.
+                    this.game.end()
+                    return
                 }
 
-                if(this.isBroken != true) {
-                    this.game.boxes.unshift(new Box({
-                        width: this.size.x,
-                        height: this.size.y,
-                        depth: this.size.z,
-                        x: this.position.x,
-                        y: this.position.y,
-                        z: this.position.z + 25,
-                        game: this.game,
-                        speed: this.speed,
-                        vector: v == "y" ? "x" : "y"
-                    }))
-                }
+                // Create a new boxs, and put it
+                // at the top of the stack of boxes!
+                this.game.boxes.unshift(new Box({
+                    "size": {
+                        "x": this.size.x,
+                        "y": this.size.y,
+                        "z": this.size.z,
+                    },
+                    "position": {
+                        "x": this.position.x,
+                        "y": this.position.y,
+                        "z": this.position.z + 25,
+                    },
+                    "game": this.game,
+                    "speed": this.speed,
+                    "axis": axis == "x" ? "y" : "x"
+                }))
             }
         }
     }

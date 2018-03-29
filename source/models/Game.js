@@ -43,15 +43,16 @@ export default class Game {
 }
 
 // ...MVP...
-// TODO: Allow the Game model for restarts.
-// TODO: Render the score as a UI element.
 // TODO: Add click listener as input.
+// ...LOOK AND FEEL...
+// TODO: Add a gradient up the background of the game
+// TODO: Add sound effects for block-on-block or consecutive snaps
+// TODO: Add particile effect for consecutive snaps
 // ...BALANCE...
 // TODO: Tweak bounce point. Tweak snap point.
 // TODO: Increase this.speed as this.position.z increases?
 // TODO: Create a minimum delay between last slab and next slab to avoid accidental inputs.
 // TODO: Re-introduce "perfect" snaps, where your slab grows out a bit.
-// TODO: Track the chains in the Game model.
 /// ...CO-PLAY...
 // TODO: Integrate with Gamesparks Leaderboards.
 // TODO: Figure out how to center the view in the corner of the Twitch Extension.

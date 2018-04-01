@@ -11,71 +11,13 @@ body {
     background-color: #111;
 }
 
-#frame {
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    margin: auto;
-    position: fixed;
-    overflow: hidden;
-    font-size: 9px;
-}
-
-@media(min-aspect-ratio: 16/9) {
-    #frame {
-        font-size: 11.111vh;
-        width: 177.778vh;
-        height: 100vh;
-    }
-}
-
-@media(max-aspect-ratio: 16/9) {
-    #frame {
-        font-size: 6.25vw;
-        font-size: 3.125vw;
-        height: 56.25vw;
-        width: 100vw;
-    }
-}
-
-#frame {
-    background-color: #222;
+@font-face {
+    font-family: "comfortaa";
+    src: url("fonts/comfortaa.ttf") format("truetype");
 }
 
 .Game {
     margin-left: 50%;
     margin-top: 20%;
     position: absolute;
-}
-
-.camera {
-    width: 300px;
-    height: 300px;
-
-    transition-duration: 2s;
-    transition-property: transform;
-
-    perspective: 500000px;
-    transform-origin: 0% 0% 0;
-    transform-style: preserve-3d;
-}
-
-.slab {
-    position: absolute;
-    transform-style: preserve-3d;
-}
-
-.slab > .face {
-    position: absolute;
-
-    // border-width: 2px;
-    // border-style: dashed;
-    // border-color: #111;
-    // box-sizing: border-box;
-}
-
-@font-face {
-    font-family: "comfortaa";
-    src: url("fonts/comfortaa.ttf") format("truetype");
 }

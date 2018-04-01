@@ -52,8 +52,8 @@ export default class Slab {
             }
 
             // Listening for player input.
-            if(Mouse.isJustDown(delta.ms)
-            || Keyb.isJustDown("<space>", delta.ms)) {
+            // if(Mouse.isJustDown(delta.ms)) {
+            if(Keyb.isJustDown("<space>", delta.ms)) {
                 // If the current slab is close enough to the previous slab, snap it on top of it.
                 if(Math.abs(this.game.previousSlab.position[axis] - this.position[axis]) < SNAP_POINT) {
                     this.position[axis] = this.game.previousSlab.position[axis]

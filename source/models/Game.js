@@ -1,3 +1,5 @@
+import ShortID from "shortid"
+
 import Slab from "models/Slab.js"
 
 const CAMERA_OFFSET = 2.5
@@ -5,6 +7,7 @@ const CAMERA_OFFSET = 2.5
 export default class Game {
     constructor(game) {
         this.system = game.system
+        this.key = ShortID.generate()
 
         this.score = 0
         this.camera = {pan: 0, zoom: 1}
@@ -42,11 +45,6 @@ export default class Game {
     }
 }
 
-// ...DEPLOYMENT...
-// TODO: Integrate this with a twitch extension.
-// TODO: Get your twitch extension through review.
-// TODO: Setup an infinite twitch stream.
-// TODO: Put some sort of graphic on the twitch stream.
 // ...BALANCE...
 // TODO: Tweak bounce point. Tweak snap point.
 // TODO: Increase this.speed as this.position.z increases?
@@ -56,9 +54,14 @@ export default class Game {
 // TODO: Add a gradient up the background of the game
 // TODO: Add sound effects for block-on-block or consecutive snaps
 // TODO: Add particile effect for consecutive snaps
+// ...DEPLOYMENT...
+// TODO: Integrate this with a twitch extension.
+// TODO: Get your twitch extension through review.
+// TODO: Setup an infinite twitch stream.
+// TODO: Put some sort of graphic on the twitch stream.
+// TODO: Import Google Analytics and Full Story
 /// ...CO-PLAY...
 // TODO: Get a leaderboard.
-// TODO: Figure out how to center the view in the corner of the Twitch Extension.
 // TODO: Add UI elements explaining what username is leaderboarding. Explain hwo to auth to use your real identity.
 // TODO: Add UI elements when you beat your personal best highscore, stream highscore, all-time highscore.
 // TODO: Zoom out when the game is over.

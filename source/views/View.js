@@ -6,7 +6,7 @@ export default function View(props) {
     return (
         <div id="frame">
             <Score score={props.system.game.score}/>
-            <div className="stack">
+            <div className="Game" key={props.system.game.key}>
                 <Camera camera={props.system.game.camera}>
                     {props.system.game.slabs.map((slab, key) => (
                         <Slab slab={slab} key={key}/>

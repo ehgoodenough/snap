@@ -22,6 +22,7 @@
     "preact": "^8.2.7",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "shortid": "^2.2.8",
     "statgrab": "^1.2.0",
     "yaafloop": "^1.1.0"
   },

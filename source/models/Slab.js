@@ -1,11 +1,10 @@
 import Keyb from "keyb"
 import Mouse from "utility/Mouse.js"
+import Color from "utility/Color.js"
 
 const BOUNCE_POINT = 12
 const SNAP_POINT = 1
 const DEFAULT_SPEED = +0.5
-
-import Color from "utility/Color.js"
 
 export default class Slab {
     constructor(slab) {
@@ -97,6 +96,9 @@ export default class Slab {
                     "speed": this.speed,
                     "axis": this.axis == "x" ? "y" : "x"
                 }))
+
+                // Pan the camera.
+                this.game.camera.pan = this.position.z
 
                 // Bump the score.
                 this.game.score += 1

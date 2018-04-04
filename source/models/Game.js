@@ -1,8 +1,7 @@
 import ShortID from "shortid"
+import Keyb from "keyb"
 
 import Slab from "models/Slab.js"
-
-const CAMERA_OFFSET = 2.5
 
 export default class Game {
     constructor(game) {
@@ -31,11 +30,18 @@ export default class Game {
             slab.update(delta)
         })
 
-        this.camera.pan = this.currentSlab.position.z + CAMERA_OFFSET
+        if(this.hasEnded) {
+            if(Keyb.isJustDown("<space>", delta.ms)) {
+                this.system.startNewGame()
+            }
+        }
     }
     end() {
-        console.log("FREEZE, WAIT FOR INPUT, RESTART")
-        this.system.startNewGame()
+        this.hasEnded = true
+
+        this.camera.speed = this.currentSlab.position.z / 2
+        this.camera.tween = "ease-out"
+        this.camera.pan = 0
     }
     get currentSlab() {
         return this.slabs[0]
@@ -51,7 +57,7 @@ export default class Game {
 // TODO: Create a minimum delay between last slab and next slab to avoid accidental inputs.
 // TODO: Re-introduce "perfect" snaps, where your slab grows out a bit.
 // ...LOOK AND FEEL...
-// TODO: Add a gradient up the background of the game
+// TODO: Add stars in the background going up
 // TODO: Add sound effects for block-on-block or consecutive snaps
 // TODO: Add particile effect for consecutive snaps
 // ...DEPLOYMENT...
@@ -61,10 +67,8 @@ export default class Game {
 // TODO: Put some sort of graphic on the twitch stream.
 // TODO: Import Google Analytics and Full Story
 /// ...CO-PLAY...
-// TODO: Get a leaderboard.
+// TODO: Add UI elements along side the tower going up when you beat your personal best highscore, stream score milestones (25% of users reached here), all-time highscore, etc
 // TODO: Add UI elements explaining what username is leaderboarding. Explain hwo to auth to use your real identity.
-// TODO: Add UI elements when you beat your personal best highscore, stream highscore, all-time highscore.
-// TODO: Zoom out when the game is over.
 // ...TECH DEBT....
 // TODO: Refactor the X and Z to be horizontal and Y to be vertical.
 // TODO: Why are we offseting z/2 for the upwards transform, and not the others?

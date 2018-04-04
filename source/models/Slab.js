@@ -1,10 +1,11 @@
-import Keyb from "keyb"
-import Mouse from "utility/Mouse.js"
+import Input from "utility/Input.js"
 import Color from "utility/Color.js"
 
-const BOUNCE_POINT = 12
-const SNAP_POINT = 1
-const DEFAULT_SPEED = +0.5
+const BOUNCE_POINT = 10
+const DEFAULT_SPEED = +0.33
+
+const DEFAULT_SNAP_POINT = 0.5
+const SNAP_POINTS = {"1": 10, "2": 2, "3": 1, "4": 1}
 
 export default class Slab {
     constructor(slab) {
@@ -50,11 +51,14 @@ export default class Slab {
                 this.speed *= -1
             }
 
+            // Calculate the snap point.
+            let snap = SNAP_POINTS[this.position.z] || DEFAULT_SNAP_POINT
+
             // Listening for player input.
             // if(Mouse.isJustDown(delta.ms)) {
-            if(Keyb.isJustDown("<space>", delta.ms)) {
+            if(Input.isJustDown(delta.ms)) {
                 // If the current slab is close enough to the previous slab, snap it on top of it.
-                if(Math.abs(this.game.previousSlab.position[axis] - this.position[axis]) < SNAP_POINT) {
+                if(Math.abs(this.game.previousSlab.position[axis] - this.position[axis]) < snap) {
                     this.position[axis] = this.game.previousSlab.position[axis]
                 }
 

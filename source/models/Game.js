@@ -1,6 +1,6 @@
 import ShortID from "shortid"
-import Keyb from "keyb"
 
+import Input from "utility/Input.js"
 import Slab from "models/Slab.js"
 
 const Leaderboard = {
@@ -35,7 +35,7 @@ export default class Game {
     }
     update(delta) {
         if(this.hasEnded) {
-            if(Keyb.isJustDown("<space>", delta.ms)) {
+            if(Input.isJustDown(delta.ms)) {
                 this.system.startNewGame()
             }
         }

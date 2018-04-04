@@ -14,7 +14,7 @@ export default function Camera(props) {
                 `scale3d(${props.camera.zoom}, ${props.camera.zoom}, ${props.camera.zoom})`
             ].join(" "),
             "transitionDuration": props.camera.speed + "s",
-            "transitionTimingFunction": props.camera.tween
+            "transitionTimingFunction": props.camera.tween || null
         }}>
             {props.children}
         </div>

@@ -3,6 +3,11 @@ import Keyb from "keyb"
 
 import Slab from "models/Slab.js"
 
+const Leaderboard = {
+    "subtotals": {},
+    "total": 0
+}
+
 export default class Game {
     constructor(game) {
         this.system = game.system
@@ -24,24 +29,35 @@ export default class Game {
                 isStartingBlock: true
             }),
         ]
+
+        // this.a = Leaderboard.subtotals[this.score] || 0
+        // this.b = Leaderboard.total
     }
     update(delta) {
-        this.slabs.forEach((slab) => {
-            slab.update(delta)
-        })
-
         if(this.hasEnded) {
             if(Keyb.isJustDown("<space>", delta.ms)) {
                 this.system.startNewGame()
             }
         }
+
+        this.slabs.forEach((slab) => {
+            slab.update(delta)
+        })
     }
     end() {
+        // Game over!!
         this.hasEnded = true
 
+        // Slowly pan the camera down the finished tower.
         this.camera.speed = this.currentSlab.position.z / 2
         this.camera.tween = "ease-out"
         this.camera.pan = 0
+
+        // Leaderboard.total += 1
+        // for(var i = 0; i <= this.score; i += 1) {
+        //     Leaderboard.subtotals[i] = Leaderboard.subtotals[i] || 0
+        //     Leaderboard.subtotals[i] += 1
+        // }
     }
     get currentSlab() {
         return this.slabs[0]

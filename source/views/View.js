@@ -8,7 +8,7 @@ import Camera from "views/Camera.view.js"
 export default function View(props) {
     return (
         <Frame>
-            <Score score={props.system.game.score}/>
+            <Score game={props.system.game}/>
             <div className="Game" key={props.system.game.key}>
                 <Camera camera={props.system.game.camera}>
                     {props.system.game.slabs.map((slab, key) => (

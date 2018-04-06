@@ -14,6 +14,8 @@ export default class Game {
         this.key = ShortID.generate()
 
         this.score = 0
+        this.combo = 0
+
         this.camera = {pan: 0, zoom: 1}
         this.slabs = [
             new Slab({

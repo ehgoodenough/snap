@@ -2,10 +2,11 @@ import Input from "utility/Input.js"
 import Color from "utility/Color.js"
 
 const BOUNCE_POINT = 10
-const DEFAULT_SPEED = +0.33
-
 const DEFAULT_SNAP_POINT = 0.5
 const SNAP_POINTS = {"1": 10, "2": 2, "3": 1}
+const COMBO_POINT = 2
+const DEFAULT_SIZE = 8
+const DEFAULT_SPEED = +0.33
 
 export default class Slab {
     constructor(slab) {
@@ -51,15 +52,17 @@ export default class Slab {
                 this.speed *= -1
             }
 
-            // Calculate the snap point.
-            let snap = SNAP_POINTS[this.position.z] || DEFAULT_SNAP_POINT
-
             // Listening for player input.
             // if(Mouse.isJustDown(delta.ms)) {
             if(Input.isJustDown(delta.ms)) {
-                // If the current slab is close enough to the previous slab, snap it on top of it.
-                if(Math.abs(this.game.previousSlab.position[axis] - this.position[axis]) < snap) {
+                // If the current slab is almost on top of the previous slab, snap it on top of it.
+                let snapPoint = SNAP_POINTS[this.position.z] || DEFAULT_SNAP_POINT
+                if(Math.abs(this.position[axis] - this.game.previousSlab.position[axis]) < snapPoint) {
                     this.position[axis] = this.game.previousSlab.position[axis]
+
+                    this.game.combo += 1
+                } else {
+                    this.game.combo = 0
                 }
 
                 // Shrink the current slab if it isn't perfectly covering the previous slab.
@@ -83,6 +86,30 @@ export default class Slab {
                     return
                 }
 
+                if(this.game.combo >= COMBO_POINT) {
+                    if(this.size[axis] < DEFAULT_SIZE) {
+                        this.size[axis] += 1
+                        if(this.size[axis] > DEFAULT_SIZE) {
+                            this.size[axis] = DEFAULT_SIZE
+                        }
+                        this.position[axis] -= 1
+                        if(this.position[axis] < 0) {
+                            this.position[axis] = 0
+                        }
+                    } else if(this.size[not(axis)] < DEFAULT_SIZE) {
+                        this.size[not(axis)] += 1
+                        if(this.size[not(axis)] > DEFAULT_SIZE) {
+                            this.size[not(axis)] = DEFAULT_SIZE
+                        }
+                        this.position[not(axis)] -= 1
+                        if(this.position[not(axis)] < 0) {
+                            this.position[not(axis)] = 0
+                        }
+                    }
+                }
+
+                console.log(this.position, this.size)
+
                 // Create a new slab, and put it
                 // at the top of the stack of slabs!
                 this.game.slabs.unshift(new Slab({
@@ -98,7 +125,7 @@ export default class Slab {
                         "z": this.position.z + 1,
                     },
                     "speed": this.speed,
-                    "axis": this.axis == "x" ? "y" : "x"
+                    "axis": not(this.axis)
                 }))
 
                 // Pan the camera.
@@ -109,4 +136,8 @@ export default class Slab {
             }
         }
     }
+}
+
+function not(axis) {
+    return axis == "x" ? "y" : "x"
 }

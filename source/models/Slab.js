@@ -2,9 +2,9 @@ import Input from "utility/Input.js"
 import Color from "utility/Color.js"
 
 const BOUNCE_POINT = 10
-const DEFAULT_SNAP_POINT = 0.5
+const DEFAULT_SNAP_POINT = 0.33
 const SNAP_POINTS = {"1": 10, "2": 2, "3": 1}
-const COMBO_POINT = 2
+const COMBO_POINT = 4
 const DEFAULT_SIZE = 8
 const DEFAULT_SPEED = +0.33
 

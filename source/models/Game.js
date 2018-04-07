@@ -69,23 +69,19 @@ export default class Game {
     }
 }
 
-/// ...SERVER + UI...
+// ...POLISH...
+// TODO: Title screen, sound button, leaderboards button, restart prompts
+// TODO: Add sound effects for consecutive perfect snaps
+// TODO: Add particile effect for consecutive snaps
+/// ...LEADERBOARDS...
 // TODO: Add UI elements showing score milestones (25% of users reahced here)
 // TODO: Add UI elements for uploading your twitch username to the leaderboard
-// TODO: Title screen, sound button, leaderboards button
 // ...DEPLOYMENT...
 // TODO: Import Google Analytics and Full Story
 // TODO: Test within twitch extension (double-clicks)
 // TODO: Add configure page for streamer (leaderboard, nuke leaderboard, thank you for downloading)
 // TODO: Setup an infinite twitch stream.
 // TODO: Get your twitch extension through review.
-// ...POLISH...
-// TODO: Re-introduce "perfect" snaps, where your slab grows out a bit.
-// TODO: Add sound effects for consecutive perfect snaps
-// ...LOOK AND FEEL...
-// TODO: Add particile effect for consecutive snaps
-// TODO: Add stars that fade in and out around the background?
-// TODO: Fade out the bottom of the starting block?
 
 // GET/POST /v1/scores
 // {

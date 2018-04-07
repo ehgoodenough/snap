@@ -70,7 +70,10 @@ export default class Game {
 }
 
 // ...POLISH...
-// TODO: Title screen, sound button, leaderboards button, restart prompts
+// TODO: Restart prompts
+// TODO: Title screen
+// TODO: Mute sound button
+// TODO: Version number in corner
 // TODO: Add sound effects for consecutive perfect snaps
 // TODO: Add particile effect for consecutive snaps
 /// ...LEADERBOARDS...
@@ -82,6 +85,7 @@ export default class Game {
 // TODO: Add configure page for streamer (leaderboard, nuke leaderboard, thank you for downloading)
 // TODO: Setup an infinite twitch stream.
 // TODO: Get your twitch extension through review.
+// TODO: Make it playable on desktop screen and mobile screen.
 
 // GET/POST /v1/scores
 // {

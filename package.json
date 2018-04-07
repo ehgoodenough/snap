@@ -1,14 +1,14 @@
 {
-  "name": "!!!",
+  "name": "snap",
   "version": "1.0.0",
-  "description": "A game of stacking.",
+  "description": "A game of snapping blocks.",
   "private": true,
   "contributors": [
     "Andrew McPherson <@ehgoodenough>"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ehgoodenough"
+    "url": "https://github.com/ehgoodenough/snap"
   },
   "scripts": {
     "build": "codeglue --stage=PRODUCTION",
@@ -18,10 +18,7 @@
   "dependencies": {
     "keyb": "^1.1.0",
     "left-pad": "^1.2.0",
-    "pixi.js": "^4.7.1",
     "preact": "^8.2.7",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
     "shortid": "^2.2.8",
     "statgrab": "^1.2.0",
     "yaafloop": "^1.1.0"

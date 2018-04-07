@@ -1,4 +1,4 @@
-# ... #
+# Snap #
 
 ### Getting Started ###
 

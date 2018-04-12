@@ -16,7 +16,13 @@ export default class Game {
         this.score = 0
         this.combo = 0
 
-        this.camera = {pan: 0, zoom: 1}
+        this.camera = {
+            pan: 0,
+            zoom: 1,
+            speed: 2,
+            tween: "ease",
+        }
+
         this.slabs = [
             new Slab({
                 game: this,

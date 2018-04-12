@@ -3,11 +3,6 @@ import ShortID from "shortid"
 import Input from "utility/Input.js"
 import Slab from "models/Slab.js"
 
-const Leaderboard = {
-    "subtotals": {},
-    "total": 0
-}
-
 export default class Game {
     constructor(game) {
         this.system = game.system
@@ -37,13 +32,11 @@ export default class Game {
                 isStartingBlock: true
             }),
         ]
-
-        // this.a = Leaderboard.subtotals[this.score] || 0
-        // this.b = Leaderboard.total
     }
     update(delta) {
         if(this.hasEnded) {
             if(Input.isJustDown(delta.ms)) {
+                this.system.leaderboards.submitScore(this.score)
                 this.system.startNewGame()
             }
         }
@@ -61,14 +54,6 @@ export default class Game {
             this.camera.speed = this.currentSlab.position.z / 2
             this.camera.tween = "ease-out"
             this.camera.pan = 0
-
-            // Leaderboard.total += 1
-            // for(var i = 0; i <= this.score; i += 1) {
-            //     Leaderboard.subtotals[i] = Leaderboard.subtotals[i] || 0
-            //     Leaderboard.subtotals[i] += 1
-            // }
-
-            this.system.leaderboards.submitScore(this.score)
         }
     }
     get currentSlab() {
@@ -76,6 +61,9 @@ export default class Game {
     }
     get previousSlab() {
         return this.slabs[1]
+    }
+    get rank() {
+        return this.system.leaderboards.getRank(this.score)
     }
 }
 
@@ -86,13 +74,15 @@ export default class Game {
 // TODO: Version number in corner
 // TODO: Add sound effects for consecutive perfect snaps
 // TODO: Add particile effect for consecutive snaps
-/// ...LEADERBOARDS...
-// TODO: Add UI elements showing score milestones (25% of users reahced here)
-// TODO: Add UI elements for uploading your twitch username to the leaderboard
+// TODO: Add personal high-sceores (requires you played once)
+// TODO: Add high-scores (requires username to be given)
 // ...DEPLOYMENT...
 // TODO: Import Google Analytics and Full Story
 // TODO: Test within twitch extension (double-clicks)
-// TODO: Add configure page for streamer (leaderboard, nuke leaderboard, thank you for downloading)
 // TODO: Setup an infinite twitch stream.
 // TODO: Get your twitch extension through review.
+// ...NEXT TIME...
+// TODO: Localize the strings.
 // TODO: Make it playable on desktop screen and mobile screen.
+// TODO: Add configure page for streamer (leaderboard, nuke leaderboard, thank you for downloading).
+// TODO: Render a graph in the corner that displays the funnel of tally-over-scores.

@@ -49,11 +49,11 @@ export default class Leaderboards {
         }
 
         this.scores = scores
-        console.log(scores.channel)
     }
     getRank(score) {
         if(this.scores !== undefined) {
             let subtotal = this.scores.channel.subtotals[score] || 0
+            return subtotal / this.scores.channel.total
             return subtotal + " of " + this.scores.channel.total
         }
     }

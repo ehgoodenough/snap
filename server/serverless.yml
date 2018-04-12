@@ -30,7 +30,7 @@ functions:
           method: get
           cors: true
   SubmitScore:
-    handler: source/SubmitScores.handler
+    handler: source/SubmitScore.handler
     events:
       - http:
           path: v1/{channelId}/scores

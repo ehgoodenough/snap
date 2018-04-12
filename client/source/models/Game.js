@@ -60,6 +60,15 @@ export default class Game {
         //     Leaderboard.subtotals[i] = Leaderboard.subtotals[i] || 0
         //     Leaderboard.subtotals[i] += 1
         // }
+
+        console.log("Submitting score...", this.score)
+        let SCORES_URI = "https://zwxr8sz8fj.execute-api.us-east-1.amazonaws.com/alpha/v1/{channelId}/scores"
+        window.fetch(SCORES_URI.replace("{channelId}", 1234567890), {
+            method: "POST",
+            body: JSON.stringify({"score": this.score}),
+        }).then((response) => response.json()).then((scores) => {
+            console.log(scores)
+        })
     }
     get currentSlab() {
         return this.slabs[0]

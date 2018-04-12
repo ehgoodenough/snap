@@ -108,8 +108,6 @@ export default class Slab {
                     }
                 }
 
-                console.log(this.position, this.size)
-
                 // Create a new slab, and put it
                 // at the top of the stack of slabs!
                 this.game.slabs.unshift(new Slab({

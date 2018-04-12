@@ -47,21 +47,23 @@ export default class Game {
         })
     }
     end() {
-        // Game over!!
-        this.hasEnded = true
+        if(this.hasEnded != true) {
+            // Game over!!
+            this.hasEnded = true
 
-        // Slowly pan the camera down the finished tower.
-        this.camera.speed = this.currentSlab.position.z / 2
-        this.camera.tween = "ease-out"
-        this.camera.pan = 0
+            // Slowly pan the camera down the finished tower.
+            this.camera.speed = this.currentSlab.position.z / 2
+            this.camera.tween = "ease-out"
+            this.camera.pan = 0
 
-        // Leaderboard.total += 1
-        // for(var i = 0; i <= this.score; i += 1) {
-        //     Leaderboard.subtotals[i] = Leaderboard.subtotals[i] || 0
-        //     Leaderboard.subtotals[i] += 1
-        // }
+            // Leaderboard.total += 1
+            // for(var i = 0; i <= this.score; i += 1) {
+            //     Leaderboard.subtotals[i] = Leaderboard.subtotals[i] || 0
+            //     Leaderboard.subtotals[i] += 1
+            // }
 
-        this.system.leaderboards.submitScore(this.score)
+            this.system.leaderboards.submitScore(this.score)
+        }
     }
     get currentSlab() {
         return this.slabs[0]

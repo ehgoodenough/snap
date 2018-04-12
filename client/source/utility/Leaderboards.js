@@ -34,14 +34,27 @@ export default class Leaderboards {
         })
     }
     consume(scores) {
-        this.scores = scores
+        delete scores.channel.channelId
+        delete scores.channel.createdAt
 
-        this.scores.channel.tally
-        
-        // On retrieval of scores, find maximum score, and work backwards
-        // - Calculate running total of players who reached that score (adding up all following values)
-        // - Calculate total of all scores for a percentage.
-        // - Calculate the largest tally for the height of  graphing.
-        // - Calculate the last tally for the width of graphing.
+        scores.channel.total = Object.values(scores.channel.tally).reduce((a, b) => a + b)
+        scores.channel.highestTally = Math.max(...Object.values(scores.channel.tally))
+        scores.channel.highestScore = Math.max(...Object.keys(scores.channel.tally))
+
+        let subtotal = 0
+        scores.channel.subtotals = {}
+        for(var i = scores.channel.highestScore; i >= 0; i -= 1) {
+            subtotal += scores.channel.tally[i] || 0
+            scores.channel.subtotals[i] = subtotal
+        }
+
+        this.scores = scores
+        console.log(scores.channel)
+    }
+    getRank(score) {
+        if(this.scores !== undefined) {
+            let subtotal = this.scores.channel.subtotals[score] || 0
+            return subtotal + " of " + this.scores.channel.total
+        }
     }
 }

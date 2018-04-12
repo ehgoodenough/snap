@@ -4,6 +4,7 @@ import Slab from "views/Slab.view.js"
 import Score from "views/Score.view.js"
 import Frame from "views/Frame.view.js"
 import Camera from "views/Camera.view.js"
+import Version from "views/Version.view.js"
 
 export default function View(props) {
     return (
@@ -16,6 +17,7 @@ export default function View(props) {
                     ))}
                 </Camera>
             </div>
+            <Version/>
         </Frame>
     )
 }

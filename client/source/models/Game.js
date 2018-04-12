@@ -86,16 +86,3 @@ export default class Game {
 // TODO: Setup an infinite twitch stream.
 // TODO: Get your twitch extension through review.
 // TODO: Make it playable on desktop screen and mobile screen.
-
-// GET/POST /v1/scores
-// {
-//     "total": "0", // ???
-//     "tally": {
-//         "3": 1000,
-//         "4": 2000,
-//     }
-// }
-// On load, get the scores
-// On end of game, submit a score, and get the latest scores back
-// On retrieval of scores, find maximum score, and work backwards
-// Calculate running total of players who reached that score

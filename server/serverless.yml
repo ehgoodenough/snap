@@ -1,0 +1,81 @@
+service: snap
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+
+  region: us-east-1
+  profile: default
+  stage: development
+
+  environment:
+    # USERS_TABLE: ${self:service}.${opt:stage, self:provider.stage}.users
+    CHANNELS_TABLE: ${self:service}.${opt:stage, self:provider.stage}.channels
+
+  iamRoleStatements:
+    # - Effect: "Allow"
+    #   Action:
+    #    - dynamodb:Query
+    #    - dynamodb:Scan
+    #    - dynamodb:PutItem
+    #    - dynamodb:GetItem
+    #    - dynamodb:UpdateItem
+    #   Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.USERS_TABLE}"
+    - Effect: "Allow"
+      Action:
+       - dynamodb:Query
+       - dynamodb:Scan
+       - dynamodb:PutItem
+       - dynamodb:GetItem
+       - dynamodb:UpdateItem
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.CHANNELS_TABLE}"
+
+functions:
+  RetrieveScores:
+    handler: source/RetrieveScores.handler
+    events:
+      - http:
+          path: v1/{channel}/scores
+          method: get
+          cors: true
+  SubmitScore:
+    handler: source/SubmitScores.handler
+    events:
+      - http:
+          path: v1/{channel}/scores
+          method: post
+          cors: true
+
+resources:
+  Resources:
+    # UsersTable:
+    #   Type: AWS::DynamoDB::Table
+    #   Properties:
+    #     TableName: ${self:provider.environment.USERS_TABLE}
+    #     AttributeDefinitions:
+    #       - AttributeName: oid
+    #         AttributeType: S
+    #     KeySchema:
+    #       - AttributeName: oid
+    #         KeyType: HASH
+    #     ProvisionedThroughput:
+    #       ReadCapacityUnits: 1
+    #       WriteCapacityUnits: 1
+    #   DeletionPolicy: Retain
+    ChannelsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.CHANNELS_TABLE}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+      DeletionPolicy: Retain
+
+package:
+  excludeDevDependencies: true

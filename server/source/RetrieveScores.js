@@ -2,7 +2,9 @@ const Nimble = require("./library/Nimble.js")
 const Datalore = require("./library/Datalore.js")
 
 module.exports.handler = new Nimble.LambdaHandler(async (event) => {
-    return await Datalore.getChannel(event.pathParameters.channelId)
+    return {
+        "channel": await Datalore.getChannel(event.pathParameters.channelId)
+    }
 })
 
 // {

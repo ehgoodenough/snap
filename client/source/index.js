@@ -5,6 +5,9 @@ import Keyb from "keyb"
 import View from "views/View.js"
 import System from "models/System.js"
 
+import "vendor/FullStory.js"
+import "vendor/GoogleAnalytics.js"
+
 import "index.css"
 
 let system = new System()

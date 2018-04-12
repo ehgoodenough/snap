@@ -19,8 +19,10 @@
     "keyb": "^1.1.0",
     "left-pad": "^1.2.0",
     "preact": "^8.2.7",
+    "query-string": "^6.0.0",
     "shortid": "^2.2.8",
     "statgrab": "^1.2.0",
+    "universal-ga": "^1.2.0",
     "yaafloop": "^1.1.0"
   },
   "devDependencies": {

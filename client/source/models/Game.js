@@ -87,7 +87,7 @@ export default class Game {
 // TODO: Add high-scores (requires username to be given)
 // ...DEPLOYMENT...
 // TODO: Import Google Analytics and Full Story
-// TODO: Test within twitch extension (double-clicks)
+// TODO: Test within twitch extension (double-clicks)(keyboard shortcut overrides)
 // TODO: Setup an infinite twitch stream. https://www.twitch.tv/twitchplayssnap
 // TODO: Get your twitch extension through review.
 // ...NEXT TIME...

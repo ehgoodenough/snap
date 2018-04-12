@@ -32,18 +32,33 @@ export default class Game {
                 isStartingBlock: true
             }),
         ]
+
+        this.hasStarted = game.hasStarted || false
+        this.hasEnded = false
     }
     update(delta) {
-        if(this.hasEnded) {
+        if(this.hasStarted === false) {
+            if(Input.isJustDown(delta.ms)) {
+                this.hasStarted = true
+            }
+            return
+        }
+
+        if(this.hasEnded === true) {
             if(Input.isJustDown(delta.ms)) {
                 this.system.leaderboards.submitScore(this.score)
                 this.system.startNewGame()
             }
+            return
         }
 
-        this.slabs.forEach((slab) => {
-            slab.update(delta)
-        })
+        if(this.hasStarted === true
+        && this.hasEnded === false) {
+            this.slabs.forEach((slab) => {
+                slab.update(delta)
+            })
+            return
+        }
     }
     end() {
         if(this.hasEnded != true) {
@@ -68,21 +83,18 @@ export default class Game {
 }
 
 // ...POLISH...
-// TODO: Restart prompts
-// TODO: Title screen
-// TODO: Mute sound button
-// TODO: Version number in corner
-// TODO: Add sound effects for consecutive perfect snaps
-// TODO: Add particile effect for consecutive snaps
 // TODO: Add personal high-sceores (requires you played once)
 // TODO: Add high-scores (requires username to be given)
 // ...DEPLOYMENT...
 // TODO: Import Google Analytics and Full Story
 // TODO: Test within twitch extension (double-clicks)
-// TODO: Setup an infinite twitch stream.
+// TODO: Setup an infinite twitch stream. https://www.twitch.tv/twitchplayssnap
 // TODO: Get your twitch extension through review.
 // ...NEXT TIME...
 // TODO: Localize the strings.
 // TODO: Make it playable on desktop screen and mobile screen.
 // TODO: Add configure page for streamer (leaderboard, nuke leaderboard, thank you for downloading).
 // TODO: Render a graph in the corner that displays the funnel of tally-over-scores.
+// TODO: Add particile effect for consecutive snaps
+// TODO: Add sound effects for consecutive perfect snaps
+// TODO: Mute sound button

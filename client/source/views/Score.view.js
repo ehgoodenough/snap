@@ -4,12 +4,29 @@ import "views/Score.view.less"
 
 export default class Score extends Preact.Component {
     render() {
-        return (
-            <div className="Score">
-                <h1>{this.props.game.score}</h1>
-                {this.rank}
-            </div>
-        )
+        if(this.props.game.hasStarted) {
+            return (
+                <div className="Score">
+                    {this.score}
+                    {this.rank}
+                </div>
+            )
+        } else {
+            return <div/>
+        }
+    }
+    get score() {
+        if(this.props.game.score) {
+            return (
+                <div className="score">
+                    <h1>{this.props.game.score}</h1>
+                </div>
+            )
+        } else {
+            return (
+                <div className="score"/>
+            )
+        }
     }
     get rank() {
         let rank = this.props.game.rank

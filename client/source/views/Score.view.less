@@ -1,17 +1,17 @@
 .Score {
+    top: 0em;
     left: 0em;
     right: 0em;
-    top: 1em;
+    padding: 2em;
     z-index: 999;
     position: absolute;
 
-    color: #FFF;
-    font-weight: bold;
-    font-family: comfortaa;
-    text-align: center;
-
-    h1 {
-        font-size: 3em;
+    .score {
+        h1 {
+            font-size: 3em;
+            line-height: 1em;
+            font-weight: bold;
+        }
     }
 
     .rank {
@@ -20,6 +20,10 @@
 
         &.neglibile {
             color: transparent;
+        }
+
+        h3 {
+            font-weight: normal;
         }
     }
 }

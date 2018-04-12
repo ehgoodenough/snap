@@ -12,6 +12,6 @@ let system = new System()
 let mount = Preact.render(<View system={system}/>, document.body)
 
 let loop = new Yaafloop((delta) => {
-    system.game.update(delta)
+    system.update(delta)
     Preact.render(<View system={system}/>, document.body, mount)
 })

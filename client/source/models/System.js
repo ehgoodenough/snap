@@ -3,7 +3,10 @@ import Leaderboards from "utility/Leaderboards.js"
 
 export default class System {
     constructor() {
-        this.startNewGame()
+        this.game = new Game({
+            "hasStarted": false,
+            "system": this
+        })
 
         this.leaderboards = new Leaderboards({
             "channelId": "1234567890"
@@ -11,7 +14,13 @@ export default class System {
     }
     startNewGame() {
         this.game = new Game({
+            "hasStarted": true,
             "system": this
         })
+    }
+    update(delta) {
+        if(this.game instanceof Game) {
+            this.game.update(delta)
+        }
     }
 }

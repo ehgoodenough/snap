@@ -1,7 +1,17 @@
 const Nimble = require("./library/Nimble.js")
+const Datalore = require("./library/Datalore.js")
 
-module.exports.handler = new Nimble.LambdaHandler(() => {
-    throw new Error("OH NO")
+module.exports.handler = new Nimble.LambdaHandler((event) => {
+    return Datalore.getChannel(event.pathParameters.channelId).then((channel) => {
+        if(channel !== undefined) {
+            return channel
+        } else {
+            return Datalore.createChannel({
+                "channelId": event.pathParameters.channelId,
+                "time": Date.now()
+            })
+        }
+    })
 })
 
 // {

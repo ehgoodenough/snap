@@ -5,6 +5,7 @@ import "views/Slab.view.less"
 export default function Slab(props) {
     return (
         <div className="Slab" style={{
+            visibility: props.slab.isOnCamera ? "visible" : "hidden",
             opacity: props.slab.isBroken ? 0 : 1,
             transform: [
                 `translateX(${props.slab.position.x || 0}em)`,

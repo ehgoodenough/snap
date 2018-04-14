@@ -7,7 +7,7 @@ const SNAP_POINTS = {"1": 10, "2": 2, "3": 1}
 const COMBO_POINT = 4
 const DEFAULT_SIZE = 8
 const DEFAULT_SPEED = +0.33
-const CAMERA_CULL_POINT = 10
+const CAMERA_CULL_POINT = 20
 
 export default class Slab {
     constructor(slab) {
@@ -136,7 +136,7 @@ export default class Slab {
         }
     }
     get isOnCamera() {
-        return Math.abs(this.game.camera.pan - this.position.z) < CAMERA_CULL_POINT
+        return this.game.camera.pan - this.position.z < CAMERA_CULL_POINT
     }
 }
 

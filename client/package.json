@@ -12,7 +12,8 @@
   },
   "scripts": {
     "build": "codeglue --stage=PRODUCTION",
-    "start": "codeglue --stage=DEVELOPMENT --mode=SERVER",
+    "start": "codeglue --stage=DEVELOPMENT --mode=SERVER --port=8888",
+    "proxy": "local-ssl-proxy --source 8080 --target 8888",
     "publish": "codeglue --stage=PRODUCTION --mode=PUBLISH"
   },
   "dependencies": {

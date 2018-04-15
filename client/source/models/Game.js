@@ -85,10 +85,6 @@ export default class Game {
 // ...POLISH...
 // TODO: Add personal high-sceores (requires you played once)
 // TODO: Add high-scores (requires username to be given)
-// ...DEPLOYMENT...
-// TODO: Test within twitch extension (double-clicks)(keyboard shortcut overrides)
-// TODO: Get your twitch extension through review.
-// ...NEXT TIME...
 // TODO: Localize the strings.
 // TODO: Make it playable on desktop screen and mobile screen.
 // TODO: Add configure page for streamer (leaderboard, nuke leaderboard, thank you for downloading).

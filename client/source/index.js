@@ -1,5 +1,3 @@
-console.clear()
-
 import Preact from "preact"
 import Yaafloop from "yaafloop"
 import Keyb from "keyb"

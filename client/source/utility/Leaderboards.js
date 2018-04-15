@@ -16,12 +16,9 @@ export default class Leaderboards {
             return response.json().then((scores) => {
                 this.consume(scores)
             })
-        }).catch((error) => {
-            console.log(error)
         })
     }
     submitScore(score) {
-        console.log("Submitting score...", score)
         window.fetch(SCORES_URI.replace("{channelId}", this.channelId), {
             method: "POST",
             body: JSON.stringify({"score": score}),
@@ -29,8 +26,6 @@ export default class Leaderboards {
             return response.json().then((scores) => {
                 this.consume(scores)
             })
-        }).catch((error) => {
-            console.log(error)
         })
     }
     consume(scores) {

@@ -1,5 +1,5 @@
 # Snap #
 
-![](logo.png)
+![](screenshot.gif)
 
 A game of snapping together blocks.

@@ -12,13 +12,13 @@
   },
   "scripts": {
     "build": "codeglue --stage=PRODUCTION",
-    "start": "codeglue --stage=DEVELOPMENT --mode=SERVER --port=8888",
-    "proxy": "local-ssl-proxy --source 8080 --target 8888",
+    "start": "codeglue --stage=DEVELOPMENT --mode=SERVER --port=8080 --ssl=true",
     "publish": "codeglue --stage=PRODUCTION --mode=PUBLISH"
   },
   "dependencies": {
     "keyb": "^1.1.0",
     "left-pad": "^1.2.0",
+    "npm": "^5.8.0",
     "preact": "^8.2.7",
     "query-string": "^6.0.0",
     "shortid": "^2.2.8",
@@ -29,6 +29,6 @@
   "devDependencies": {
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.6.1",
-    "codeglue": "^1.4.1"
+    "codeglue": "^1.4.3"
   }
 }

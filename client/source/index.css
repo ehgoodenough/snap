@@ -21,7 +21,7 @@ body {
 }
 
 .Game {
-    margin-left: 50%;
-    margin-top: 6em;
+    left: 50%;
+    bottom: 2em;
     position: absolute;
 }

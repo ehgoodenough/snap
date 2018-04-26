@@ -83,12 +83,12 @@ export default class Game {
 }
 
 // ...POLISH...
-// TODO: Add personal high-sceores (requires you played once)
-// TODO: Add high-scores (requires username to be given)
-// TODO: Localize the strings.
-// TODO: Make it playable on desktop screen and mobile screen.
-// TODO: Add configure page for streamer (leaderboard, nuke leaderboard, thank you for downloading).
 // TODO: Render a graph in the corner that displays the funnel of tally-over-scores.
 // TODO: Add particile effect for consecutive snaps
 // TODO: Add sound effects for consecutive perfect snaps
 // TODO: Mute sound button
+// TODO: Localize the strings.
+// ...
+// TODO: Add configure page for streamer (leaderboard, nuke leaderboard, thank you for downloading).
+// TODO: Add personal high-sceores (requires you played once)
+// TODO: Add high-scores (requires username to be given)

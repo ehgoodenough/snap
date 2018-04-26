@@ -10,6 +10,14 @@ document.addEventListener("mouseup", function() {
     mouse = null
 })
 
+document.addEventListener("touchstart", function() {
+    mouse = Date.now()
+})
+
+document.addEventListener("touchend", function() {
+    mouse = null
+})
+
 let Mouse = {
     "isDown": function() {
         return mouse != null

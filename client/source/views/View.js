@@ -1,5 +1,7 @@
 import Preact from "preact"
 
+import Experience from "models/Experience.js"
+
 import Slab from "views/Slab.view.js"
 import Score from "views/Score.view.js"
 import Frame from "views/Frame.view.js"
@@ -13,13 +15,13 @@ import "views/View.less"
 export default function View(props) {
     return (
         <Frame>
-            <Title game={props.system.game}/>
-            <ReplayPrompt game={props.system.game}/>
-            <Score game={props.system.game}/>
+            <Title game={Experience.game}/>
+            <ReplayPrompt game={Experience.game}/>
+            <Score game={Experience.game}/>
             <Version/>
-            <div className="Game" key={props.system.game.key}>
-                <Camera camera={props.system.game.camera}>
-                    {props.system.game.slabs.map((slab, key) => (
+            <div className="Game" key={Experience.game.key}>
+                <Camera camera={Experience.game.camera}>
+                    {Experience.game.slabs.map((slab, key) => (
                         <Slab slab={slab} key={key}/>
                     ))}
                 </Camera>

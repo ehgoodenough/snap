@@ -5,7 +5,7 @@ import Slab from "models/Slab.js"
 
 export default class Game {
     constructor(game) {
-        this.system = game.system
+        this.experience = game.experience
         this.key = ShortID.generate()
 
         this.score = 0
@@ -46,8 +46,8 @@ export default class Game {
 
         if(this.hasEnded === true) {
             if(Input.isJustDown(delta.ms)) {
-                this.system.leaderboards.submitScore(this.score)
-                this.system.startNewGame()
+                this.experience.leaderboards.submitScore(this.score)
+                this.experience.startNewGame()
             }
             return
         }
@@ -78,6 +78,6 @@ export default class Game {
         return this.slabs[1]
     }
     get rank() {
-        return this.system.leaderboards.getRank(this.score)
+        return this.experience.leaderboards.getRank(this.score)
     }
 }

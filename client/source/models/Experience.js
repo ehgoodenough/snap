@@ -1,11 +1,11 @@
 import Game from "models/Game.js"
 import Leaderboards from "utility/Leaderboards.js"
 
-export default class System {
+class Experience {
     constructor() {
         this.game = new Game({
             "hasStarted": false,
-            "system": this
+            "experience": this
         })
 
         this.leaderboards = new Leaderboards({
@@ -15,7 +15,7 @@ export default class System {
     startNewGame() {
         this.game = new Game({
             "hasStarted": true,
-            "system": this
+            "experience": this
         })
     }
     update(delta) {
@@ -24,3 +24,5 @@ export default class System {
         }
     }
 }
+
+export default new Experience()

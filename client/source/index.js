@@ -3,18 +3,16 @@ import Yaafloop from "yaafloop"
 import Keyb from "keyb"
 
 import View from "views/View.js"
-import System from "models/System.js"
+import Experience from "models/Experience.js"
 
 import "vendor/FullStory.js"
 import "vendor/GoogleAnalytics.js"
 
-let system = new System()
-
-let mount = Preact.render(<View system={system}/>, document.body)
+let mount = Preact.render(<View/>, document.body)
 
 let loop = new Yaafloop((delta) => {
-    system.update(delta)
-    Preact.render(<View system={system}/>, document.body, mount)
+    Experience.update(delta)
+    Preact.render(<View/>, document.body, mount)
 })
 
 // Disable the Twitch Fullscreen double-click shortcut listener.

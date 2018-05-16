@@ -8,6 +8,7 @@ import Frame from "views/Frame.view.js"
 import Camera from "views/Camera.view.js"
 import Version from "views/Version.view.js"
 import Title from "views/Title.view.js"
+import Leaderboards from "views/Leaderboards.view.js"
 import ReplayPrompt from "views/ReplayPrompt.view.js"
 
 import "views/View.less"
@@ -15,10 +16,11 @@ import "views/View.less"
 export default function View(props) {
     return (
         <Frame>
+            <Version/>
             <Title game={Experience.game}/>
             <ReplayPrompt game={Experience.game}/>
             <Score game={Experience.game}/>
-            <Version/>
+            <Leaderboards game={Experience.game}/>
             <div className="Game" key={Experience.game.key}>
                 <Camera camera={Experience.game.camera}>
                     {Experience.game.slabs.map((slab, key) => (

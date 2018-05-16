@@ -1,6 +1,5 @@
 - TODO: Add a "click to play" prompt.
 - TODO: Make the game less forgiving with the snaps.
-- TODO: Render a graph in the corner that displays the funnel of tally-over-scores.
 - TODO: Add sound effects for consecutive perfect snaps
 - TODO: Debug the analytics; it looks like they bugged out in production?
 - ...

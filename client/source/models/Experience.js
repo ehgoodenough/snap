@@ -4,7 +4,7 @@ import Leaderboards from "utility/Leaderboards.js"
 class Experience {
     constructor() {
         this.game = new Game({
-            "hasStarted": false,
+            "hasStarted": true, // false,
             "experience": this
         })
 

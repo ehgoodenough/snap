@@ -8,7 +8,6 @@ export default class Score extends Preact.Component {
             return (
                 <div className="Score">
                     {this.score}
-                    {this.rank}
                 </div>
             )
         } else {
@@ -20,25 +19,12 @@ export default class Score extends Preact.Component {
             return (
                 <div className="score">
                     <h1>{this.props.game.score}</h1>
+                    <small>snaps</small>
                 </div>
             )
         } else {
             return (
                 <div className="score"/>
-            )
-        }
-    }
-    get rank() {
-        let rank = this.props.game.rank
-        if(rank == undefined || rank > 0.95) {
-            return (
-                <div className="neglibile rank"/>
-            )
-        } else {
-            return (
-                <div className="rank">
-                    <h3>{Math.round(rank * 100) + "%"}</h3>
-                </div>
             )
         }
     }

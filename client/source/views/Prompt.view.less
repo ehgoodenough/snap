@@ -1,0 +1,44 @@
+.Prompt {
+    left: 0em;
+    right: 0em;
+    bottom: 0em;
+    padding: 2em;
+    z-index: 999;
+    position: absolute;
+
+    color: transparent;
+
+    &.hasNotStarted {
+        color: #FFF;
+        transition-duration: 2s;
+        transition-property: color;
+        animation-name: wiggle;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+    }
+
+    &.hasEnded {
+        color: #FFF;
+        transition-delay: 1s;
+        transition-duration: 2s;
+        transition-property: color;
+    }
+
+    small {
+        display: block;
+        margin-top: 0.15em;
+
+        opacity: 0.5;
+        font-size: 0.75em;
+    }
+}
+
+@keyframes wiggle {
+    0% {transform: rotate(0deg);}
+    90% {transform: rotate(0deg);}
+    92% {transform: rotate(10deg);}
+    94% {transform: rotate(-10deg);}
+    96% {transform: rotate(20deg);}
+    98% {transform: rotate(-5deg);}
+    100% {transform: rotate(0deg);}
+}

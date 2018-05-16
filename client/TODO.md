@@ -1,4 +1,3 @@
-- TODO: Add a "click to play" prompt.
 - TODO: Make the game less forgiving with the snaps.
 - TODO: Add sound effects for consecutive perfect snaps
 - TODO: Debug the analytics; it looks like they bugged out in production?

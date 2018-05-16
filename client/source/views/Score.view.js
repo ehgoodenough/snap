@@ -19,7 +19,7 @@ export default class Score extends Preact.Component {
             return (
                 <div className="score">
                     <h1>{this.props.game.score}</h1>
-                    <small>snaps</small>
+                    {/*<small>snaps</small>*/}
                 </div>
             )
         } else {

@@ -8,8 +8,8 @@ import Frame from "views/Frame.view.js"
 import Camera from "views/Camera.view.js"
 import Version from "views/Version.view.js"
 import Title from "views/Title.view.js"
+import Prompt from "views/Prompt.view.js"
 import Leaderboards from "views/Leaderboards.view.js"
-import ReplayPrompt from "views/ReplayPrompt.view.js"
 
 import "views/View.less"
 
@@ -18,7 +18,7 @@ export default function View(props) {
         <Frame>
             <Version/>
             <Title game={Experience.game}/>
-            <ReplayPrompt game={Experience.game}/>
+            <Prompt game={Experience.game}/>
             <Score game={Experience.game}/>
             <Leaderboards game={Experience.game}/>
             <div className="Game" key={Experience.game.key}>

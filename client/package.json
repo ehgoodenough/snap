@@ -12,13 +12,11 @@
   },
   "scripts": {
     "build": "codeglue --stage=PRODUCTION",
-    "start": "codeglue --stage=DEVELOPMENT --mode=SERVER --port=8080 --ssl=true",
-    "publish": "codeglue --stage=PRODUCTION --mode=PUBLISH"
+    "start": "codeglue --stage=DEVELOPMENT --mode=SERVER --port=8080 --ssl=true"
   },
   "dependencies": {
     "keyb": "^1.1.0",
     "left-pad": "^1.2.0",
-    "npm": "^5.8.0",
     "preact": "^8.2.7",
     "query-string": "^6.0.0",
     "shortid": "^2.2.8",

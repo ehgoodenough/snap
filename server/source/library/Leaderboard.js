@@ -3,8 +3,12 @@ const AWS = require("aws-sdk")
 const dynamo = new AWS.DynamoDB.DocumentClient()
 
 const CHANNELS_TABLE = process.env.CHANNELS_TABLE
+const CHANNEL_USERS_TABLE = process.env.CHANNEL_USERS_TABLE
+const CHANNEL_SESSIONS_TABLE = process.env.CHANNEL_SESSIONS_TABLE
 
-function getChannel(channelId) {
+const Leaderboard = module.exports
+
+Leaderboard.getChannel = async function(channelId) {
     return dynamo.get({
         "TableName": CHANNELS_TABLE,
         "Key": {"channelId": channelId}
@@ -23,7 +27,7 @@ function getChannel(channelId) {
     })
 }
 
-function createChannel(channel) {
+Leaderboard.createChannel = async function(channel) {
     return dynamo.put({
         "TableName": CHANNELS_TABLE,
         "Item": channel
@@ -32,7 +36,9 @@ function createChannel(channel) {
     })
 }
 
-function addScoreToChannel(channelId, score) {
+Leaderboard.addScoreToChannel = async function(channelId, score) {
+    await Leaderboard.getChannel(channelId)
+
     return dynamo.update({
         "TableName": CHANNELS_TABLE,
         "Key": {"channelId": channelId},
@@ -44,8 +50,3 @@ function addScoreToChannel(channelId, score) {
         return response.Attributes
     })
 }
-
-
-module.exports.getChannel = getChannel
-module.exports.createChannel = createChannel
-module.exports.addScoreToChannel = addScoreToChannel

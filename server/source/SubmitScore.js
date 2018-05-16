@@ -1,5 +1,5 @@
 const Nimble = require("./library/Nimble.js")
-const Datalore = require("./library/Datalore.js")
+const Leaderboard = require("./library/Leaderboard.js")
 
 module.exports.handler = new Nimble.LambdaHandler(async (event) => {
     try {
@@ -15,9 +15,7 @@ module.exports.handler = new Nimble.LambdaHandler(async (event) => {
         throw new Nimble.UserError("The request is missing some data.")
     }
 
-    await Datalore.getChannel(channelId)
-
     return {
-        "channel": await Datalore.addScoreToChannel(channelId, score)
+        "channel": await Leaderboard.addScoreToChannel(channelId, score)
     }
 })

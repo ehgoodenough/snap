@@ -1,9 +1,9 @@
 const Nimble = require("./library/Nimble.js")
-const Datalore = require("./library/Datalore.js")
+const Leaderboard = require("./library/Leaderboard.js")
 
 module.exports.handler = new Nimble.LambdaHandler(async (event) => {
     return {
-        "channel": await Datalore.getChannel(event.pathParameters.channelId)
+        "channel": await Leaderboard.getChannel(event.pathParameters.channelId)
     }
 })
 

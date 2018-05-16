@@ -1,14 +1,15 @@
+const OK_STATUS_CODE = 200
+const USER_ERROR_STATUS_CODE = 400
+const FATAL_ERROR_STATUS_CODE = 500
+
 const DEFAULT_RESPONSE = {
-    "statusCode": 200,
+    "statusCode": USER_ERROR_STATUS_CODE,
     "headers": {
         "Access-Control-Allow-Origin" : "*", // Required for CORS support to work
         "Access-Control-Allow-Credentials" : true, // Required for cookies, authorization headers with HTTPS
         "Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token"
     }
 }
-
-const USER_ERROR_STATUS_CODE = 400
-const FATAL_ERROR_STATUS_CODE = 500
 
 class UserError extends Error {}
 

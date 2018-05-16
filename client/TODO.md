@@ -1,0 +1,15 @@
+- TODO: Add a "click to play" prompt.
+- TODO: Make the game less forgiving with the snaps.
+- TODO: Render a graph in the corner that displays the funnel of tally-over-scores.
+- TODO: Add sound effects for consecutive perfect snaps
+- TODO: Debug the analytics; it looks like they bugged out in production?
+- ...
+- TODO: Make the game change it's pace as the game goes on.
+- TODO: Show the highest scoring players in the background on the stream.
+- TODO: Add personal high-sceores (requires you played once)
+- TODO: Add high-scores (requires username to be given)
+- TODO: Localize the strings.
+- TODO: Make it playable on desktop screen and mobile screen. <perspective in em not in px>
+- TODO: Add configure page for streamer (leaderboard, nuke leaderboard, thank you for downloading).
+- TODO: Add particile effect for consecutive snaps
+- TODO: Mute sound button

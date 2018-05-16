@@ -8,6 +8,8 @@ import Version from "views/Version.view.js"
 import Title from "views/Title.view.js"
 import ReplayPrompt from "views/ReplayPrompt.view.js"
 
+import "views/View.less"
+
 export default function View(props) {
     return (
         <Frame>

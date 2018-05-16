@@ -7,7 +7,7 @@ export default class Prompt {
         return (
             <div className={this.classNames}>
                 <span>{this.message}</span>
-                <small>Click on the block</small>
+                <small>Tap on the stream</small>
             </div>
         )
     }

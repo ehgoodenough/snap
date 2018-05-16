@@ -6,7 +6,6 @@
 - TODO: Add personal high-sceores (requires you played once)
 - TODO: Add high-scores (requires username to be given)
 - TODO: Localize the strings.
-- TODO: Make it playable on desktop screen and mobile screen. <perspective in em not in px>
 - TODO: Add configure page for streamer (leaderboard, nuke leaderboard, thank you for downloading).
 - TODO: Add particile effect for consecutive snaps
 - TODO: Mute sound button

@@ -14,7 +14,7 @@ export default class Leaderboards extends Preact.Component {
                         {this.subtotals}
                     </div>
                     <div className="rank">
-                        {this.rank}
+                        <span>{this.rank}</span>
                     </div>
                 </div>
             )

@@ -3,7 +3,7 @@ const USER_ERROR_STATUS_CODE = 400
 const FATAL_ERROR_STATUS_CODE = 500
 
 const DEFAULT_RESPONSE = {
-    "statusCode": USER_ERROR_STATUS_CODE,
+    "statusCode": OK_STATUS_CODE,
     "headers": {
         "Access-Control-Allow-Origin" : "*", // Required for CORS support to work
         "Access-Control-Allow-Credentials" : true, // Required for cookies, authorization headers with HTTPS

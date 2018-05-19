@@ -1,7 +1,9 @@
 // TODO: Wrap the endpoint in a utility method
 // TODO: Determine the stage for selecting endpoints
 // TODO: Determine the channel for submitting to the endpoints
-let SCORES_URI = "https://zwxr8sz8fj.execute-api.us-east-1.amazonaws.com/alpha/v1/{channelId}/scores"
+let ALPHA_ENDPOINT = "https://zwxr8sz8fj.execute-api.us-east-1.amazonaws.com/alpha/"
+let BETA_ENDPOINT = "https://aupsfgehj9.execute-api.us-east-1.amazonaws.com/beta/"
+let SCORES_URI = BETA_ENDPOINT + "v1/{channelId}/scores"
 
 export default class Leaderboards {
     constructor(leaderboards) {

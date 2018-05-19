@@ -20,5 +20,8 @@
   },
   "devDependencies": {
     "serverless": "^1.26.1"
+  },
+  "dependencies": {
+    "shortid": "^2.2.8"
   }
 }

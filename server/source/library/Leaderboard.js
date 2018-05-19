@@ -18,7 +18,7 @@ Leaderboard.getChannel = async function(channelId) {
         if(channel !== undefined) {
             return channel
         } else {
-            return createChannel({
+            return Leaderboard.createChannel({
                 "channelId": channelId,
                 "createdAt": Date.now(),
                 "tally": {"0": 0}
@@ -33,6 +33,21 @@ Leaderboard.createChannel = async function(channel) {
         "Item": channel
     }).promise().then(() => {
         return channel
+    })
+}
+
+Leaderboard.addScoreToChannelSession = async function(channelId, sessionId, score) {
+    let channelSession = {
+        "channelId-sessionId": channelId + "-" + sessionId,
+        "channelId": channelId,
+        "sessionId": sessionId,
+        "score": score
+    }
+    return dynamo.put({
+        "TableName": CHANNEL_SESSIONS_TABLE,
+        "Item": channelSession
+    }).promise().then(() => {
+        return channelSession
     })
 }
 

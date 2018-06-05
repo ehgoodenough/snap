@@ -12,7 +12,8 @@
   },
   "scripts": {
     "build": "codeglue --stage=PRODUCTION",
-    "start": "codeglue --stage=DEVELOPMENT --mode=SERVER --port=8080 --ssl=true"
+    "start": "codeglue --stage=DEVELOPMENT --mode=SERVER --port=8080 --ssl=true",
+    "zip": "bestzip build.zip builds/web/*"
   },
   "dependencies": {
     "keyb": "^1.1.0",
@@ -27,6 +28,7 @@
   "devDependencies": {
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.6.1",
+    "bestzip": "^1.1.4",
     "codeglue": "^1.5.1"
   }
 }

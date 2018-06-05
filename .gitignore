@@ -4,6 +4,7 @@ node_modules
 # Artifacts
 .serverless
 .webpack
+build.zip
 builds
 
 # Temporary

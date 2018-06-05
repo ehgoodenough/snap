@@ -1,8 +1,6 @@
 import Preact from "preact"
 import QueryString from "query-string"
 
-import Experience from "models/Experience.js"
-
 import Slab from "views/Slab.view.js"
 import Score from "views/Score.view.js"
 import Frame from "views/Frame.view.js"
@@ -22,12 +20,12 @@ export default function View(props) {
             <Frame>
                 <div className="Game">
                     <Version/>
-                    <Title game={Experience.game}/>
-                    <Prompt game={Experience.game}/>
-                    <Score game={Experience.game}/>
-                    <Leaderboards game={Experience.game}/>
-                    <Camera camera={Experience.game.camera} key={Experience.game.key}>
-                        {Experience.game.slabs.map((slab, key) => (
+                    <Title game={this.props.experience.game}/>
+                    <Prompt game={this.props.experience.game}/>
+                    <Score game={this.props.experience.game}/>
+                    <Leaderboards game={this.props.experience.game}/>
+                    <Camera camera={this.props.experience.game.camera} key={this.props.experience.game.key}>
+                        {this.props.experience.game.slabs.map((slab, key) => (
                             <Slab slab={slab} key={key}/>
                         ))}
                     </Camera>

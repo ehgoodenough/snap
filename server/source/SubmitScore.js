@@ -1,9 +1,17 @@
 const ShortID = require("shortid")
+const JWT = require("jsonwebtoken")
 
 const Nimble = require("./library/Nimble.js")
 const Leaderboard = require("./library/Leaderboard.js")
+const Secret = require("./config/Secret.js")
 
 module.exports.handler = new Nimble.LambdaHandler(async (event) => {
+    try {
+        event.authorization = JWT.verify(event.headers.Authorization, Secret)
+    } catch(error) {
+        throw new Nimble.UserError("The request is not authorized.")
+    }
+
     try {
         event.body = JSON.parse(event.body)
     } catch(error) {
@@ -16,10 +24,7 @@ module.exports.handler = new Nimble.LambdaHandler(async (event) => {
     if(channelId === undefined || score === undefined) {
         throw new Nimble.UserError("The request is missing some data.")
     }
-
-    // let sessionId = ShortID.generate()
-    // await Leaderboard.addScoreToChannelSession(channelId, sessionId, score)
-
+    
     return {
         "channel": await Leaderboard.addScoreToChannel(channelId, score)
     }

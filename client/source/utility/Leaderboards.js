@@ -4,13 +4,16 @@ const SCORES_URI = GAMMA_ENDPOINT + "/v1/{channelId}/scores"
 
 export default class Leaderboards {
     constructor(leaderboards) {
-        this.channelId = leaderboards.channelId
+        this.authorization = leaderboards.authorization
 
         this.retrieveScores()
     }
     retrieveScores() {
-        window.fetch(SCORES_URI.replace("{channelId}", this.channelId), {
-            method: "GET"
+        window.fetch(SCORES_URI.replace("{channelId}", this.authorization.channelId), {
+            "method": "GET",
+            "headers": {
+                "Authorization": this.authorization.token
+            }
         }).then((response) => {
             return response.json().then((scores) => {
                 this.consume(scores)
@@ -18,9 +21,14 @@ export default class Leaderboards {
         })
     }
     submitScore(score) {
-        window.fetch(SCORES_URI.replace("{channelId}", this.channelId), {
-            method: "POST",
-            body: JSON.stringify({"score": score}),
+        window.fetch(SCORES_URI.replace("{channelId}", this.authorization.channelId), {
+            "method": "POST",
+            "headers": {
+                "Authorization": this.authorization.token
+            },
+            "body": JSON.stringify({
+                "score": score
+            }),
         }).then((response) => {
             return response.json().then((scores) => {
                 this.consume(scores)

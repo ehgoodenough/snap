@@ -3,7 +3,6 @@ import Preact from "preact"
 import "views/Leaderboards.view.less"
 
 import Color from "utility/Color.js"
-import Experience from "models/Experience.js"
 
 export default class Leaderboards extends Preact.Component {
     render() {
@@ -29,19 +28,19 @@ export default class Leaderboards extends Preact.Component {
         }
     }
     get subtotals() {
-        if(Experience.leaderboards.scores) {
-            let scores = Experience.leaderboards.scores
+        if(this.props.game.experience.leaderboards.scores) {
+            let scores = this.props.game.experience.leaderboards.scores
             return Object.keys(scores.channel.subtotals).map((score) => {
                 return (
                     <div className="bar" style={{
                         "height": ((scores.channel.subtotals[score] / scores.channel.highestSubtotal) * 1.9) + 0.1 + "em",
-                        "backgroundColor": score > Experience.game.score ? "#FFF" : Color.generate(score)
+                        "backgroundColor": score > this.props.game.experience.game.score ? "#FFF" : Color.generate(score)
                     }}/>
                 )
             })
         }
     }
     get rank() {
-        return (Math.round(Experience.game.rank * 100) || 0) + "%"
+        return (Math.round(this.props.game.experience.game.rank * 100) || 0) + "%"
     }
 }

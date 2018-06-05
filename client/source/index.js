@@ -14,11 +14,17 @@ if(query.state === "testing") {
     console.clear()
 }
 
-let mount = Preact.render(<View/>, document.body)
+Twitch.ext.onAuthorized((authorization) => {
+    let experience = new Experience({
+        "authorization": authorization
+    })
 
-let loop = new Yaafloop((delta) => {
-    Experience.update(delta)
-    Preact.render(<View/>, document.body, mount)
+    let mount = Preact.render(<View experience={experience}/>, document.body)
+
+    let loop = new Yaafloop((delta) => {
+        experience.update(delta)
+        Preact.render(<View experience={experience}/>, document.body, mount)
+    })
 })
 
 // Disable the Twitch Fullscreen double-click shortcut listener.

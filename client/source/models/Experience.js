@@ -2,14 +2,14 @@ import Game from "models/Game.js"
 import Leaderboards from "utility/Leaderboards.js"
 
 class Experience {
-    constructor() {
+    constructor(experience) {
         this.game = new Game({
             "hasStarted": false,
             "experience": this
         })
 
         this.leaderboards = new Leaderboards({
-            "channelId": "1234567890"
+            "authorization": experience.authorization
         })
     }
     startNewGame() {
@@ -25,4 +25,4 @@ class Experience {
     }
 }
 
-export default new Experience()
+export default Experience

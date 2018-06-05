@@ -17,8 +17,8 @@ module.exports.handler = new Nimble.LambdaHandler(async (event) => {
     if(channelId === undefined || score === undefined) {
         throw new Nimble.UserError("The request is missing some data.")
     }
-    
-    await Leaderboard.addScoreToChannelSession(channelId, sessionId, score)
+
+    // await Leaderboard.addScoreToChannelSession(channelId, sessionId, score)
 
     return {
         "channel": await Leaderboard.addScoreToChannel(channelId, score)

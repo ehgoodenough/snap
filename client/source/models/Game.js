@@ -28,7 +28,7 @@ export default class Game {
                 game: this,
                 color: "#888888",
                 position: {z: 0},
-                size: {x: 8, y: 8, z: 8},
+                size: {x: 8, y: 8, z: 16},
                 isStartingBlock: true
             }),
         ]

@@ -10,7 +10,7 @@
 }
 
 
-@media(min-aspect-ratio: 9/9) {
+@media(min-aspect-ratio: ~"9/9") {
     #frame {
         font-size: ((9/9)*100vh)/9/2;
         // width: (9/9)*100vh;
@@ -18,29 +18,13 @@
     }
 }
 
-@media(max-aspect-ratio: 9/9) {
+@media(max-aspect-ratio: ~"9/9") {
     #frame {
         font-size: ((9/9)*100vw)/9/2;
         // height: (9/9)*100vw;
         width: 100vw;
     }
 }
-
-// @media(min-aspect-ratio: 16/9) {
-//     #frame {
-//         font-size: 5.555vh;
-//         width: 177.778vh;
-//         height: 100vh;
-//     }
-// }
-
-// @media(max-aspect-ratio: 16/9) {
-//     #frame {
-//         font-size: 3.125vw;
-//         height: 56.25vw;
-//         width: 100vw;
-//     }
-// }
 
 #frame, body {
     background-color: #222;

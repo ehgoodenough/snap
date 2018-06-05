@@ -3,8 +3,8 @@ const AWS = require("aws-sdk")
 const dynamo = new AWS.DynamoDB.DocumentClient()
 
 const CHANNELS_TABLE = process.env.CHANNELS_TABLE
-const CHANNEL_USERS_TABLE = process.env.CHANNEL_USERS_TABLE
-const CHANNEL_SESSIONS_TABLE = process.env.CHANNEL_SESSIONS_TABLE
+// const CHANNEL_USERS_TABLE = process.env.CHANNEL_USERS_TABLE
+// const CHANNEL_SESSIONS_TABLE = process.env.CHANNEL_SESSIONS_TABLE
 
 const Leaderboard = module.exports
 
@@ -36,20 +36,20 @@ Leaderboard.createChannel = async function(channel) {
     })
 }
 
-Leaderboard.addScoreToChannelSession = async function(channelId, sessionId, score) {
-    let channelSession = {
-        "channelId-sessionId": channelId + "-" + sessionId,
-        "channelId": channelId,
-        "sessionId": sessionId,
-        "score": score
-    }
-    return dynamo.put({
-        "TableName": CHANNEL_SESSIONS_TABLE,
-        "Item": channelSession
-    }).promise().then(() => {
-        return channelSession
-    })
-}
+// Leaderboard.addScoreToChannelSession = async function(channelId, sessionId, score) {
+//     let channelSession = {
+//         "channelId-sessionId": channelId + "-" + sessionId,
+//         "channelId": channelId,
+//         "sessionId": sessionId,
+//         "score": score
+//     }
+//     return dynamo.put({
+//         "TableName": CHANNEL_SESSIONS_TABLE,
+//         "Item": channelSession
+//     }).promise().then(() => {
+//         return channelSession
+//     })
+// }
 
 Leaderboard.addScoreToChannel = async function(channelId, score) {
     await Leaderboard.getChannel(channelId)

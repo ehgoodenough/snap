@@ -6,11 +6,11 @@ provider:
 
   region: us-east-1
   profile: default
-  stage: beta
+  stage: alpha
 
   environment:
     CHANNELS_TABLE: ${self:service}.${opt:stage, self:provider.stage}.channels
-    CHANNEL_SESSIONS_TABLE: ${self:service}.${opt:stage, self:provider.stage}.channel-sessions
+    # CHANNEL_SESSIONS_TABLE: ${self:service}.${opt:stage, self:provider.stage}.channel-sessions
 
   iamRoleStatements:
     - Effect: "Allow"
@@ -21,14 +21,14 @@ provider:
        - dynamodb:GetItem
        - dynamodb:UpdateItem
       Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.CHANNELS_TABLE}"
-    - Effect: "Allow"
-      Action:
-       - dynamodb:Query
-       - dynamodb:Scan
-       - dynamodb:PutItem
-       - dynamodb:GetItem
-       - dynamodb:UpdateItem
-      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.CHANNEL_SESSIONS_TABLE}"
+    # - Effect: "Allow"
+    #   Action:
+    #    - dynamodb:Query
+    #    - dynamodb:Scan
+    #    - dynamodb:PutItem
+    #    - dynamodb:GetItem
+    #    - dynamodb:UpdateItem
+    #   Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.CHANNEL_SESSIONS_TABLE}"
 
 functions:
   RetrieveScores:
@@ -62,24 +62,24 @@ resources:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
       DeletionPolicy: Retain
-    ChannelSessionsTable:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: ${self:provider.environment.CHANNEL_SESSIONS_TABLE}
-        AttributeDefinitions:
-          - AttributeName: channelId-sessionId
-            AttributeType: S
-          - AttributeName: score
-            AttributeType: N
-        KeySchema:
-          - AttributeName: channelId-sessionId
-            KeyType: HASH
-          - AttributeName: score
-            KeyType: RANGE
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
-      DeletionPolicy: Retain
+    # ChannelSessionsTable:
+    #   Type: AWS::DynamoDB::Table
+    #   Properties:
+    #     TableName: ${self:provider.environment.CHANNEL_SESSIONS_TABLE}
+    #     AttributeDefinitions:
+    #       - AttributeName: channelId-sessionId
+    #         AttributeType: S
+    #       - AttributeName: score
+    #         AttributeType: N
+    #     KeySchema:
+    #       - AttributeName: channelId-sessionId
+    #         KeyType: HASH
+    #       - AttributeName: score
+    #         KeyType: RANGE
+    #     ProvisionedThroughput:
+    #       ReadCapacityUnits: 1
+    #       WriteCapacityUnits: 1
+    #   DeletionPolicy: Retain
 
 package:
   excludeDevDependencies: true

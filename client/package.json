@@ -27,6 +27,6 @@
   "devDependencies": {
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.6.1",
-    "codeglue": "^1.4.3"
+    "codeglue": "^1.5.1"
   }
 }

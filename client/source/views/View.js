@@ -16,7 +16,6 @@ import "views/View.less"
 export default function View(props) {
     return (
         <Frame>
-            <Version/>
             <Title game={Experience.game}/>
             <Prompt game={Experience.game}/>
             <Score game={Experience.game}/>
@@ -28,6 +27,7 @@ export default function View(props) {
                     ))}
                 </Camera>
             </div>
+            <Version/>
         </Frame>
     )
 }

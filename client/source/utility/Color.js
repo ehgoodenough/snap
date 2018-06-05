@@ -1,6 +1,6 @@
 const COLOR_GRADIENT = 7
 
-import Colors from "data/Colors.js"
+import Colors from "config/Colors.js"
 import LeftPad from "left-pad"
 
 function generate(i) {

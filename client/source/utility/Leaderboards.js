@@ -47,10 +47,6 @@ export default class Leaderboards {
         scores.channel.highestSubtotal = Math.max(...Object.values(scores.channel.subtotals))
 
         this.scores = scores
-
-        if(__STAGE__ === "DEVELOPMENT") {
-            console.log(this.scores)
-        }
     }
     getRank(score) {
         if(this.scores !== undefined) {

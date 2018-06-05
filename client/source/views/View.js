@@ -1,4 +1,5 @@
 import Preact from "preact"
+import QueryString from "query-string"
 
 import Experience from "models/Experience.js"
 
@@ -13,22 +14,26 @@ import Leaderboards from "views/Leaderboards.view.js"
 
 import "views/View.less"
 
+let query = QueryString.parse(location.search)
+
 export default function View(props) {
     return (
-        <Frame>
-            <Title game={Experience.game}/>
-            <Prompt game={Experience.game}/>
-            <Score game={Experience.game}/>
-            <Leaderboards game={Experience.game}/>
-            <div className="Game" key={Experience.game.key}>
-                <Camera camera={Experience.game.camera}>
-                    {Experience.game.slabs.map((slab, key) => (
-                        <Slab slab={slab} key={key}/>
-                    ))}
-                </Camera>
-            </div>
-            <Version/>
-        </Frame>
+        <div className={`anchored-as-${query.anchor || "self"}`}>
+            <Frame>
+                <Title game={Experience.game}/>
+                <Prompt game={Experience.game}/>
+                <Score game={Experience.game}/>
+                <Leaderboards game={Experience.game}/>
+                <div className="Game" key={Experience.game.key}>
+                    <Camera camera={Experience.game.camera}>
+                        {Experience.game.slabs.map((slab, key) => (
+                            <Slab slab={slab} key={key}/>
+                        ))}
+                    </Camera>
+                </div>
+                <Version/>
+            </Frame>
+        </div>
     )
 }
 

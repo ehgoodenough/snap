@@ -1,13 +1,14 @@
-- TODO: Support Panel and Component Overlays and Mobile
-- TODO: ...better background, rounded corners, minimize...
+- TODO: Maximize/Minimize while component overlay.
 - TODO: Add configure page for streamer (leaderboard, nuke leaderboard, thank you for downloading).
 - TODO: Localize the strings.
+- TODO: "Tap" to snap.
 - TODO: Wordsmith some marketing materials.
-- TODO: Add sound effects for consecutive perfect snaps
 - TODO: Support authorized endpoints.
-- ...
 - TODO: Debug the analytics; it looks like they bugged out in production?
 - ...
+- ...
+- ...
+- TODO: Add sound effects for consecutive perfect snaps
 - TODO: Make the game change it's pace as the game goes on.
 - TODO: Show the highest scoring players in the background on the stream.
 - TODO: Add personal high-sceores (requires you played once)

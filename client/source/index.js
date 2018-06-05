@@ -1,12 +1,18 @@
 import Preact from "preact"
 import Yaafloop from "yaafloop"
 import Keyb from "keyb"
+import QueryString from "query-string"
 
 import View from "views/View.js"
 import Experience from "models/Experience.js"
 
 import "vendor/FullStory.js"
 import "vendor/GoogleAnalytics.js"
+
+let query = QueryString.parse(location.search)
+if(query.state === "testing") {
+    console.clear()
+}
 
 let mount = Preact.render(<View/>, document.body)
 

@@ -12,12 +12,12 @@ module.exports.handler = new Nimble.LambdaHandler(async (event) => {
 
     let channelId = event.pathParameters.channelId
     let score = event.body.score
-    let sessionId = ShortID.generate()
 
     if(channelId === undefined || score === undefined) {
         throw new Nimble.UserError("The request is missing some data.")
     }
 
+    // let sessionId = ShortID.generate()
     // await Leaderboard.addScoreToChannelSession(channelId, sessionId, score)
 
     return {

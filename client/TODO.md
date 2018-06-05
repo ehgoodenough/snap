@@ -1,15 +1,15 @@
-- TODO: Add configure page for streamer (leaderboard, nuke leaderboard, thank you for downloading).
-- TODO: Localize the strings.
-- TODO: "Tap" to snap.
-- TODO: Wordsmith some marketing materials.
 - TODO: Support authorized endpoints.
-- TODO: Debug the analytics; it looks like they bugged out in production?
+- TODO: Add configure page for streamer (leaderboard, nuke leaderboard, thank you for downloading).
+- TODO: Wordsmith some marketing materials.
 - ...
 - ...
 - ...
+- TODO: Localize the strings.
+- TODO: On mobile, change string to "TAP" to start.
 - TODO: Add sound effects for consecutive perfect snaps
 - TODO: Make the game change it's pace as the game goes on.
 - TODO: Show the highest scoring players in the background on the stream.
+- TODO: Debug the analytics; it looks like they bugged out in production?
 - TODO: Add personal high-sceores (requires you played once)
 - TODO: Add high-scores (requires username to be given)
 - TODO: Add particile effect for consecutive snaps

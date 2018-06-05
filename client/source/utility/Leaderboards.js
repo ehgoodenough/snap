@@ -1,8 +1,6 @@
-// TODO: Wrap the endpoint in a utility method
-// TODO: Determine the stage for selecting endpoints
-// TODO: Determine the channel for submitting to the endpoints
-let ALPHA_ENDPOINT = "https://zwxr8sz8fj.execute-api.us-east-1.amazonaws.com/alpha/"
-let SCORES_URI = ALPHA_ENDPOINT + "v1/{channelId}/scores"
+const ALPHA_ENDPOINT = "https://zwxr8sz8fj.execute-api.us-east-1.amazonaws.com/alpha"
+const GAMMA_ENDPOINT = "https://rrna8vhqof.execute-api.us-east-1.amazonaws.com/gamma"
+const SCORES_URI = GAMMA_ENDPOINT + "/v1/{channelId}/scores"
 
 export default class Leaderboards {
     constructor(leaderboards) {
@@ -47,6 +45,7 @@ export default class Leaderboards {
         scores.channel.highestSubtotal = Math.max(...Object.values(scores.channel.subtotals))
 
         this.scores = scores
+        console.log(scores)
     }
     getRank(score) {
         if(this.scores !== undefined) {

@@ -7,7 +7,11 @@ import Experience from "models/Experience.js"
 
 export default class Leaderboards extends Preact.Component {
     render() {
-        if(this.props.game.hasStarted) {
+        if(this.props.game.hasStarted
+        && this.props.game.score > 5
+        && this.props.game.experience.leaderboards.scores !== undefined
+        && this.props.game.experience.leaderboards.scores.channel !== undefined
+        && this.props.game.experience.leaderboards.scores.channel.highestScore > 50) {
             return (
                 <div className="Leaderboards">
                     <div className="bar-graph">
@@ -20,7 +24,7 @@ export default class Leaderboards extends Preact.Component {
             )
         } else {
             return (
-                <div/>
+                <div className="Leaderboards isHidden"/>
             )
         }
     }
@@ -30,7 +34,7 @@ export default class Leaderboards extends Preact.Component {
             return Object.keys(scores.channel.subtotals).map((score) => {
                 return (
                     <div className="bar" style={{
-                        "height": ((scores.channel.subtotals[score] / scores.channel.highestSubtotal) * 2) + "em",
+                        "height": ((scores.channel.subtotals[score] / scores.channel.highestSubtotal) * 1.9) + 0.1 + "em",
                         "backgroundColor": score > Experience.game.score ? "#FFF" : Color.generate(score)
                     }}/>
                 )
@@ -38,6 +42,6 @@ export default class Leaderboards extends Preact.Component {
         }
     }
     get rank() {
-        return Math.round(Experience.game.rank * 100) + "%"
+        return (Math.round(Experience.game.rank * 100) || 0) + "%"
     }
 }

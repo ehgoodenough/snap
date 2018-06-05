@@ -26,7 +26,7 @@ export default function View(props) {
                     <Prompt game={Experience.game}/>
                     <Score game={Experience.game}/>
                     <Leaderboards game={Experience.game}/>
-                    <Camera camera={Experience.game.camera}>
+                    <Camera camera={Experience.game.camera} key={Experience.game.key}>
                         {Experience.game.slabs.map((slab, key) => (
                             <Slab slab={slab} key={key}/>
                         ))}

@@ -56,21 +56,23 @@ body {
         overflow: hidden;
         color: transparent;
 
+        animation-delay: 2s;
+        animation-duration: 1s;
         animation-name: fade-away;
-        animation-duration: 3s;
-        animation-delay: 3s;
+        animation-fill-mode: forwards;
 
         transition-duration: 1s;
         transition-property: transform, color;
     }
 
     #frame:hover {
+        animation-duration: 0s;
         .Game {
-            transform: none;
             color: #FFF;
+            transform: none;
 
-            transition-duration: 0.25s;
             transition-delay: 0s;
+            transition-duration: 0.25s;
 
             animation: none;
         }
@@ -79,5 +81,5 @@ body {
 
 @keyframes fade-away {
     0% {opacity: 1;}
-    100% {opacity: 0}
+    100% {opacity: 0;}
 }

@@ -1,4 +1,3 @@
-- TODO: Maximize/Minimize while component overlay.
 - TODO: Add configure page for streamer (leaderboard, nuke leaderboard, thank you for downloading).
 - TODO: Localize the strings.
 - TODO: "Tap" to snap.

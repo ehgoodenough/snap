@@ -18,20 +18,20 @@ let query = QueryString.parse(location.search)
 
 export default function View(props) {
     return (
-        <div className={`anchored-as-${query.anchor || "self"}`}>
+        <div id="view" className={`anchored-as-${query.anchor || "self"}`}>
             <Frame>
-                <Title game={Experience.game}/>
-                <Prompt game={Experience.game}/>
-                <Score game={Experience.game}/>
-                <Leaderboards game={Experience.game}/>
-                <div className="Game" key={Experience.game.key}>
+                <div className="Game">
+                    <Version/>
+                    <Title game={Experience.game}/>
+                    <Prompt game={Experience.game}/>
+                    <Score game={Experience.game}/>
+                    <Leaderboards game={Experience.game}/>
                     <Camera camera={Experience.game.camera}>
                         {Experience.game.slabs.map((slab, key) => (
                             <Slab slab={slab} key={key}/>
                         ))}
                     </Camera>
                 </div>
-                <Version/>
             </Frame>
         </div>
     )

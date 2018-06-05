@@ -1,4 +1,3 @@
-- TODO: Support authorized endpoints.
 - TODO: Add configure page for streamer (leaderboard, nuke leaderboard, thank you for downloading).
 - TODO: Wordsmith some marketing materials.
 - ...

@@ -11,8 +11,8 @@
     "url": "https://github.com/ehgoodenough/snap"
   },
   "scripts": {
-    "build": "codeglue --stage=PRODUCTION",
-    "start": "codeglue --stage=DEVELOPMENT --mode=SERVER --port=8080 --ssl=true",
+    "build": "codeglue --stage=NONE",
+    "start": "codeglue --stage=NONE --mode=SERVER --port=8080 --ssl=true",
     "zip": "bestzip build.zip builds/web/*"
   },
   "dependencies": {

@@ -1,6 +1,7 @@
 import ShortID from "shortid"
 
 import Input from "utility/Input.js"
+
 import Slab from "models/Slab.js"
 
 export default class Game {

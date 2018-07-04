@@ -12,7 +12,7 @@ import Leaderboards from "views/Leaderboards.view.js"
 
 import "views/View.less"
 
-let query = QueryString.parse(location.search)
+let query = QueryString.parse(window.location.search)
 
 export default function View(props) {
     return (

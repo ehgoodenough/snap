@@ -6,9 +6,6 @@ import QueryString from "query-string"
 import View from "views/View.js"
 import Experience from "models/Experience.js"
 
-import "vendor/FullStory.js"
-import "vendor/GoogleAnalytics.js"
-
 let query = QueryString.parse(location.search)
 if(query.state === "testing") {
     console.clear()
@@ -35,9 +32,4 @@ document.body.addEventListener("dblclick", function(event) {
 // Disable the Twitch keyboard shortcut listeners.
 document.addEventListener("keydown", function(event) {
     event.preventDefault()
-})
-
-// Focus the game.
-document.addEventListener("click", function(event) {
-    document.getElementById("input").focus()
 })

@@ -11,6 +11,8 @@ class Experience {
         this.leaderboards = new Leaderboards({
             "authorization": experience.authorization
         })
+        
+        this.authorization = experience.authorization
     }
     startNewGame() {
         this.game = new Game({

@@ -9,5 +9,5 @@ builds
 
 # Temporary
 .DS_Store
-*.log
+# *.log
 ._*

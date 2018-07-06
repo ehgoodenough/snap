@@ -1,6 +1,6 @@
 {
   "name": "snap",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "description": "A game of snapping together blocks.",
   "private": true,
   "contributors": [
@@ -22,7 +22,6 @@
     "query-string": "^6.1.0",
     "shortid": "^2.2.8",
     "statgrab": "^1.2.0",
-    "universal-ga": "^1.2.0",
     "yaafloop": "^1.1.0"
   },
   "devDependencies": {

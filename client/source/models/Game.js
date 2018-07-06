@@ -1,6 +1,7 @@
 import ShortID from "shortid"
 
 import Input from "utility/Input.js"
+import Hubble from "utility/Hubble.js"
 
 import Slab from "models/Slab.js"
 
@@ -34,13 +35,17 @@ export default class Game {
             }),
         ]
 
-        this.hasStarted = game.hasStarted || false
         this.hasEnded = false
+        this.hasStarted = false
+
+        if(game.hasStarted === true) {
+            this.start()
+        }
     }
     update(delta) {
         if(this.hasStarted === false) {
             if(Input.isJustDown(delta.ms)) {
-                this.hasStarted = true
+                this.start()
             }
             return
         }
@@ -61,6 +66,15 @@ export default class Game {
             return
         }
     }
+    start() {
+        if(this.hasStarted != true) {
+            this.hasStarted = true
+            Hubble.submitEvent({
+                "type": "start-of-game",
+                "authorization": this.experience.authorization,
+            })
+        }
+    }
     end() {
         if(this.hasEnded != true) {
             // Game over!!
@@ -70,6 +84,11 @@ export default class Game {
             this.camera.speed = this.currentSlab.position.z / 2
             this.camera.tween = "ease-out"
             this.camera.pan = 0
+
+            Hubble.submitEvent({
+                "type": "end-of-game",
+                "authorization": this.experience.authorization,
+            })
         }
     }
     get currentSlab() {

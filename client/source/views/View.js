@@ -9,6 +9,7 @@ import Version from "views/Version.view.js"
 import Title from "views/Title.view.js"
 import Prompt from "views/Prompt.view.js"
 import Leaderboards from "views/Leaderboards.view.js"
+import LeaderboardModal from "views/LeaderboardModal.view.js"
 
 import "views/View.less"
 
@@ -23,6 +24,7 @@ export default function View(props) {
                     <Title game={this.props.experience.game}/>
                     <Prompt game={this.props.experience.game}/>
                     <Score game={this.props.experience.game}/>
+                    <LeaderboardModal game={this.props.experience.game}/>
                     {/*<Leaderboards game={this.props.experience.game}/>*/}
                     <Camera camera={this.props.experience.game.camera} key={this.props.experience.game.key}>
                         {this.props.experience.game.slabs.map((slab, key) => (
@@ -34,7 +36,3 @@ export default function View(props) {
         </div>
     )
 }
-
-// TODO: Refactor the X and Z to be horizontal and Y to be vertical.
-// TODO: Why are we offseting z/2 for the upwards transform, and not the others?
-// TODO: Why is the x/y origin in the top left?

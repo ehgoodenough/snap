@@ -42,7 +42,6 @@ const twitch = module.exports = {
     "streamer": {
         "channelId": undefined,
     },
-
     "extension": {
         // https://dev.twitch.tv/docs/extensions/reference#client-query-parameters
         "mode": query.mode || "none",
@@ -53,11 +52,6 @@ const twitch = module.exports = {
         "state": query.state || "none",
         "mount": mount,
     },
-
-    // `.anchor` has been deprecated for
-    // `.extension.anchor`, but kept here
-    // for backward compatability.
-    "anchor": query.anchor || "none",
 }
 
 // Nimble.twitch.retrieveTwitchChannel

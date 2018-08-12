@@ -2,11 +2,12 @@ const JWT = require("jsonwebtoken")
 
 const Nimble = require("./library/Nimble.js")
 const Leaderboard = require("./library/Leaderboard.js")
-const Secret = require("./config/Secret.js")
+
+const SECRET = require("./config/Secret.js")
 
 module.exports.handler = new Nimble.LambdaHandler(async (event) => {
     try {
-        event.authorization = JWT.verify(event.headers.Authorization, Secret)
+        event.authorization = JWT.verify(event.headers.Authorization, SECRET)
     } catch(error) {
         throw new Nimble.UserError("The request is not authorized.")
     }

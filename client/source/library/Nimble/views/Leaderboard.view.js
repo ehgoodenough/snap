@@ -12,7 +12,7 @@ const LEADERBOARD_AROUND_ME_RENDER_LENGTH = 1
 const BIG_ROW_COUNT = 9
 const SMALL_ROW_COUNT = 5
 
-export default class NimbleLeaderboard {
+module.exports = class NimbleLeaderboard {
     render() {
         return (
             <div className={this.className}>

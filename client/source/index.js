@@ -21,6 +21,13 @@ Nimble.twitch.onAuthorized((authorization) => {
         experience.update(delta)
         Preact.render(<View experience={experience}/>, document.body, mount)
     })
+
+    Nimble.sparks.initialize().then(() => {
+        const GLOBAL_LEADERBOARD = "GlobalHighScores.activity.SNAP"
+        const CHANNEL_LEADERBOARD = `ChannelHighScores.activity.SNAP.channelId.${Nimble.twitch.streamer.channelId}`
+        Nimble.sparks.listenToLeaderboard("SNAP/channel", CHANNEL_LEADERBOARD)
+        Nimble.sparks.listenToLeaderboard("SNAP/global", GLOBAL_LEADERBOARD)
+    })
 })
 
 // Disable the Twitch Fullscreen double-click shortcut listener.

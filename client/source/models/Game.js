@@ -1,6 +1,7 @@
 import ShortID from "shortid"
 
 import Input from "utility/Input.js"
+import Nimble from "library/Nimble"
 
 import Slab from "models/Slab.js"
 
@@ -51,7 +52,6 @@ export default class Game {
 
         if(this.hasEnded === true) {
             if(Input.isJustDown(delta.ms)) {
-                this.experience.leaderboards.submitScore(this.score)
                 this.experience.startNewGame()
             }
             return
@@ -83,6 +83,11 @@ export default class Game {
             this.camera.speed = this.currentSlab.position.z / 2
             this.camera.tween = "ease-out"
             this.camera.pan = 0
+            
+            Nimble.sparks.submitLeaderboardEntry({
+                "activity": "SNAP",
+                "score": this.score,
+            })
 
             // Hubble.submitEvent({
             //     "type": "end-of-game",

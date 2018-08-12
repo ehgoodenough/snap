@@ -2,27 +2,27 @@ import Game from "models/Game.js"
 
 import Leaderboards from "utility/Leaderboards.js"
 
-class Experience {
-    constructor(experience) {
+class Model {
+    constructor(model) {
         this.game = new Game({
             "hasStarted": false,
-            "experience": this
+            "model": this
         })
 
         this.selectedLeaderboardScope = "channel"
 
         // this.leaderboards = new Leaderboards({
-        //     "authorization": experience.authorization
+        //     "authorization": model.authorization
         // })
 
         // Hubble.submitEvent({
-        //     "type": "start-of-experience",
+        //     "type": "start-of-model",
         //     "authorization": this.authorization,
         // })
         //
         // window.addEventListener("beforeunload", (event) => {
         //     Hubble.submitEvent({
-        //         "type": "end-of-experience",
+        //         "type": "end-of-model",
         //         "authorization": this.authorization,
         //     })
         // })
@@ -30,7 +30,7 @@ class Experience {
     startNewGame() {
         this.game = new Game({
             "hasStarted": true,
-            "experience": this
+            "model": this
         })
     }
     update(delta) {
@@ -40,4 +40,4 @@ class Experience {
     }
 }
 
-export default Experience
+export default Model

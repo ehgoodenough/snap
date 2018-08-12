@@ -7,11 +7,11 @@ import Color from "utility/Color.js"
 
 export default class LeaderboardModal extends Preact.Component {
     render() {
-        if(this.props.game.hasEnded) {
+        if(this.props.model.game.hasEnded) {
             return (
                 <div className="LeaderboardModal">
                     <header>High Scores</header>
-                    <Nimble.views.Leaderboard activity="SNAP" scope={this.props.game.experience.selectedLeaderboardScope} size="big"/>
+                    <Nimble.views.Leaderboard activity="SNAP" scope={this.props.model.selectedLeaderboardScope} size="big"/>
                     <div className="scopes">
                         {/*<div className="today scope" onMouseOver={this.onSelectScope("today")}>today</div>
                         <div className="separator"/>*/}
@@ -29,7 +29,7 @@ export default class LeaderboardModal extends Preact.Component {
     }
     onSelectScope(scope) {
         return (event) => {
-            this.props.game.experience.selectedLeaderboardScope = scope
+            this.props.model.selectedLeaderboardScope = scope
         }
     }
 }

@@ -6,10 +6,10 @@ import Color from "utility/Color.js"
 
 export default class Leaderboards extends Preact.Component {
     render() {
-        if(this.props.game.hasStarted
-        && this.props.game.experience.leaderboards.scores !== undefined
-        && this.props.game.experience.leaderboards.scores.channel !== undefined
-        && this.props.game.experience.leaderboards.scores.channel.highestScore > 15) {
+        if(this.props.model.game.hasStarted
+        && this.props.model.leaderboards.scores !== undefined
+        && this.props.model.leaderboards.scores.channel !== undefined
+        && this.props.model.leaderboards.scores.channel.highestScore > 15) {
             return (
                 <div className="Leaderboards">
                     <div className="bar-graph">
@@ -27,19 +27,19 @@ export default class Leaderboards extends Preact.Component {
         }
     }
     get subtotals() {
-        if(this.props.game.experience.leaderboards.scores) {
-            let scores = this.props.game.experience.leaderboards.scores
+        if(this.props.model.leaderboards.scores) {
+            let scores = this.props.model.leaderboards.scores
             return Object.keys(scores.channel.subtotals).map((score) => {
                 return (
                     <div className="bar" style={{
                         "height": ((scores.channel.subtotals[score] / scores.channel.highestSubtotal) * 1.9) + 0.1 + "em",
-                        "backgroundColor": score > this.props.game.experience.game.score ? "#FFF" : Color.generate(score)
+                        "backgroundColor": score > this.props.model.game.score ? "#FFF" : Color.generate(score)
                     }}/>
                 )
             })
         }
     }
     get rank() {
-        return (Math.round(this.props.game.experience.game.rank * 100) || 0) + "%"
+        return (Math.round(this.props.model.game.rank * 100) || 0) + "%"
     }
 }

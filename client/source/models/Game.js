@@ -7,7 +7,7 @@ import Slab from "models/Slab.js"
 
 export default class Game {
     constructor(game) {
-        this.experience = game.experience
+        this.model = game.model
         this.key = ShortID.generate()
 
         this.score = 0
@@ -52,7 +52,7 @@ export default class Game {
 
         if(this.hasEnded === true) {
             if(Input.isJustDown(delta.ms)) {
-                this.experience.startNewGame()
+                this.model.startNewGame()
             }
             return
         }
@@ -70,7 +70,7 @@ export default class Game {
             this.hasStarted = true
             // Hubble.submitEvent({
             //     "type": "start-of-game",
-            //     "authorization": this.experience.authorization,
+            //     "authorization": this.model.authorization,
             // })
         }
     }
@@ -91,7 +91,7 @@ export default class Game {
 
             // Hubble.submitEvent({
             //     "type": "end-of-game",
-            //     "authorization": this.experience.authorization,
+            //     "authorization": this.model.authorization,
             // })
         }
     }
@@ -102,6 +102,6 @@ export default class Game {
         return this.slabs[1]
     }
     get rank() {
-        return this.experience.leaderboards.getRank(this.score)
+        return this.model.leaderboards.getRank(this.score)
     }
 }

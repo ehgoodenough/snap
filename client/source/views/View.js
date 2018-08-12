@@ -28,13 +28,13 @@ export default class View {
                 <Frame>
                     <div className="Game">
                         <Version/>
-                        <Title game={this.props.experience.game}/>
-                        <Prompt game={this.props.experience.game}/>
-                        <Score game={this.props.experience.game}/>
-                        <LeaderboardModal game={this.props.experience.game}/>
-                        {/*<Leaderboards game={this.props.experience.game}/>*/}
-                        <Camera camera={this.props.experience.game.camera} key={this.props.experience.game.key}>
-                            {this.props.experience.game.slabs.map((slab, key) => (
+                        <Title model={this.props.model}/>
+                        <Prompt model={this.props.model}/>
+                        <Score model={this.props.model}/>
+                        <LeaderboardModal model={this.props.model}/>
+                        {/*<Leaderboards model={this.props.model}/>*/}
+                        <Camera camera={this.props.model.game.camera} key={this.props.model.game.key}>
+                            {this.props.model.game.slabs.map((slab, key) => (
                                 <Slab slab={slab} key={key}/>
                             ))}
                         </Camera>

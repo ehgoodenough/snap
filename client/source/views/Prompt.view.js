@@ -12,18 +12,18 @@ export default class Prompt {
         )
     }
     get message() {
-        if(this.props.game.hasStarted != true) {
+        if(this.props.model.game.hasStarted != true) {
             return "Play Now!!"
         }
-        if(this.props.game.hasEnded == true) {
+        if(this.props.model.game.hasEnded == true) {
             return "Play again?"
         }
     }
     get classNames() {
         return [
             "Prompt",
-            this.props.game.hasStarted != true ? "hasNotStarted" : "",
-            this.props.game.hasEnded == true ? "hasEnded" : ""
+            this.props.model.game.hasStarted != true ? "hasNotStarted" : "",
+            this.props.model.game.hasEnded == true ? "hasEnded" : ""
         ].join(" ")
     }
 }

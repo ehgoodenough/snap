@@ -4,9 +4,9 @@ import "views/Score.view.less"
 
 export default class Score extends Preact.Component {
     render() {
-        if(this.props.game.hasStarted) {
+        if(this.props.model.game.hasStarted) {
             return (
-                <div className={this.className} key={this.props.game.key}>
+                <div className={this.className} key={this.props.model.game.key}>
                     {this.score}
                 </div>
             )
@@ -15,13 +15,13 @@ export default class Score extends Preact.Component {
         }
     }
     get className() {
-        return `Score ${this.props.game.hasEnded ? "hasEnded" : ""}`
+        return `Score ${this.props.model.game.hasEnded ? "hasEnded" : ""}`
     }
     get score() {
-        if(this.props.game.score) {
+        if(this.props.model.game.score) {
             return (
                 <div className="score">
-                    <h1>{this.props.game.score}</h1>
+                    <h1>{this.props.model.game.score}</h1>
                     {/*<small>snaps</small>*/}
                 </div>
             )

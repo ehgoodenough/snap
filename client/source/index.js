@@ -5,7 +5,7 @@ import QueryString from "query-string"
 import Nimble from "library/Nimble"
 
 import View from "views/View.js"
-import Experience from "models/Experience.js"
+import Model from "models/Model.js"
 
 let query = QueryString.parse(location.search)
 if(query.state === "testing") {
@@ -13,13 +13,13 @@ if(query.state === "testing") {
 }
 
 Nimble.twitch.onAuthorized((authorization) => {
-    let experience = new Experience()
+    let model = new Model()
 
-    let mount = Preact.render(<View experience={experience}/>, document.body)
+    let mount = Preact.render(<View model={model}/>, document.body)
 
     let loop = new Yaafloop((delta) => {
-        experience.update(delta)
-        Preact.render(<View experience={experience}/>, document.body, mount)
+        model.update(delta)
+        Preact.render(<View model={model}/>, document.body, mount)
     })
 
     Nimble.sparks.initialize().then(() => {

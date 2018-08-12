@@ -8,7 +8,6 @@
     top: 1em;
     left: 1em;
     right: 1em;
-    // bottom: 1em;
     margin: auto;
     z-index: 999;
     position: absolute;
@@ -30,7 +29,7 @@
     .scopes {
         font-size: 0.4em;
         padding: 0.25em;
-        
+
         .scope {
             display: inline-block;
             &.today:hover {
@@ -54,17 +53,23 @@
     }
 }
 
-.anchored-as-panel,
-.anchored-as-component {
+.mounted-as-panel,
+.mounted-as-component {
     .LeaderboardModal {
         font-size: 2em;
     }
 }
 
-.anchored-as-component {
+.mounted-as-component {
     .LeaderboardModal {
         header {
             display: none;
+        }
+        .scopes {
+            left: 0em;
+            right: 0em;
+            top: -1.6em;
+            position: absolute;
         }
     }
     #frame:not(:hover) {

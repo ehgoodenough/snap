@@ -2,6 +2,7 @@ import Preact from "preact"
 import QueryString from "query-string"
 
 import Input from "utility/Input.js"
+import Nimble from "library/Nimble"
 
 import Slab from "views/Slab.view.js"
 import Score from "views/Score.view.js"
@@ -23,7 +24,7 @@ export default class View {
             <div id="view"
                 onMouseUp={this.onMouseUp}
                 onMouseDown={this.onMouseDown}
-                className={`anchored-as-${query.anchor || "self"}`}>
+                className={`mounted-as-${Nimble.twitch.extension.mount}`}>
                 <Frame>
                     <div className="Game">
                         <Version/>

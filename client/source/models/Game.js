@@ -5,6 +5,8 @@ import Nimble from "library/Nimble"
 
 import Slab from "models/Slab.js"
 
+import GameAnalytics from "integ/GameAnalytics.js"
+
 export default class Game {
     constructor(game) {
         this.model = game.model
@@ -68,10 +70,7 @@ export default class Game {
     start() {
         if(this.hasStarted != true) {
             this.hasStarted = true
-            // Hubble.submitEvent({
-            //     "type": "start-of-game",
-            //     "authorization": this.model.authorization,
-            // })
+            GameAnalytics.addProgressionEvent(require("gameanalytics").EGAProgressionStatus.Start, "Snap")
         }
     }
     end() {
@@ -89,10 +88,7 @@ export default class Game {
                 "score": this.score,
             })
 
-            // Hubble.submitEvent({
-            //     "type": "end-of-game",
-            //     "authorization": this.model.authorization,
-            // })
+            GameAnalytics.addProgressionEvent(require("gameanalytics").EGAProgressionStatus.Complete, "Snap", null, null, this.score)
         }
     }
     get currentSlab() {

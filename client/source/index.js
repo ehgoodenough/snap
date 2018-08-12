@@ -9,6 +9,7 @@ import Model from "models/Model.js"
 
 if(Nimble.twitch.extension.state === "testing") {
     console.clear()
+    require("statgrab/do")
 }
 
 Nimble.twitch.onAuthorized((authorization) => {
@@ -37,4 +38,10 @@ document.body.addEventListener("dblclick", function(event) {
 // Disable the Twitch keyboard shortcut listeners.
 document.addEventListener("keydown", function(event) {
     event.preventDefault()
+})
+
+import GameAnalytics from "integ/GameAnalytics.js"
+
+window.addEventListener("error", (error) => {
+    GameAnalytics.addErrorEvent(require("gameanalytics").EGAErrorSeverity.Error, error.message)
 })

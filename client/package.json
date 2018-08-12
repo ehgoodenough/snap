@@ -1,6 +1,6 @@
 {
   "name": "snap",
-  "version": "1.3.0",
+  "version": "1.2.2",
   "description": "A game of snapping together blocks.",
   "private": true,
   "contributors": [
@@ -16,6 +16,7 @@
     "zip": "bestzip build.zip builds/web/*"
   },
   "dependencies": {
+    "gameanalytics": "^2.1.5",
     "keyb": "^1.1.0",
     "left-pad": "^1.2.0",
     "preact": "^8.2.7",

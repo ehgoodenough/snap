@@ -1,18 +1,20 @@
+import Nimble from "library/Nimble"
+
 const ALPHA_ENDPOINT = "https://zwxr8sz8fj.execute-api.us-east-1.amazonaws.com/alpha"
 const GAMMA_ENDPOINT = "https://rrna8vhqof.execute-api.us-east-1.amazonaws.com/gamma"
-const SCORES_URI = GAMMA_ENDPOINT + "/v1/{channelId}/scores"
+const SCORES_URI = new Nimble.utility.URI(GAMMA_ENDPOINT + "/v1/{channelId}/scores")
 
-export default class Leaderboards {
-    constructor(leaderboards) {
-        this.authorization = leaderboards.authorization
-
+export default class ScoreTally {
+    constructor() {
         this.retrieveScores()
     }
     retrieveScores() {
-        window.fetch(SCORES_URI.replace("{channelId}", this.authorization.channelId), {
+        window.fetch(SCORES_URI({
+            "channelId": Nimble.twitch.streamer.channelId
+        }), {
             "method": "GET",
             "headers": {
-                "Authorization": this.authorization.token
+                "Authorization": Nimble.twitch.viewer.token
             }
         }).then((response) => {
             return response.json().then((scores) => {

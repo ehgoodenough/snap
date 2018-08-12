@@ -11,7 +11,7 @@ import Camera from "views/Camera.view.js"
 import Version from "views/Version.view.js"
 import Title from "views/Title.view.js"
 import Prompt from "views/Prompt.view.js"
-import Leaderboards from "views/Leaderboards.view.js"
+import ScoreTallyGraph from "views/ScoreTallyGraph.view.js"
 import LeaderboardModal from "views/LeaderboardModal.view.js"
 
 import "views/View.less"
@@ -21,10 +21,10 @@ let query = QueryString.parse(window.location.search)
 export default class View {
     render() {
         return (
-            <div id="view"
+            <div className="View"
                 onMouseUp={this.onMouseUp}
                 onMouseDown={this.onMouseDown}
-                className={`mounted-as-${Nimble.twitch.extension.mount}`}>
+                id={`mounted-as-${Nimble.twitch.extension.mount}`}>
                 <Frame>
                     <div className="Game">
                         <Version/>
@@ -32,7 +32,7 @@ export default class View {
                         <Prompt model={this.props.model}/>
                         <Score model={this.props.model}/>
                         <LeaderboardModal model={this.props.model}/>
-                        {/*<Leaderboards model={this.props.model}/>*/}
+                        <ScoreTallyGraph model={this.props.model}/>
                         <Camera camera={this.props.model.game.camera} key={this.props.model.game.key}>
                             {this.props.model.game.slabs.map((slab, key) => (
                                 <Slab slab={slab} key={key}/>

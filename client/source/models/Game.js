@@ -83,7 +83,7 @@ export default class Game {
             this.camera.speed = this.currentSlab.position.z / 2
             this.camera.tween = "ease-out"
             this.camera.pan = 0
-            
+
             Nimble.sparks.submitLeaderboardEntry({
                 "activity": "SNAP",
                 "score": this.score,
@@ -100,8 +100,5 @@ export default class Game {
     }
     get previousSlab() {
         return this.slabs[1]
-    }
-    get rank() {
-        return this.model.leaderboards.getRank(this.score)
     }
 }

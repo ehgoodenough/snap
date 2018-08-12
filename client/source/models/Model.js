@@ -1,6 +1,6 @@
 import Game from "models/Game.js"
 
-import Leaderboards from "utility/Leaderboards.js"
+import ScoreTally from "utility/ScoreTally.js"
 
 class Model {
     constructor(model) {
@@ -11,9 +11,7 @@ class Model {
 
         this.selectedLeaderboardScope = "channel"
 
-        // this.leaderboards = new Leaderboards({
-        //     "authorization": model.authorization
-        // })
+        this.scoretally = new ScoreTally()
 
         // Hubble.submitEvent({
         //     "type": "start-of-model",

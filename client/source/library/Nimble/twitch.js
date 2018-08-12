@@ -36,11 +36,14 @@ const twitch = module.exports = {
         "opaqueUserId": undefined,
         "token": undefined,
         "name": undefined,
+        "logo": undefined,
         "isStreamer": undefined,
         "isAnonymous": undefined,
     },
     "streamer": {
         "channelId": undefined,
+        "name": undefined,
+        "logo": undefined,
     },
     "extension": {
         // https://dev.twitch.tv/docs/extensions/reference#client-query-parameters

@@ -1,17 +1,17 @@
 import Preact from "preact"
 
-import "views/Leaderboards.view.less"
+import "views/ScoreTallyGraph.view.less"
 
 import Color from "utility/Color.js"
 
-export default class Leaderboards extends Preact.Component {
+export default class ScoreTallyGraph extends Preact.Component {
     render() {
         if(this.props.model.game.hasStarted
-        && this.props.model.leaderboards.scores !== undefined
-        && this.props.model.leaderboards.scores.channel !== undefined
-        && this.props.model.leaderboards.scores.channel.highestScore > 15) {
+        && this.props.model.scoretally.scores !== undefined
+        && this.props.model.scoretally.scores.channel !== undefined
+        && this.props.model.scoretally.scores.channel.highestScore > 15) {
             return (
-                <div className="Leaderboards">
+                <div className={this.className}>
                     <div className="bar-graph">
                         {this.subtotals}
                     </div>
@@ -22,13 +22,16 @@ export default class Leaderboards extends Preact.Component {
             )
         } else {
             return (
-                <div className="Leaderboards isHidden"/>
+                <div className="ScoreTallyGraph hasntStarted"/>
             )
         }
     }
+    get className() {
+        return `ScoreTallyGraph ${this.props.model.game.hasEnded ? "hasEnded" : ""}`
+    }
     get subtotals() {
-        if(this.props.model.leaderboards.scores) {
-            let scores = this.props.model.leaderboards.scores
+        if(this.props.model.scoretally.scores) {
+            let scores = this.props.model.scoretally.scores
             return Object.keys(scores.channel.subtotals).map((score) => {
                 return (
                     <div className="bar" style={{
@@ -40,6 +43,6 @@ export default class Leaderboards extends Preact.Component {
         }
     }
     get rank() {
-        return (Math.round(this.props.model.game.rank * 100) || 0) + "%"
+        return (Math.round(this.props.model.scoretally.rank * 100) || 0) + "%"
     }
 }

@@ -19,10 +19,6 @@
         opacity: 0;
     }
 
-    &.hasEnded {
-        opacity: 0;
-    }
-
     .bar-graph {
         display: flex;
 
@@ -55,12 +51,23 @@
 }
 
 #mounted-as-mobile,
-#mounted-as-component {
-    .Leaderboards {
-        font-size: 2em;
-        left: 0.5em;
-        top: 0.5em;
+#mounted-as-component,
+#mounted-as-dashboard,
+#mounted-as-config,
+#mounted-as-panel, {
+    .ScoreTallyGraph {
+        &.hasEnded {
+            opacity: 0;
+            transition-delay: 0.25s;
+            transition-duration: 0.5s;
+        }
+    }
+}
 
-        display: none;
+#mounted-as-video_overlay {
+    .ScoreTallyGraph {
+        left: auto;
+        right: 3em;
+        bottom: 7em;
     }
 }

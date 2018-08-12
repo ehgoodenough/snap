@@ -7,8 +7,7 @@ import Nimble from "library/Nimble"
 import View from "views/View.js"
 import Model from "models/Model.js"
 
-let query = QueryString.parse(location.search)
-if(query.state === "testing") {
+if(Nimble.twitch.extension.state === "testing") {
     console.clear()
 }
 

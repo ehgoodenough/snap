@@ -1,9 +1,11 @@
-- TODO: Add leaderboards
 - TODO: Add configure page for streamer (leaderboard, thank you for downloading, curate the colors.)
+- 
 - TODO: Localize the strings.
-- TODO: Debug the analytics; it looks like they bugged out in production?
+
 - TODO: Add sound effects for consecutive perfect snaps
 - TODO: Mute sound button
+
+- TODO: Debug the analytics; it looks like they bugged out in production?
 - TODO: Server-side auto-scaling policy
 - ...
 - ...

@@ -8,10 +8,8 @@
     top: 1em;
     left: 1em;
     right: 1em;
-    margin: auto;
     z-index: 999;
     position: absolute;
-    // max-width: 10em;
 
     opacity: 1;
     transition-delay: 0.5s;
@@ -29,6 +27,7 @@
     .scopes {
         font-size: 0.4em;
         padding: 0.25em;
+        white-space: nowrap;
 
         .scope {
             display: inline-block;
@@ -57,6 +56,14 @@
 .mounted-as-component {
     .LeaderboardModal {
         font-size: 2em;
+    }
+}
+
+.mounted-as-video_overlay {
+    .LeaderboardModal {
+        top: 4em;
+        left: 1.75em;
+        max-width: 7em;
     }
 }
 

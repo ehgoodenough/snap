@@ -2,6 +2,7 @@ import Preact from "preact"
 import Yaafloop from "yaafloop"
 import Keyb from "keyb"
 import QueryString from "query-string"
+import Nimble from "library/Nimble"
 
 import View from "views/View.js"
 import Experience from "models/Experience.js"
@@ -11,10 +12,8 @@ if(query.state === "testing") {
     console.clear()
 }
 
-Twitch.ext.onAuthorized((authorization) => {
-    let experience = new Experience({
-        "authorization": authorization
-    })
+Nimble.twitch.onAuthorized((authorization) => {
+    let experience = new Experience()
 
     let mount = Preact.render(<View experience={experience}/>, document.body)
 

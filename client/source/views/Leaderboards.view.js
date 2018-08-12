@@ -7,7 +7,6 @@ import Color from "utility/Color.js"
 export default class Leaderboards extends Preact.Component {
     render() {
         if(this.props.game.hasStarted
-        // && this.props.game.score > 5
         && this.props.game.experience.leaderboards.scores !== undefined
         && this.props.game.experience.leaderboards.scores.channel !== undefined
         && this.props.game.experience.leaderboards.scores.channel.highestScore > 15) {

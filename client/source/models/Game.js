@@ -1,7 +1,6 @@
 import ShortID from "shortid"
 
 import Input from "utility/Input.js"
-import Hubble from "utility/Hubble.js"
 
 import Slab from "models/Slab.js"
 
@@ -69,10 +68,10 @@ export default class Game {
     start() {
         if(this.hasStarted != true) {
             this.hasStarted = true
-            Hubble.submitEvent({
-                "type": "start-of-game",
-                "authorization": this.experience.authorization,
-            })
+            // Hubble.submitEvent({
+            //     "type": "start-of-game",
+            //     "authorization": this.experience.authorization,
+            // })
         }
     }
     end() {
@@ -85,10 +84,10 @@ export default class Game {
             this.camera.tween = "ease-out"
             this.camera.pan = 0
 
-            Hubble.submitEvent({
-                "type": "end-of-game",
-                "authorization": this.experience.authorization,
-            })
+            // Hubble.submitEvent({
+            //     "type": "end-of-game",
+            //     "authorization": this.experience.authorization,
+            // })
         }
     }
     get currentSlab() {

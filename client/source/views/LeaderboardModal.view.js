@@ -7,30 +7,29 @@ import Color from "utility/Color.js"
 
 export default class LeaderboardModal extends Preact.Component {
     render() {
-        return (
-            <div className="LeaderboardModal">
-                <header>Scores</header>
-                <Nimble.views.Leaderboard activity="SNAP" scope="channel" size="big"/>
-            </div>
-        )
-        // if(this.props.game.hasStarted
-        // && this.props.game.experience.leaderboards.scores !== undefined
-        // && this.props.game.experience.leaderboards.scores.channel !== undefined
-        // && this.props.game.experience.leaderboards.scores.channel.highestScore > 15) {
-        //     return (
-        //         <div className="Leaderboards">
-        //             <div className="bar-graph">
-        //                 {this.subtotals}
-        //             </div>
-        //             <div className="rank">
-        //                 <span>{this.rank}</span>
-        //             </div>
-        //         </div>
-        //     )
-        // } else {
-        //     return (
-        //         <div className="Leaderboards isHidden"/>
-        //     )
-        // }
+        if(this.props.game.hasEnded) {
+            return (
+                <div className="LeaderboardModal">
+                    <header>High Scores</header>
+                    <Nimble.views.Leaderboard activity="SNAP" scope={this.props.game.experience.selectedLeaderboardScope} size="big"/>
+                    <div className="scopes">
+                        <div className="today scope" onMouseOver={this.onSelectScope("today")}>today</div>
+                        <div className="separator"/>
+                        <div className="channel scope" onMouseOver={this.onSelectScope("channel")}>channel</div>
+                        <div className="separator"/>
+                        <div className="global scope" onMouseOver={this.onSelectScope("global")}>twitch</div>
+                    </div>
+                </div>
+            )
+        } else {
+            return (
+                <div className="LeaderboardModal isHidden"/>
+            )
+        }
+    }
+    onSelectScope(scope) {
+        return (event) => {
+            this.props.game.experience.selectedLeaderboardScope = scope
+        }
     }
 }

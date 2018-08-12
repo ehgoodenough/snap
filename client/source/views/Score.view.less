@@ -6,6 +6,11 @@
     z-index: 10;
     position: absolute;
 
+    opacity: 1;
+    transition-delay: 0.25s;
+    transition-duration: 0.5s;
+    transition-property: opacity;
+
     .score {
         h1 {
             font-size: 3em;
@@ -28,6 +33,15 @@
 
         h3 {
             font-weight: normal;
+        }
+    }
+}
+
+.anchored-as-panel,
+.anchored-as-component {
+    .Score {
+        &.hasEnded {
+            opacity: 0;
         }
     }
 }

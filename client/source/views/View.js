@@ -1,6 +1,8 @@
 import Preact from "preact"
 import QueryString from "query-string"
 
+import Input from "utility/Input.js"
+
 import Slab from "views/Slab.view.js"
 import Score from "views/Score.view.js"
 import Frame from "views/Frame.view.js"
@@ -15,24 +17,35 @@ import "views/View.less"
 
 let query = QueryString.parse(window.location.search)
 
-export default function View(props) {
-    return (
-        <div id="view" className={`anchored-as-${query.anchor || "self"}`}>
-            <Frame>
-                <div className="Game">
-                    <Version/>
-                    <Title game={this.props.experience.game}/>
-                    <Prompt game={this.props.experience.game}/>
-                    <Score game={this.props.experience.game}/>
-                    <LeaderboardModal game={this.props.experience.game}/>
-                    {/*<Leaderboards game={this.props.experience.game}/>*/}
-                    <Camera camera={this.props.experience.game.camera} key={this.props.experience.game.key}>
-                        {this.props.experience.game.slabs.map((slab, key) => (
-                            <Slab slab={slab} key={key}/>
-                        ))}
-                    </Camera>
-                </div>
-            </Frame>
-        </div>
-    )
+export default class View {
+    render() {
+        return (
+            <div id="view"
+                onMouseUp={this.onMouseUp}
+                onMouseDown={this.onMouseDown}
+                className={`anchored-as-${query.anchor || "self"}`}>
+                <Frame>
+                    <div className="Game">
+                        <Version/>
+                        <Title game={this.props.experience.game}/>
+                        <Prompt game={this.props.experience.game}/>
+                        <Score game={this.props.experience.game}/>
+                        <LeaderboardModal game={this.props.experience.game}/>
+                        {/*<Leaderboards game={this.props.experience.game}/>*/}
+                        <Camera camera={this.props.experience.game.camera} key={this.props.experience.game.key}>
+                            {this.props.experience.game.slabs.map((slab, key) => (
+                                <Slab slab={slab} key={key}/>
+                            ))}
+                        </Camera>
+                    </div>
+                </Frame>
+            </div>
+        )
+    }
+    onMouseDown() {
+        Input.onDown()
+    }
+    onMouseUp() {
+        Input.onUp()
+    }
 }

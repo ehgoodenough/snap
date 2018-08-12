@@ -9,6 +9,8 @@ class Experience {
             "experience": this
         })
 
+        this.selectedLeaderboardScope = "channel"
+
         // this.leaderboards = new Leaderboards({
         //     "authorization": experience.authorization
         // })

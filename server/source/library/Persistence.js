@@ -3,12 +3,10 @@ const AWS = require("aws-sdk")
 const dynamo = new AWS.DynamoDB.DocumentClient()
 
 const CHANNELS_TABLE = process.env.CHANNELS_TABLE
-// const CHANNEL_USERS_TABLE = process.env.CHANNEL_USERS_TABLE
-// const CHANNEL_SESSIONS_TABLE = process.env.CHANNEL_SESSIONS_TABLE
 
-const Leaderboard = module.exports
+const Persistence = module.exports
 
-Leaderboard.getChannel = async function(channelId) {
+Persistence.getChannel = async function(channelId) {
     return dynamo.get({
         "TableName": CHANNELS_TABLE,
         "Key": {"channelId": channelId}
@@ -18,7 +16,7 @@ Leaderboard.getChannel = async function(channelId) {
         if(channel !== undefined) {
             return channel
         } else {
-            return Leaderboard.createChannel({
+            return Persistence.createChannel({
                 "channelId": channelId,
                 "createdAt": Date.now(),
                 "tally": {"0": 0}
@@ -27,7 +25,7 @@ Leaderboard.getChannel = async function(channelId) {
     })
 }
 
-Leaderboard.createChannel = async function(channel) {
+Persistence.createChannel = async function(channel) {
     return dynamo.put({
         "TableName": CHANNELS_TABLE,
         "Item": channel
@@ -36,23 +34,8 @@ Leaderboard.createChannel = async function(channel) {
     })
 }
 
-// Leaderboard.addScoreToChannelSession = async function(channelId, sessionId, score) {
-//     let channelSession = {
-//         "channelId-sessionId": channelId + "-" + sessionId,
-//         "channelId": channelId,
-//         "sessionId": sessionId,
-//         "score": score
-//     }
-//     return dynamo.put({
-//         "TableName": CHANNEL_SESSIONS_TABLE,
-//         "Item": channelSession
-//     }).promise().then(() => {
-//         return channelSession
-//     })
-// }
-
-Leaderboard.addScoreToChannel = async function(channelId, score) {
-    await Leaderboard.getChannel(channelId)
+Persistence.addScoreToChannel = async function(channelId, score) {
+    await Persistence.getChannel(channelId)
 
     return dynamo.update({
         "TableName": CHANNELS_TABLE,

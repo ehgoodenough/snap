@@ -2,7 +2,7 @@ const ShortID = require("shortid")
 const JWT = require("jsonwebtoken")
 
 const Nimble = require("./library/Nimble.js")
-const Leaderboard = require("./library/Leaderboard.js")
+const Persistence = require("./library/Persistence.js")
 
 const SECRET = require("./config/Secret.js")
 
@@ -27,6 +27,6 @@ module.exports.handler = new Nimble.LambdaHandler(async (event) => {
     }
 
     return {
-        "channel": await Leaderboard.addScoreToChannel(channelId, score)
+        "channel": await Persistence.addScoreToChannel(channelId, score)
     }
 })

@@ -22,11 +22,11 @@ provider:
       Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.CHANNELS_TABLE}"
 
 functions:
-  RetrieveScores:
-    handler: source/RetrieveScores.handler
+  RetrieveChannel:
+    handler: source/RetrieveChannel.handler
     events:
       - http:
-          path: v1/{channelId}/scores
+          path: v1/{channelId}
           method: get
           cors: true
   SubmitScore:
@@ -36,11 +36,26 @@ functions:
           path: v1/{channelId}/scores
           method: post
           cors: true
+  ResetSession:
+    handler: source/ResetSession.handler
+    events:
+      - http:
+          path: v1/{channelId}/session
+          method: post
+          cors: true
   RetrieveGameSparksCredentials:
     handler: source/RetrieveGameSparksCredentials.handler
     events:
       - http:
           path: v1/gamesparks/{nonce}
+          method: get
+          cors: true
+  # TO BE DEPRECATED
+  RetrieveScores:
+    handler: source/RetrieveScores.handler
+    events:
+      - http:
+          path: v1/{channelId}/scores
           method: get
           cors: true
 

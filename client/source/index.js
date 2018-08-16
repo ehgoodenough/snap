@@ -25,6 +25,8 @@ Nimble.twitch.onAuthorized((authorization) => {
     Nimble.sparks.initialize().then(() => {
         const GLOBAL_LEADERBOARD = "GlobalHighScores.activity.SNAP"
         const CHANNEL_LEADERBOARD = `ChannelHighScores.activity.SNAP.channelId.${Nimble.twitch.streamer.channelId}`
+        const SESSION_LEADERBOARD = `TwitchArcade.activity.SNAP.channelId.${Nimble.twitch.streamer.channelId}.sessionId.${Nimble.sparks.sessionId}`
+        Nimble.sparks.listenToLeaderboard("SNAP/session", SESSION_LEADERBOARD)
         Nimble.sparks.listenToLeaderboard("SNAP/channel", CHANNEL_LEADERBOARD)
         Nimble.sparks.listenToLeaderboard("SNAP/global", GLOBAL_LEADERBOARD)
     })

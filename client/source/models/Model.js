@@ -9,7 +9,7 @@ class Model {
             "model": this
         })
 
-        this.selectedLeaderboardScope = "channel"
+        this.selectedLeaderboardScope = "session"
 
         this.scoretally = new ScoreTally()
 

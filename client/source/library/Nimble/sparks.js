@@ -7,6 +7,7 @@ const GAMESPARKS_CREDENTIALS_URI = require("./endpoints.js").GAMESPARKS_CREDENTI
 const Sparks = module.exports = {
     "isInitialized": false,
     "leaderboards": {},
+    "sessionId": "one-and-only"
 }
 
 Sparks.initialize = function() {
@@ -110,7 +111,7 @@ Sparks.submitLeaderboardEntry = function(entry) {
         GameSparks.logLeaderboardEventRequest({
             "eventKey": "ActivityEvent",
             "channelId": Nimble.twitch.streamer.channelId,
-            "sessionId": "one-and-only",
+            "sessionId": Nimble.sparks.sessionId || "one-and-only",
             "score": entry.score || 0,
             "activity": entry.activity
         }, function(response) {

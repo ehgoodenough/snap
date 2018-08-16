@@ -1,14 +1,13 @@
+- TODO: Resetting the leaderboard session.
+- TODO: Add special streamer options for curating the colors.
+- TODO: Add a "thank you for installing" message, maybe with change notes.
+- ...
 - TODO: Add sound effects for consecutive perfect snaps
 - TODO: Mute sound button
 - ....
 - TODO: Localize the strings.
-- TODO: Add special streamer options for curating the colors.
-- TODO: Add a "thank you for installing" message, maybe with change notes.
-- TODO: Debug the analytics; it looks like they bugged out in production?
-- ...
-- ...
-- ...
 - TODO: Adopt the database auto-scaling policy
 - TODO: On mobile, change string to "TAP" to start.
 - TODO: Make the game change it's pace as the game goes on.
 - TODO: Add particile effect for consecutive snaps
+- TODO: FullStory integration

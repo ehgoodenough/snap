@@ -13,11 +13,11 @@ export default class LeaderboardModal extends Preact.Component {
                     <header>High Scores</header>
                     <Nimble.views.Leaderboard activity="SNAP" scope={this.props.model.selectedLeaderboardScope} size="big"/>
                     <div className="scopes">
-                        {/*<div className="today scope" onMouseOver={this.onSelectScope("today")}>today</div>
-                        <div className="separator"/>*/}
-                        <div className="channel scope" onMouseOver={this.onSelectScope("channel")}>for {Nimble.twitch.streamer.name}</div>
+                        <div className="session scope" onMouseOver={this.onSelectScope("session")}>for session</div>
                         <div className="separator"/>
-                        <div className="global scope" onMouseOver={this.onSelectScope("global")}>for all of twitch</div>
+                        <div className="channel scope" onMouseOver={this.onSelectScope("channel")}>for channel</div>
+                        <div className="separator"/>
+                        <div className="global scope" onMouseOver={this.onSelectScope("global")}>for twitch</div>
                     </div>
                 </div>
             )

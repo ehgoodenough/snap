@@ -6,7 +6,7 @@ provider:
 
   region: us-east-1
   profile: default
-  stage: gamma
+  stage: production
 
   environment:
     CHANNELS_TABLE: ${self:service}.${opt:stage, self:provider.stage}.channels
@@ -26,21 +26,14 @@ functions:
     handler: source/RetrieveChannel.handler
     events:
       - http:
-          path: v1/{channelId}
+          path: v1/channels/{channelId}
           method: get
-          cors: true
-  SubmitScore:
-    handler: source/SubmitScore.handler
-    events:
-      - http:
-          path: v1/{channelId}/scores
-          method: post
           cors: true
   ResetSession:
     handler: source/ResetSession.handler
     events:
       - http:
-          path: v1/{channelId}/session
+          path: v1/channels/{channelId}/session
           method: post
           cors: true
   RetrieveGameSparksCredentials:
@@ -50,14 +43,13 @@ functions:
           path: v1/gamesparks/{nonce}
           method: get
           cors: true
-  # TO BE DEPRECATED
-  RetrieveScores:
-    handler: source/RetrieveScores.handler
-    events:
-      - http:
-          path: v1/{channelId}/scores
-          method: get
-          cors: true
+  # SubmitScore:
+  #   handler: source/SubmitScore.handler
+  #   events:
+  #     - http:
+  #         path: v1/channels/{channelId}/scores
+  #         method: post
+  #         cors: true
 
 resources:
   Resources:

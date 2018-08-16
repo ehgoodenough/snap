@@ -99,6 +99,7 @@ twitch.retrieveTwitchUser = function(userId, clientId) {
 // This array is a list of all callbacks, across the multi-verse of
 // nimble instances, that will be called when `Twitch.ext` has finished.
 window.onTwitchExtAuthorizedCallbacks = window.onTwitchExtAuthorizedCallbacks || []
+window.onTwitchExtMessageCallbacks = window.onTwitchExtMessageCallbacks || []
 
 // Nimble.twitch.onAuthorized
 // @param: <Function> callback
@@ -115,6 +116,16 @@ twitch.onAuthorized = function(callback) {
     } else {
         callback(twitch.store)
     }
+}
+
+// Nimble.twitch.onMessage
+// @param: <Function> callback
+// @description:
+// Adds your callback to the list
+// that will be invoked after a
+// pubsub message is received.
+twitch.onMessage = function(callback) {
+    window.onTwitchExtMessageCallbacks.push(callback)
 }
 
 // Once the page loads, it'll
@@ -158,6 +169,23 @@ if(window.Twitch !== undefined
             twitch.isAuthorized = true
             window.onTwitchExtAuthorizedCallbacks.forEach((callback) => {
                 callback(twitch.store)
+            })
+        })
+
+        window.setTimeout(function() {
+            // This will continue to trigger twiceif it is inside `.onAuthorized`. Not sure why.
+            // But for whatever reason, putting it in a window.setTimeout fixes this??? Weird.
+            window.Twitch.ext.listen("broadcast", (target, type, message) => {
+                try {
+                    message = JSON.parse(message)
+                } catch(error) {
+                    console.log(error)
+                }
+                console.log(">", target, message)
+
+                window.onTwitchExtMessageCallbacks.forEach((callback) => {
+                    callback(message)
+                })
             })
         })
     })

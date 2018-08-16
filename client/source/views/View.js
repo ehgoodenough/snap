@@ -1,6 +1,7 @@
 import Preact from "preact"
 import QueryString from "query-string"
 
+import Channel from "library/Channel.js"
 import Input from "library/Input.js"
 import Nimble from "library/Nimble"
 
@@ -39,6 +40,11 @@ export default class View {
                             ))}
                         </Camera>
                     </div>
+                    <div className="Welcome">
+                        <button onClick={this.onClick}>
+                            Reset Leaderboard Session
+                        </button>
+                    </div>
                 </Frame>
             </div>
         )
@@ -48,5 +54,8 @@ export default class View {
     }
     onMouseUp() {
         Input.onUp()
+    }
+    onClick() {
+        Channel.resetChannelSession()
     }
 }

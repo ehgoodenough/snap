@@ -12,7 +12,13 @@ module.exports.handler = new Nimble.LambdaHandler(async (event) => {
         throw new Nimble.UserError("The request is not authorized.")
     }
 
+    if(event.pathParameters.channelId === undefined) {
+        throw new Nimble.UserError("The request is missing some data.")
+    }
+
+    let channel = await Persistence.retrieveChannel(event.pathParameters.channelId)
+
     return {
-        "channel": await Persistence.getChannel(event.pathParameters.channelId)
+        "channel": channel
     }
 })

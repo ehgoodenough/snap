@@ -4,7 +4,7 @@ import "views/Frame.view.less"
 
 export default function Frame(props) {
     return (
-        <div id="frame">
+        <div className="Frame" id="frame">
             {props.children}
         </div>
     )

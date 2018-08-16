@@ -1,7 +1,7 @@
 import Preact from "preact"
 import QueryString from "query-string"
 
-import Input from "utility/Input.js"
+import Input from "library/Input.js"
 import Nimble from "library/Nimble"
 
 import Slab from "views/Slab.view.js"

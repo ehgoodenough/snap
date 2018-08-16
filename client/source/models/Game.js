@@ -1,6 +1,6 @@
 import ShortID from "shortid"
 
-import Input from "utility/Input.js"
+import Input from "library/Input.js"
 import Nimble from "library/Nimble"
 
 import Slab from "models/Slab.js"

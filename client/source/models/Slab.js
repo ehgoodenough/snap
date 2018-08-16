@@ -1,5 +1,5 @@
-import Input from "utility/Input.js"
-import Color from "utility/Color.js"
+import Input from "library/Input.js"
+import Color from "library/Color.js"
 
 const BOUNCE_POINT = 10
 const DEFAULT_SNAP_POINT = 0.25 // 0.33

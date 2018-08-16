@@ -3,7 +3,7 @@ import Preact from "preact"
 import "views/LeaderboardModal.view.less"
 
 import Nimble from "library/Nimble"
-import Color from "utility/Color.js"
+import Color from "library/Color.js"
 
 export default class LeaderboardModal extends Preact.Component {
     render() {

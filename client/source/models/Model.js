@@ -1,6 +1,6 @@
 import Game from "models/Game.js"
 
-import ScoreTally from "utility/ScoreTally.js"
+import ScoreTally from "library/ScoreTally.js"
 
 class Model {
     constructor(model) {

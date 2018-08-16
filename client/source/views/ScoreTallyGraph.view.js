@@ -2,7 +2,7 @@ import Preact from "preact"
 
 import "views/ScoreTallyGraph.view.less"
 
-import Color from "utility/Color.js"
+import Color from "library/Color.js"
 
 export default class ScoreTallyGraph extends Preact.Component {
     render() {

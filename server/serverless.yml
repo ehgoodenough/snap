@@ -22,21 +22,21 @@ provider:
       Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.CHANNELS_TABLE}"
 
 functions:
-  RetrieveChannel:
+  retrieveChannel:
     handler: source/retrieveChannel.handler
     events:
       - http:
           path: v1/channels/{channelId}
           method: get
           cors: true
-  ResetSession:
+  resetChannelSession:
     handler: source/resetChannelSession.handler
     events:
       - http:
           path: v1/channels/{channelId}/session
           method: post
           cors: true
-  RetrieveGameSparksCredentials:
+  retrieveGameSparksCredentials:
     handler: source/retrieveGameSparksCredentials.handler
     events:
       - http:

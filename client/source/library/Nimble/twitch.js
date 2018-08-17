@@ -181,7 +181,7 @@ if(window.Twitch !== undefined
                 } catch(error) {
                     console.log(error)
                 }
-                console.log(">", target, message)
+                // console.log(">", target, message)
 
                 window.onTwitchExtMessageCallbacks.forEach((callback) => {
                     callback(message)

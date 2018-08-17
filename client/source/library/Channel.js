@@ -37,7 +37,7 @@ module.exports.resetChannelSession = function() {
             if(response.channel !== undefined) {
                 Nimble.sparks.sessionId = response.channel.sessionId || "initial-session"
                 Nimble.sparks.listenToLeaderboard("SNAP/session", `TwitchArcade.activity.SNAP.channelId.${Nimble.twitch.streamer.channelId}.sessionId.${Nimble.sparks.sessionId}`)
-                // console.log(Nimble.sparks.sessionId)
+                // console.log("response", Nimble.sparks.sessionId)
             }
         })
     })

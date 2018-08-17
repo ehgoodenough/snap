@@ -8,6 +8,25 @@ const TWITCH_SECRET = require("./config/TWITCH_SECRET.js")
 const TWITCH_CLIENT_ID = require("./config/TWITCH_CLIENT_ID.js")
 
 module.exports.handler = new Nimble.LambdaHandler(async (event) => {
+    // const id = require("shortid").generate()
+    // await TwitchExt.broadcast({
+    //     "channelId": event.pathParameters.channelId,
+    //     "clientId": TWITCH_CLIENT_ID,
+    //     "secret": TWITCH_SECRET,
+    //     "message": {
+    //         "path": "v1/resetChannelSession",
+    //         "payload": {
+    //             "channel": {
+    //                 "sessionId": id
+    //             }
+    //         }
+    //     }
+    // })
+    // return {
+    //     "channel": {
+    //         "sessionId": id
+    //     }
+    // }
     try {
         event.authorization = JWT.verify(event.headers.Authorization, TWITCH_SECRET)
     } catch(error) {
@@ -24,17 +43,17 @@ module.exports.handler = new Nimble.LambdaHandler(async (event) => {
 
     let channel = await Persistence.resetSessionForChannel(event.pathParameters.channelId)
 
-    // await TwitchExt.broadcast({
-    //     "channelId": event.pathParameters.channelId,
-    //     "clientId": CLIENT_ID,
-    //     "secret": SECRET,
-    //     "message": {
-    //         "path": "v1/resetChannelSession",
-    //         "payload": {
-    //             "channel": channel
-    //         }
-    //     }
-    // })
+    await TwitchExt.broadcast({
+        "channelId": event.pathParameters.channelId,
+        "clientId": TWITCH_CLIENT_ID,
+        "secret": TWITCH_SECRET,
+        "message": {
+            "path": "v1/resetChannelSession",
+            "payload": {
+                "channel": channel
+            }
+        }
+    })
 
     return {
         "channel": channel

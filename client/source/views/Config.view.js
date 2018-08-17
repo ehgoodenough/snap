@@ -22,13 +22,13 @@ export default class Config {
                 </section>
                 <section className="LeaderboardSection">
                     <div className="LeaderboardSegment">
-                        <h3>For Session</h3>
+                        <h3>For the Session</h3>
                         <div className="Leaderboard">
                             <Nimble.views.Leaderboard activity="SNAP" scope="session" doNotHighlightMe={true}/>
                         </div>
                     </div>
                     <div className="LeaderboardSegment">
-                        <h3>For Channel</h3>
+                        <h3>For the Channel</h3>
                         <div className="Leaderboard">
                             <Nimble.views.Leaderboard activity="SNAP" scope="channel" doNotHighlightMe={true}/>
                         </div>

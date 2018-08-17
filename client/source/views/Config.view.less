@@ -1,0 +1,117 @@
+@gutter: 20px;
+@column: 320px;
+@roundness: 10px;
+@warning-color: #FFAE42;
+
+.Config {
+    min-width: (@column*2)+(@gutter);
+    max-width: (@column*3)+(@gutter*2);
+    padding-right: @gutter;
+
+    section {
+        display: flex;
+        margin-bottom: @gutter;
+    }
+
+    .PlaySection {
+        .WelcomeMessage {
+            flex: 1;
+            margin-left: @gutter;
+
+            p {
+                margin-top: @gutter;
+                user-select: auto;
+            }
+        }
+    }
+
+    .LeaderboardSection {
+        .LeaderboardSegment {
+            flex: 1;
+
+            &:not(:first-child) {
+                margin-left: @gutter;
+            }
+
+            h3 {
+                text-align: center;
+            }
+
+            p {
+                margin: @gutter 0em;
+                // text-align: justify;
+                font-family: serif;
+            }
+
+            .Leaderboard {
+                font-size: 2em;
+            }
+        }
+    }
+
+    .ActionSection {
+        .ResetChannelSession {
+            // flex: 1;
+            overflow: hidden;
+            // margin-right: @gutter / 2;
+            width: 50%;
+
+            border-width: 1px;
+            border-style: solid;
+            border-radius: @roundness;
+            border-color: @warning-color;
+
+            background-color: fadeout(@warning-color, 75%);
+
+            h3 {
+                margin: @gutter;
+                text-align: center;
+            }
+
+            p {
+                margin: @gutter;
+            }
+
+            button {
+                width: 100%;
+                display: block;
+                padding: 0.5em;
+                cursor: pointer;
+
+                font: inherit;
+                font-weight: bold;
+                color: white;
+
+                border: none;
+                border-top-width: 1px;
+                border-top-style: solid;
+                border-top-color: @warning-color;
+
+                background-color: @warning-color;
+
+                &:hover {
+                    background-color: darken(@warning-color, 10%);
+                }
+            }
+        }
+
+        .ReskinGame {
+            flex: 1;
+            padding: @gutter;
+            margin-left: @gutter / 2;
+
+            border-color: #dad8de;
+            border-width: 1px;
+            border-style: solid;
+            border-radius: @roundness;
+
+            h3 {
+                text-align: center;
+            }
+
+            p {
+                margin: @gutter;
+            }
+        }
+    }
+}

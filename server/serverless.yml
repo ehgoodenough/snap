@@ -23,21 +23,21 @@ provider:
 
 functions:
   RetrieveChannel:
-    handler: source/RetrieveChannel.handler
+    handler: source/retrieveChannel.handler
     events:
       - http:
           path: v1/channels/{channelId}
           method: get
           cors: true
   ResetSession:
-    handler: source/ResetSession.handler
+    handler: source/resetChannelSession.handler
     events:
       - http:
           path: v1/channels/{channelId}/session
           method: post
           cors: true
   RetrieveGameSparksCredentials:
-    handler: source/RetrieveGameSparksCredentials.handler
+    handler: source/retrieveGameSparksCredentials.handler
     events:
       - http:
           path: v1/gamesparks/{nonce}

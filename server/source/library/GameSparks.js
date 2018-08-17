@@ -1,7 +1,7 @@
 // Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 const Crypto = require("crypto-js")
-const GAMESPARKS_SECRET = require("../config/GameSparksSecret.js")
+const GAMESPARKS_SECRET = require("../config/GAMESPARKS_SECRET.js")
 
 module.exports.getCredentials = async function(nonce, userId) {
     return {

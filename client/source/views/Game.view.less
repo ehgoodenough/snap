@@ -1,0 +1,102 @@
+.Game {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #222;
+    cursor: pointer !important;
+
+    color: #FFF;
+    text-align: center;
+    font-family: comfortaa;
+}
+
+#mounted-as-panel,
+#mounted-as-mobile,
+#mounted-as-dashboard,
+#mounted-as-video_overlay,
+#mounted-as-component {
+    .Game {
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        margin: auto;
+        position: fixed;
+        overflow: hidden;
+        font-size: 9px;
+
+        @media(min-aspect-ratio: ~"9/9") {
+            font-size: ((9/9)*100vh)/9/2;
+            // width: (9/9)*100vh;
+            height: 100vh;
+        }
+
+        @media(max-aspect-ratio: ~"9/9") {
+            font-size: ((9/9)*100vw)/9/2;
+            // height: (9/9)*100vw;
+            width: 100vw;
+        }
+    }
+}
+
+#mounted-as-video_overlay {
+    .Game {
+        background-color: transparent !important;
+    }
+}
+
+#mounted-as-component {
+    .View {
+        animation-delay: 1s;
+        animation-duration: 0.5s;
+        animation-name: immediate-wiggle;
+    }
+
+    .Game {
+        transform: scale(0.25);
+        border-radius: 1em;
+        top: 0em;
+        left: 0em;
+        right: 0em;
+        bottom: 0em;
+        margin: auto;
+        overflow: hidden;
+        color: transparent;
+
+        animation-delay: 2s;
+        animation-duration: 1s;
+        animation-name: fade-away;
+        animation-fill-mode: forwards;
+
+        transition-duration: 1s;
+        transition-property: transform, color;
+    }
+
+    .View:hover {
+        animation-duration: 0s;
+        .Game {
+            color: #FFF;
+            transform: none;
+
+            transition-delay: 0s;
+            transition-duration: 0.25s;
+
+            animation: none;
+        }
+    }
+}
+
+#mounted-as-config {
+    .View {
+        text-align: left;
+    }
+    .Game {
+        width: 320px;
+        height: 485px;
+        font-size: 17.6667px;
+
+        overflow: hidden;
+        border-radius: 10px;
+        position: relative;
+    }
+}

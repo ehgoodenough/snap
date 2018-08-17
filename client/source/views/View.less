@@ -42,80 +42,12 @@
     font-family: comfortaa;
 }
 
-.Game {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background-color: #222;
-    cursor: pointer !important;
-
-    color: #FFF;
-    text-align: center;
-    font-family: comfortaa;
-}
-
-#mounted-as-panel,
-#mounted-as-mobile,
-#mounted-as-dashboard,
-#mounted-as-video_overlay,
-#mounted-as-component {
-    .Game {
-        top: 0px;
-        left: 0px;
-        right: 0px;
-        bottom: 0px;
-        margin: auto;
-        position: fixed;
-        overflow: hidden;
-        font-size: 9px;
-
-        @media(min-aspect-ratio: ~"9/9") {
-            font-size: ((9/9)*100vh)/9/2;
-            // width: (9/9)*100vh;
-            height: 100vh;
-        }
-
-        @media(max-aspect-ratio: ~"9/9") {
-            font-size: ((9/9)*100vw)/9/2;
-            // height: (9/9)*100vw;
-            width: 100vw;
-        }
-    }
-}
-
-#mounted-as-video_overlay {
-    .Game {
-        background-color: transparent !important;
-    }
-}
-
 #mounted-as-component {
     .View {
         animation-delay: 1s;
         animation-duration: 0.5s;
         animation-name: immediate-wiggle;
     }
-
-    .Game {
-        transform: scale(0.25);
-        border-radius: 1em;
-        top: 0em;
-        left: 0em;
-        right: 0em;
-        bottom: 0em;
-        margin: auto;
-        overflow: hidden;
-        color: transparent;
-
-        animation-delay: 2s;
-        animation-duration: 1s;
-        animation-name: fade-away;
-        animation-fill-mode: forwards;
-
-        transition-duration: 1s;
-        transition-property: transform, color;
-    }
-
     .View:hover {
         animation-duration: 0s;
         .Game {
@@ -134,134 +66,9 @@
     .View {
         text-align: left;
     }
-    .Game {
-        width: 320px;
-        height: 485px;
-        font-size: 17.6667px;
-
-        overflow: hidden;
-        border-radius: 10px;
-        position: relative;
-    }
 }
 
 @keyframes fade-away {
     0% {opacity: 1;}
     100% {opacity: 0;}
-}
-
-
-@gutter: 20px;
-@column: 320px;
-@roundness: 10px;
-@warning-color: #FFAE42;
-
-.ConfigView {
-    min-width: (@column*2)+(@gutter);
-    max-width: (@column*3)+(@gutter*2);
-    padding-right: @gutter;
-
-    section {
-        display: flex;
-        margin-bottom: @gutter;
-    }
-
-    .PlaySection {
-        .WelcomeMessage {
-            flex: 1;
-            margin-left: @gutter;
-
-            p {
-                margin-top: @gutter;
-                user-select: auto;
-            }
-        }
-    }
-
-    .LeaderboardSection {
-        .LeaderboardSegment {
-            flex: 1;
-
-            &:not(:first-child) {
-                margin-left: @gutter;
-            }
-
-            h3 {
-                text-align: center;
-            }
-
-            p {
-                margin: @gutter 0em;
-                // text-align: justify;
-                font-family: serif;
-            }
-
-            .Leaderboard {
-                font-size: 2em;
-            }
-        }
-    }
-
-    .ActionSection {
-        .ResetChannelSession {
-            width: 50%;
-            overflow: hidden;
-
-            border-width: 1px;
-            border-style: solid;
-            border-radius: @roundness;
-            border-color: @warning-color;
-
-            background-color: fadeout(@warning-color, 75%);
-
-            h3 {
-                margin: @gutter;
-                text-align: center;
-            }
-
-            p {
-                margin: @gutter;
-            }
-
-            button {
-                width: 100%;
-                display: block;
-                padding: 0.5em;
-                cursor: pointer;
-
-                font: inherit;
-                font-weight: bold;
-                color: white;
-
-                border: none;
-                border-top-width: 1px;
-                border-top-style: solid;
-                border-top-color: @warning-color;
-
-                background-color: @warning-color;
-
-                &:hover {
-                    background-color: darken(@warning-color, 10%);
-                }
-            }
-        }
-    }
-
-    // @media(max-width: @column+@gutter+@column) {
-    //     width: @column;
-    //     .Game, .WelcomeMessage {
-    //         margin-bottom: @gutter;
-    //     }
-    // }
-    //
-    // @media(min-width: @column+@gutter+@column) {
-    //     .PlaySection {
-    //         display: flex;
-    //
-    //         .WelcomeMessage {
-    //             flex: 1;
-    //             margin-left: @gutter;
-    //         }
-    //     }
-    // }
 }

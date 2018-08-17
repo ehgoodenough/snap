@@ -9,7 +9,7 @@ export default class LeaderboardModal extends Preact.Component {
     render() {
         if(this.props.model.game.hasEnded) {
             return (
-                <div className="LeaderboardModal">
+                <div className="LeaderboardModal" onMouseDown={this.onMouseDown}>
                     <header>High Scores</header>
                     <Nimble.views.Leaderboard activity="SNAP" scope={this.props.model.selectedLeaderboardScope} size="big"/>
                     <div className="scopes">
@@ -26,6 +26,9 @@ export default class LeaderboardModal extends Preact.Component {
                 <div className="LeaderboardModal isHidden"/>
             )
         }
+    }
+    onMouseDown(event) {
+        event.stopPropagation()
     }
     onSelectScope(scope) {
         return (event) => {

@@ -130,19 +130,29 @@ module.exports = class NimbleLeaderboard {
 class LeaderboardEntry {
     render() {
         return (
-            <div className={`entry ${this.isYou ? "isYou" : ""}`}>
-                <span className="rank">{this.props.entry.rank}</span>
-                <span className="name">{this.name}</span>
-                <span className="score">{this.props.entry.score}</span>
+            <div className={`entry ${this.isYou ? "isYou" : ""}`} onMouseDown={this.onMouseDown}
+                title={this.isYou && this.isPrivate ? "Grant us your Twitch ID!" : ""}>
+                <span className="rank">
+                    {this.props.entry.rank}
+                </span>
+                <span className="name">
+                    {this.name} {this.prompt}
+                </span>
+                <span className="score">
+                    {this.props.entry.score}
+                </span>
             </div>
         )
     }
     get name() {
-        if(this.props.entry.name[0] === "@") {
-            return "private player"
+        if(this.isPrivate) {
+            return "private player" + (this.isYou ? "?" : "")
         } else {
             return this.props.entry.name
         }
+    }
+    get isPrivate() {
+        return this.props.entry.name[0] === "@"
     }
     get isYou() {
         if(this.props.doNotHighlightMe === true) {
@@ -150,5 +160,21 @@ class LeaderboardEntry {
         }
         return this.props.entry.name === Nimble.twitch.viewer.name
             || this.props.entry.name === "@" + Nimble.twitch.viewer.opaqueUserId
+    }
+    get prompt() {
+        if(this.isYou && this.isPrivate) {
+            return (
+                <span className="prompt">
+                    <svg width="20px" height="20px" version="1.1" viewBox="0 0 20 20" x="0px" y="0px"><path d="M7 9C5.346 9 4 7.654 4 6s1.346-3 3-3 3 1.346 3 3-1.346 3-3 3zm5.526 2.947a.86.86 0 0 1 .474.767v3.428a.858.858 0 0 1-.858.858H1.857A.857.857 0 0 1 1 16.142v-3.428c0-.325.183-.62.473-.767C1.551 11.91 3.41 11 7 11s5.45.91 5.526.947zm3.784-6.909a.5.5 0 0 1 .544.107l2 2.503a.495.495 0 0 1 0 .703l-2 2.503a.5.5 0 0 1-.853-.35V8.997h-3.502a.499.499 0 0 1-.5-.497V7.51c0-.275.225-.497.5-.497H16V5.497c0-.2.122-.382.309-.459z" fill-rule="evenodd"></path></svg>
+                </span>
+            )
+        }
+    }
+    get onMouseDown() {
+        return (event) => {
+            if(this.isYou && this.isPrivate) {
+                window.Twitch.ext.actions.requestIdShare()
+            }
+        }
     }
 }

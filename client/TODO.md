@@ -1,6 +1,4 @@
-- TODO: Resetting the leaderboard session.
 - TODO: Add special streamer options for curating the colors.
-- TODO: Add a "thank you for installing" message, maybe with change notes.
 - ...
 - TODO: Add sound effects for consecutive perfect snaps
 - TODO: Mute sound button

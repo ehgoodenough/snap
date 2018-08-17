@@ -40,7 +40,7 @@ Nimble.twitch.onMessage((message) => {
     if(message.path === "v1/resetChannelSession") {
         Nimble.sparks.sessionId = message.payload.channel.sessionId || "initial-session"
         Nimble.sparks.listenToLeaderboard("SNAP/session", `TwitchArcade.activity.SNAP.channelId.${Nimble.twitch.streamer.channelId}.sessionId.${Nimble.sparks.sessionId}`)
-        console.log(Nimble.sparks.sessionId)
+        // console.log(Nimble.sparks.sessionId)
     }
 })
 

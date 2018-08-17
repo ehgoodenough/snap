@@ -33,7 +33,7 @@ module.exports = class NimbleLeaderboard {
         let aroundEntries = Nimble.sparks.leaderboards[this.leaderboardKey + "/around"]
 
         let entries = []
-        for(var i = 0; i < (this.props.size === "big" ? BIG_ROW_COUNT : SMALL_ROW_COUNT); i += 1) {
+        for(var i = 0; i < (this.props.size === "small" ? SMALL_ROW_COUNT : BIG_ROW_COUNT); i += 1) {
             entries[i] = entries[i] || undefined
         }
 
@@ -43,8 +43,23 @@ module.exports = class NimbleLeaderboard {
             let viewerEntry = aroundEntries.find((entry) => {
                 return entry.name === viewerName
             })
-            if(viewerEntry !== undefined) {
-                if(this.props.size === "big") {
+            if(viewerEntry !== undefined
+            && this.props.doNotHighlightMe !== true) {
+                if(this.props.size === "small") {
+                    if(viewerEntry.rank >= SMALL_ROW_COUNT - 1) {
+                        entries[0] = topEntries[0]
+                        entries[1] = "..."
+                        entries[2] = aroundEntries[1]
+                        entries[3] = aroundEntries[2]
+                        entries[4] = aroundEntries[3]
+                    } else {
+                        entries[0] = topEntries[0]
+                        entries[1] = topEntries[1]
+                        entries[2] = topEntries[2]
+                        entries[3] = topEntries[3]
+                        entries[4] = topEntries[4]
+                    }
+                } else {
                     if(viewerEntry.rank >= BIG_ROW_COUNT - 2) {
                         entries[0] = topEntries[0]
                         entries[1] = topEntries[1]
@@ -66,23 +81,15 @@ module.exports = class NimbleLeaderboard {
                         entries[7] = topEntries[7]
                         entries[8] = topEntries[8]
                     }
-                } else {
-                    if(viewerEntry.rank >= SMALL_ROW_COUNT - 1) {
-                        entries[0] = topEntries[0]
-                        entries[1] = "..."
-                        entries[2] = aroundEntries[1]
-                        entries[3] = aroundEntries[2]
-                        entries[4] = aroundEntries[3]
-                    } else {
-                        entries[0] = topEntries[0]
-                        entries[1] = topEntries[1]
-                        entries[2] = topEntries[2]
-                        entries[3] = topEntries[3]
-                        entries[4] = topEntries[4]
-                    }
                 }
             } else {
-                if(this.props.size === "big") {
+                if(this.props.size === "small") {
+                    entries[0] = topEntries[0]
+                    entries[1] = topEntries[1]
+                    entries[2] = topEntries[2]
+                    entries[3] = topEntries[3]
+                    entries[4] = topEntries[4]
+                } else {
                     entries[0] = topEntries[0]
                     entries[1] = topEntries[1]
                     entries[2] = topEntries[2]
@@ -92,12 +99,6 @@ module.exports = class NimbleLeaderboard {
                     entries[6] = topEntries[6]
                     entries[7] = topEntries[7]
                     entries[8] = topEntries[8]
-                } else {
-                    entries[0] = topEntries[0]
-                    entries[1] = topEntries[1]
-                    entries[2] = topEntries[2]
-                    entries[3] = topEntries[3]
-                    entries[4] = topEntries[4]
                 }
             }
         }
@@ -120,7 +121,7 @@ module.exports = class NimbleLeaderboard {
                     </div>
                 )
             } else {
-                return <LeaderboardEntry entry={entry} key={index}/>
+                return <LeaderboardEntry entry={entry} key={index} doNotHighlightMe={this.props.doNotHighlightMe}/>
             }
         })
     }
@@ -144,6 +145,9 @@ class LeaderboardEntry {
         }
     }
     get isYou() {
+        if(this.props.doNotHighlightMe === true) {
+            return false
+        }
         return this.props.entry.name === Nimble.twitch.viewer.name
             || this.props.entry.name === "@" + Nimble.twitch.viewer.opaqueUserId
     }

@@ -172,21 +172,21 @@ if(window.Twitch !== undefined
             })
         })
 
-        window.setTimeout(function() {
-            // This will continue to trigger twiceif it is inside `.onAuthorized`. Not sure why.
-            // But for whatever reason, putting it in a window.setTimeout fixes this??? Weird.
-            window.Twitch.ext.listen("broadcast", (target, type, message) => {
-                try {
-                    message = JSON.parse(message)
-                } catch(error) {
-                    console.log(error)
-                }
-                // console.log(">", target, message)
-
-                window.onTwitchExtMessageCallbacks.forEach((callback) => {
-                    callback(message)
-                })
-            })
-        })
+        // window.setTimeout(function() {
+        //     // This will continue to trigger twiceif it is inside `.onAuthorized`. Not sure why.
+        //     // But for whatever reason, putting it in a window.setTimeout fixes this??? Weird.
+        //     window.Twitch.ext.listen("broadcast", (target, type, message) => {
+        //         try {
+        //             message = JSON.parse(message)
+        //         } catch(error) {
+        //             console.log(error)
+        //         }
+        //         // console.log(">", target, message)
+        //
+        //         window.onTwitchExtMessageCallbacks.forEach((callback) => {
+        //             callback(message)
+        //         })
+        //     })
+        // })
     })
 }

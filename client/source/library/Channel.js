@@ -14,10 +14,9 @@ module.exports.retrieveChannel = function() {
         },
     }).then((response) => {
         return response.json().then((response) => {
-            // console.log(response)
             if(response.channel !== undefined) {
                 Nimble.sparks.sessionId = response.channel.sessionId || "initial-session"
-                // console.log(Nimble.sparks.sessionId)
+                console.log(Nimble.sparks.sessionId)
             }
         })
     })
@@ -33,11 +32,10 @@ module.exports.resetChannelSession = function() {
         },
     }).then((response) => {
         return response.json().then((response) => {
-            // console.log("$", response)
             if(response.channel !== undefined) {
+                // console.log("response", response.channel.sessionId)
                 Nimble.sparks.sessionId = response.channel.sessionId || "initial-session"
                 Nimble.sparks.listenToLeaderboard("SNAP/session", `TwitchArcade.activity.SNAP.channelId.${Nimble.twitch.streamer.channelId}.sessionId.${Nimble.sparks.sessionId}`)
-                // console.log("response", Nimble.sparks.sessionId)
             }
         })
     })

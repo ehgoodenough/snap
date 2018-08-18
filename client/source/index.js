@@ -36,11 +36,27 @@ Nimble.twitch.onAuthorized((authorization) => {
     })
 })
 
-Nimble.twitch.onMessage((message) => {
+window.Twitch.ext.listen("broadcast", (target, type, message) => {
+    try {
+        message = JSON.parse(message)
+    } catch(error) {
+        console.log(error)
+    }
+
     if(message.path === "v1/resetChannelSession") {
-        Nimble.sparks.sessionId = message.payload.channel.sessionId || "initial-session"
-        Nimble.sparks.listenToLeaderboard("SNAP/session", `TwitchArcade.activity.SNAP.channelId.${Nimble.twitch.streamer.channelId}.sessionId.${Nimble.sparks.sessionId}`)
-        // console.log("broadcast", Nimble.sparks.sessionId)
+        // console.log("broadcast", message.payload.channel.sessionId)
+        if(Nimble.sparks.sessionId !== message.payload.channel.sessionId) {
+            Nimble.sparks.sessionId = message.payload.channel.sessionId || "initial-session"
+            Nimble.sparks.listenToLeaderboard("SNAP/session", `TwitchArcade.activity.SNAP.channelId.${Nimble.twitch.streamer.channelId}.sessionId.${Nimble.sparks.sessionId}`)
+        } else {
+            Channel.retrieveChannel().then(() => {
+                Nimble.sparks.initialize().then(() => {
+                    Nimble.sparks.listenToLeaderboard("SNAP/session", `TwitchArcade.activity.SNAP.channelId.${Nimble.twitch.streamer.channelId}.sessionId.${Nimble.sparks.sessionId}`)
+                })
+            }).catch((error) => {
+                Nimble.utility.log(error)
+            })
+        }
     }
 })
 

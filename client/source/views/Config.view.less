@@ -1,6 +1,9 @@
 @gutter: 20px;
 @column: 320px;
 @roundness: 10px;
+
+@golden-ratio: 1.618;
+
 @warning-color: #FFAE42;
 @boring-color: #DAD8DE;
 
@@ -68,15 +71,16 @@
 
             font: inherit;
             font-weight: bold;
-            color: white;
+            color: #FFFFFF;
 
             border: none;
+            outline: none;
             border-top-width: 1px;
             border-top-style: solid;
 
             margin-top: auto;
         }
-        
+
         .ResetChannelSession {
             flex: 3;
             margin-right: @gutter / 2;
@@ -120,6 +124,40 @@
                 &:hover {
                     background-color: darken(@boring-color, 10%);
                 }
+            }
+        }
+    }
+
+    .ChangelogSection {
+        display: block;
+        width: 400px;
+
+        .Release {
+            margin: 2em 0em;
+
+            &:nth-of-type(1n) label {
+                background-color: #EE4035;
+                color: #FFFFFF;
+            }
+            &:nth-of-type(2n) label {
+                background-color: #F37736;
+                color: #FFFFFF;
+            }
+            &:nth-of-type(3n) label {
+                background-color: #FDF498;
+                color: #000000;
+            }
+            &:nth-of-type(4n) label {
+                background-color: #7BC043;
+                color: #FFFFFF;
+            }
+            &:nth-of-type(5n) label {
+                background-color: #0392CF;
+                color: #FFFFFF;
+            }
+
+            li {
+                margin-left: 2em;
             }
         }
     }

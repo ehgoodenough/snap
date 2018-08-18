@@ -56,6 +56,44 @@ export default class Config {
                 </section>
                 <section className="ChangelogSection">
                     <h3>Change Log</h3>
+                    <div className="Release">
+                        <h4><label>{"v1.3.0"}</label> {"2018-08-24?"}</h4>
+                        <ul>
+                            <li>Added resettable session leaderboards.</li>
+                            <li>Improved this configuration dashboard, adding an introduction and changelog.</li>
+                            <li>Added a prompt for "private" players to grant us their twitch id.</li>
+                        </ul>
+                    </div>
+                    <div className="Release">
+                        <h4><label>{"v1.2.0"}</label> {"2018-08-14"}</h4>
+                        <ul>
+                            <li>Added channel leaderboards.</li>
+                            <li>Added global leaderboards.</li>
+                        </ul>
+                    </div>
+                    <div className="Release">
+                        <h4><label>{"v1.1.1"}</label> {"2018-07-05"}</h4>
+                        <ul>
+                            <li>Fixed outstanding blocking issue on mobile.</li>
+                            <li>Instrumented some analytics calls.</li>
+                        </ul>
+                    </div>
+                    <div className="Release">
+                        <h4><label>{"v1.1.0"}</label> {"2018-06-19"}</h4>
+                        <ul>
+                            <li>Released the game to everyone! No more whitelist.</li>
+                            <li>Featured on the Twitch Extension Discovery page!</li>
+                            <li>Added support for mobile and component overlay.</li>
+                            <li>Polished the title screen with a call-to-action.</li>
+                            <li>Added a bar graph distribution of the scores.</li>
+                        </ul>
+                    </div>
+                    <div className="Release">
+                        <h4><label>{"v1.0.0"}</label> {"2018-04-15"}</h4>
+                        <ul>
+                            <li>Released the game! But only to a whitelist of streamers.</li>
+                        </ul>
+                    </div>
                 </section>
             </div>
         )

@@ -7,7 +7,7 @@ import Nimble from "library/Nimble"
 import Channel from "library/Channel.js"
 import GameAnalytics from "integ/GameAnalytics.js"
 
-import View from "views/View.js"
+import Mount from "views/Mount.view.js"
 import Model from "models/Model.js"
 
 if(Nimble.twitch.extension.state === "testing") {
@@ -18,11 +18,11 @@ if(Nimble.twitch.extension.state === "testing") {
 Nimble.twitch.onAuthorized((authorization) => {
     let model = new Model()
 
-    let mount = Preact.render(<View model={model}/>, document.body)
+    let mount = Preact.render(<Mount model={model}/>, document.body)
 
     let loop = new Yaafloop((delta) => {
         model.update(delta)
-        Preact.render(<View model={model}/>, document.body, mount)
+        Preact.render(<Mount model={model}/>, document.body, mount)
     })
 
     Channel.retrieveChannel().then(() => {

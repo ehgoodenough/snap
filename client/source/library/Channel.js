@@ -16,7 +16,6 @@ module.exports.retrieveChannel = function() {
         return response.json().then((response) => {
             if(response.channel !== undefined) {
                 Nimble.sparks.sessionId = response.channel.sessionId || "initial-session"
-                console.log(Nimble.sparks.sessionId)
             }
         })
     })

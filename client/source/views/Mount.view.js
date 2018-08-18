@@ -3,13 +3,13 @@ import QueryString from "query-string"
 
 import Nimble from "library/Nimble"
 
-import "views/View.less"
+import "views/Mount.view.less"
 import Game from "views/Game.view.js"
 import Config from "views/Config.view.js"
 
 let query = QueryString.parse(window.location.search)
 
-export default class View {
+export default class Mount {
     render() {
         return (
             <div className="Mount" id={`mounted-as-${Nimble.twitch.extension.mount}`}>

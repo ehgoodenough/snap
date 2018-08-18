@@ -24,19 +24,19 @@ export default class Config {
                     <div className="LeaderboardSegment">
                         <h3>For the Session</h3>
                         <div className="Leaderboard">
-                            <Nimble.views.Leaderboard activity="SNAP" scope="session" doNotHighlightMe={true}/>
+                            <Nimble.views.Leaderboard activity="SNAP" scope="session" doNotHighlightMe={!!!this.isSeeingMyScores}/>
                         </div>
                     </div>
                     <div className="LeaderboardSegment">
                         <h3>For the Channel</h3>
                         <div className="Leaderboard">
-                            <Nimble.views.Leaderboard activity="SNAP" scope="channel" doNotHighlightMe={true}/>
+                            <Nimble.views.Leaderboard activity="SNAP" scope="channel" doNotHighlightMe={!!!this.isSeeingMyScores}/>
                         </div>
                     </div>
                     <div className="LeaderboardSegment">
                         <h3>For all of Twitch</h3>
                         <div className="Leaderboard">
-                            <Nimble.views.Leaderboard activity="SNAP" scope="global" doNotHighlightMe={true}/>
+                            <Nimble.views.Leaderboard activity="SNAP" scope="global" doNotHighlightMe={!!!this.isSeeingMyScores}/>
                         </div>
                     </div>
                 </section>
@@ -46,11 +46,31 @@ export default class Config {
                         <p>By clicking this button, you are reseting the <span className="session">session leaderboard</span>. The scores will still be preserved on your channel leaderboard and the all-of-twitch leaderboard.</p>
                         <button onClick={this.onResetChannelSession}>RESET SESSION</button>
                     </div>
+                    <div className="ToggleLeaderboard">
+                        <h3>See your Personal Scores?</h3>
+                        <p>{"By hovering over this button, we'll show you all your personal scores. Only you see this."}</p>
+                        <button onMouseOver={this.onSeeYourScores} onMouseOut={this.onUnseeYourScores}>
+                            SEE YOUR SCORES
+                        </button>
+                    </div>
+                </section>
+                <section className="ChangelogSection">
+                    <h3>Change Log</h3>
                 </section>
             </div>
         )
     }
     onResetChannelSession() {
         Channel.resetChannelSession()
+    }
+    get onSeeYourScores() {
+        return (event) => {
+            this.isSeeingMyScores = true
+        }
+    }
+    get onUnseeYourScores() {
+        return (event) => {
+            this.isSeeingMyScores = false
+        }
     }
 }

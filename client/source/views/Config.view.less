@@ -2,6 +2,7 @@
 @column: 320px;
 @roundness: 10px;
 @warning-color: #FFAE42;
+@boring-color: #DAD8DE;
 
 .Config {
     min-width: (@column*2)+(@gutter);
@@ -50,11 +51,39 @@
     }
 
     .ActionSection {
+        h3 {
+            margin: @gutter;
+            text-align: center;
+        }
+
+        p {
+            margin: @gutter;
+        }
+
+        button {
+            width: 100%;
+            display: block;
+            padding: 0.5em;
+            cursor: pointer;
+
+            font: inherit;
+            font-weight: bold;
+            color: white;
+
+            border: none;
+            border-top-width: 1px;
+            border-top-style: solid;
+
+            margin-top: auto;
+        }
+        
         .ResetChannelSession {
-            // flex: 1;
+            flex: 3;
+            margin-right: @gutter / 2;
+
+            display: flex;
             overflow: hidden;
-            // margin-right: @gutter / 2;
-            width: 50%;
+            flex-direction: column;
 
             border-width: 1px;
             border-style: solid;
@@ -63,30 +92,7 @@
 
             background-color: fadeout(@warning-color, 75%);
 
-            h3 {
-                margin: @gutter;
-                text-align: center;
-            }
-
-            p {
-                margin: @gutter;
-            }
-
             button {
-                width: 100%;
-                display: block;
-                padding: 0.5em;
-                cursor: pointer;
-
-                font: inherit;
-                font-weight: bold;
-                color: white;
-
-                border: none;
-                border-top-width: 1px;
-                border-top-style: solid;
-                border-top-color: @warning-color;
-
                 background-color: @warning-color;
 
                 &:hover {
@@ -95,22 +101,25 @@
             }
         }
 
-        .ReskinGame {
-            flex: 1;
-            padding: @gutter;
+        .ToggleLeaderboard {
+            flex: 2;
             margin-left: @gutter / 2;
 
-            border-color: #dad8de;
+            display: flex;
+            overflow: hidden;
+            flex-direction: column;
+
             border-width: 1px;
             border-style: solid;
             border-radius: @roundness;
+            border-color: @boring-color;
 
-            h3 {
-                text-align: center;
-            }
+            button {
+                background-color: @boring-color;
 
-            p {
-                margin: @gutter;
+                &:hover {
+                    background-color: darken(@boring-color, 10%);
+                }
             }
         }
     }

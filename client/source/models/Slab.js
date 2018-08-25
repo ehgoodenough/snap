@@ -9,7 +9,7 @@ const DEFAULT_SIZE = 8
 const DEFAULT_SPEED = +0.33
 const DEMO_SPEED = +0.44 //+0.22
 const CAMERA_CULL_POINT = 20
-const CLOSE_ENOUGH = {DELTA: -1}
+const GOOD_ENOUGH = {DELTA: -1}
 
 export default class Slab {
     constructor(slab) {
@@ -39,9 +39,9 @@ export default class Slab {
             this.speed = DEMO_SPEED
         }
     }
-    get isCloseEnough() {
+    get isGoodEnough() {
         return this.game.score >= 20
-            || this.position[this.axis] - this.game.previousSlab.position[this.axis] > CLOSE_ENOUGH.DELTA
+            || this.position[this.axis] - this.game.previousSlab.position[this.axis] > GOOD_ENOUGH.DELTA
     }
     update(delta) {
         if(this === this.game.currentSlab) {
@@ -64,7 +64,7 @@ export default class Slab {
             }
 
             // Listening for player input.
-            if(Input.isJustDown(delta.ms) || (this.game.isDemoing && this.isCloseEnough)) {
+            if(Input.isJustDown(delta.ms) || (this.game.isDemoing && this.isGoodEnough)) {
                 // If the current slab is almost on top of the previous slab, snap it on top of it.
                 let snapPoint = SNAP_POINTS[this.position.z] || DEFAULT_SNAP_POINT
                 if(Math.abs(this.position[axis] - this.game.previousSlab.position[axis]) < snapPoint) {
@@ -136,16 +136,16 @@ export default class Slab {
                     "axis": not(this.axis)
                 }))
 
+                // Pan the camera.
                 if(this.game.isDemoing === false) {
-                    // Pan the camera.
                     this.game.camera.pan = this.position.z
                 }
 
                 // Bump the score.
                 this.game.score += 1
 
-                // Bump the close enough delta for the demo.
-                CLOSE_ENOUGH.DELTA = (Math.random() + 0.5) * (Math.random() < 0.75 ? -1 : +1)
+                // Bump the delta for the demo.
+                GOOD_ENOUGH.DELTA = (Math.random() + 0.5) * (Math.random() < 0.75 ? -1 : +1)
             }
         }
     }

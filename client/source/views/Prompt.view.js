@@ -12,7 +12,7 @@ export default class Prompt {
         )
     }
     get message() {
-        if(this.props.model.game.hasStarted != true) {
+        if(this.props.model.hasInteracted != true) {
             return "Play Now!!"
         }
         if(this.props.model.game.hasEnded == true) {
@@ -22,7 +22,7 @@ export default class Prompt {
     get classNames() {
         return [
             "Prompt",
-            this.props.model.game.hasStarted != true ? "hasNotStarted" : "",
+            this.props.model.hasInteracted != true ? "hasNotStarted" : "",
             this.props.model.game.hasEnded == true ? "hasEnded" : ""
         ].join(" ")
     }

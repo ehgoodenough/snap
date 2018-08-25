@@ -4,7 +4,7 @@ import "views/Score.view.less"
 
 export default class Score extends Preact.Component {
     render() {
-        if(this.props.model.game.hasStarted) {
+        if(this.props.model.hasInteracted) {
             return (
                 <div className={this.className} key={this.props.model.game.key}>
                     {this.score}

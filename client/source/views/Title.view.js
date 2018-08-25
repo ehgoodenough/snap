@@ -12,7 +12,7 @@ export default class Title {
     }
     get style() {
         return {
-            "opacity": this.props.model.game.hasStarted ? 0 : 1
+            "opacity": this.props.model.hasInteracted ? 0 : 1
         }
     }
 }

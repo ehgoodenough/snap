@@ -57,7 +57,13 @@ export default class Config {
                 <section className="ChangelogSection">
                     <h3>Change Log</h3>
                     <div className="Release">
-                        <h4><label>{"v1.3.0"}</label> {"2018-08-24?"}</h4>
+                        <h4><label>{"v1.4.0"}</label> {"2018-08-27?"}</h4>
+                        <ul>
+                            <li>Added a demo mode.</li>
+                        </ul>
+                    </div>
+                    <div className="Release">
+                        <h4><label>{"v1.3.0"}</label> {"2018-08-20"}</h4>
                         <ul>
                             <li>Added resettable session leaderboards.</li>
                             <li>Improved this configuration dashboard, adding an introduction and changelog.</li>

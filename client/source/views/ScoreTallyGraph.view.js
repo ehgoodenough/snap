@@ -6,7 +6,7 @@ import Color from "library/Color.js"
 
 export default class ScoreTallyGraph extends Preact.Component {
     render() {
-        if(this.props.model.game.hasStarted
+        if(this.props.model.hasInteracted
         && this.props.model.scoretally.scores !== undefined
         && this.props.model.scoretally.scores.channel !== undefined
         && this.props.model.scoretally.scores.channel.highestScore > 15) {

@@ -37,40 +37,26 @@ export default class Game {
             }),
         ]
 
+        this.hasStarted = true
         this.hasEnded = false
-        this.hasStarted = false
-
-        if(game.hasStarted === true) {
-            this.start()
+        this.start()
+    }
+    start() {
+        if(this.isDemoing === false) {
+            GameAnalytics.addProgressionEvent(require("gameanalytics").EGAProgressionStatus.Start, "Snap")
         }
     }
     update(delta) {
-        if(this.hasStarted === false) {
-            if(Input.isJustDown(delta.ms)) {
-                this.start()
-            }
-            return
-        }
-
         if(this.hasEnded === true) {
             if(Input.isJustDown(delta.ms)) {
                 this.model.startNewGame()
             }
-            return
         }
 
-        if(this.hasStarted === true
-        && this.hasEnded === false) {
+        if(this.hasEnded === false) {
             this.slabs.forEach((slab) => {
                 slab.update(delta)
             })
-            return
-        }
-    }
-    start() {
-        if(this.hasStarted != true) {
-            this.hasStarted = true
-            GameAnalytics.addProgressionEvent(require("gameanalytics").EGAProgressionStatus.Start, "Snap")
         }
     }
     end() {
@@ -83,12 +69,18 @@ export default class Game {
             this.camera.tween = "ease-out"
             this.camera.pan = 0
 
-            Nimble.sparks.submitLeaderboardEntry({
-                "activity": "SNAP",
-                "score": this.score,
-            })
+            if(this.isDemoing === false) {
+                Nimble.sparks.submitLeaderboardEntry({
+                    "activity": "SNAP",
+                    "score": this.score,
+                })
 
-            GameAnalytics.addProgressionEvent(require("gameanalytics").EGAProgressionStatus.Complete, "Snap", null, null, this.score)
+                GameAnalytics.addProgressionEvent(require("gameanalytics").EGAProgressionStatus.Complete, "Snap", null, null, this.score)
+            }
+
+            if(this.isDemoing === true) {
+                this.model.startNewGame()
+            }
         }
     }
     get currentSlab() {
@@ -96,5 +88,8 @@ export default class Game {
     }
     get previousSlab() {
         return this.slabs[1]
+    }
+    get isDemoing() {
+        return this.model.hasInteracted === false
     }
 }

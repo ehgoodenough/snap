@@ -5,7 +5,7 @@ import Nimble from "library/Nimble"
 
 import Slab from "models/Slab.js"
 
-import GameAnalytics from "integ/GameAnalytics.js"
+import analytics from "library/analytics.js"
 
 export default class Game {
     constructor(game) {
@@ -43,7 +43,7 @@ export default class Game {
     }
     start() {
         if(this.isDemoing === false) {
-            GameAnalytics.addProgressionEvent(require("gameanalytics").EGAProgressionStatus.Start, "Snap")
+            analytics.reportStartGame()
         }
     }
     update(delta) {
@@ -75,7 +75,7 @@ export default class Game {
                     "score": this.score,
                 })
 
-                GameAnalytics.addProgressionEvent(require("gameanalytics").EGAProgressionStatus.Complete, "Snap", null, null, this.score)
+                analytics.reportEndGame()
             }
 
             if(this.isDemoing === true) {

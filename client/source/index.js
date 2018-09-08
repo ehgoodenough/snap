@@ -5,7 +5,7 @@ import QueryString from "query-string"
 
 import Nimble from "library/Nimble"
 import Channel from "library/Channel.js"
-import GameAnalytics from "integ/GameAnalytics.js"
+import analytics from "library/analytics.js"
 
 import Mount from "views/Mount.view.js"
 import Model from "models/Model.js"
@@ -66,5 +66,5 @@ document.body.addEventListener("dblclick", function(event) {
 })
 
 window.addEventListener("error", (error) => {
-    GameAnalytics.addErrorEvent(require("gameanalytics").EGAErrorSeverity.Error, error.message)
+    analytics.reportError(error)
 })

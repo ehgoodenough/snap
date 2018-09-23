@@ -1,17 +1,29 @@
-const COLOR_GRADIENT = 7
-
-import Colors from "config/Colors.js"
 import LeftPad from "left-pad"
+
+const gradient = 7
+const colors = [
+    "#ee4035",
+    "#f37736",
+    "#fdf498",
+    "#7bc043",
+    "#0392cf",
+].map((color) => {
+    return [
+        parseInt(color.substring(1, 3), 16),
+        parseInt(color.substring(3, 5), 16),
+        parseInt(color.substring(5, 7), 16),
+    ]
+})
 
 function generate(i) {
 
-    var p = i % COLOR_GRADIENT / COLOR_GRADIENT
+    var p = i % gradient / gradient
     var w = p * 2 - 1
     var w1 = (w / 1  + 1) / 2
     var w2 = 1 - w1
 
-    var color1 = Colors[(Math.floor(i / COLOR_GRADIENT) + 1) % Colors.length]
-    var color2 = Colors[(Math.floor(i / COLOR_GRADIENT)) % Colors.length]
+    var color1 = colors[(Math.floor(i / gradient) + 1) % colors.length]
+    var color2 = colors[(Math.floor(i / gradient)) % colors.length]
 
     return "#" + [
         LeftPad(Math.round((color1[0] * w1) + (color2[0] * w2)).toString(16), 2, 0),

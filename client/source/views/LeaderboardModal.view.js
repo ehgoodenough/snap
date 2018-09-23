@@ -3,14 +3,14 @@ import Preact from "preact"
 import "views/LeaderboardModal.view.less"
 
 import Nimble from "library/Nimble"
-import Color from "library/Color.js"
+import strings from "data/strings.js"
 
 export default class LeaderboardModal extends Preact.Component {
     render() {
         if(this.props.model.game.hasEnded) {
             return (
                 <div className="LeaderboardModal" onMouseDown={this.onMouseDown}>
-                    <header>High Scores</header>
+                    <header>{strings.SCORES}</header>
                     <Nimble.views.Leaderboard activity="SNAP" scope={this.props.model.selectedLeaderboardScope} size="big"/>
                     <div className="scopes">
                         <div className="session scope" onMouseOver={this.onSelectScope("session")}>for session</div>

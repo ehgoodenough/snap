@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+    <string key="SCORES">High Scores</string>
+    <string key="CLICK_TO_SNAP">Click to snap</string>
+    <string key="PLAY_PROMPT">Play Now!!</string>
+    <string key="PLAY_AGAIN_PROMPT">Play again?</string>
+</resources>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+    <string key="SCORES">スコア</string>
+    <string key="CLICK_TO_SNAP">クリックしてスナップ</string>
+    <string key="PLAY_PROMPT">今すぐプレイ！</string>
+    <string key="PLAY_AGAIN_PROMPT">もう一度？</string>
+</resources>

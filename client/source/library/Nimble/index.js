@@ -1,6 +1,7 @@
 module.exports.utility = {
     "URI": require("./utility/URI.js"),
-    "log": require("./utility/log.js")
+    "log": require("./utility/log.js"),
+    "flattenLocXML": require("./utility/flattenLocXML.js"),
 }
 
 module.exports.twitch = require("./twitch.js")

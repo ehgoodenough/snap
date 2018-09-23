@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+    <string key="SCORES">Punteggi</string>
+    <string key="CLICK_TO_SNAP">Clicca per scattare</string>
+    <string key="PLAY_PROMPT">Gioca ora!!</string>
+    <string key="PLAY_AGAIN_PROMPT">Giocare di nuovo?</string>
+</resources>

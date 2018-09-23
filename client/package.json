@@ -1,6 +1,6 @@
 {
   "name": "snap",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "A game of snapping together blocks.",
   "private": true,
   "contributors": [
@@ -29,6 +29,6 @@
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.6.1",
     "bestzip": "^1.1.4",
-    "codeglue": "^1.5.1"
+    "codeglue": "^1.6.0"
   }
 }

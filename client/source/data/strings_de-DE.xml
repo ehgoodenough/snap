@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+    <string key="SCORES">Punkte</string>
+    <string key="CLICK_TO_SNAP">Klicke um loszuschnappen</string>
+    <string key="PLAY_PROMPT">Jetzt spielen!!</string>
+    <string key="PLAY_AGAIN_PROMPT">Nochmal spielen?</string>
+</resources>

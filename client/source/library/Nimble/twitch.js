@@ -26,6 +26,7 @@ const LANGUAGE_TO_LOCALE = {
     "es-mx": "es-ES",
     "ja": "ja-JP",
     "ru": "ru-RU",
+    "tr": "tr-TR",
 }
 
 const twitch = module.exports = {

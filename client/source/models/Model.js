@@ -1,13 +1,11 @@
 import Game from "models/Game.js"
 
 import Input from "library/Input.js"
-import ScoreTally from "library/ScoreTally.js"
 
 class Model {
     constructor(model) {
 
         this.selectedLeaderboardScope = "session"
-        this.scoretally = new ScoreTally()
 
         this.hasInteracted = false
         this.startNewGame()

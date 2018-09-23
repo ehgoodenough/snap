@@ -1,5 +1,5 @@
 import Input from "library/Input.js"
-import Color from "library/Color.js"
+import colors from "data/colors.js"
 
 const BOUNCE_POINT = 10
 const DEFAULT_SNAP_POINT = 0.25 // 0.33
@@ -19,7 +19,7 @@ export default class Slab {
         slab.position.x = slab.position.x || 0
         slab.position.y = slab.position.y || 0
         slab.position.z = slab.position.z || 0
-        slab.color = slab.color || Color.generate(slab.position.z)
+        slab.color = slab.color || colors.generate(slab.position.z)
         slab.axis = slab.axis || "y"
         slab.speed = slab.speed || DEFAULT_SPEED
 
@@ -28,9 +28,9 @@ export default class Slab {
         this.size = slab.size
         this.position = slab.position
 
-        this.color = Color.shade(slab.color, -0.1)
-        this.darkerColor = Color.shade(slab.color, -0.25)
-        this.darkererColor = Color.shade(slab.color, -0.5)
+        this.color = colors.shade(slab.color, -0.1)
+        this.darkerColor = colors.shade(slab.color, -0.25)
+        this.darkererColor = colors.shade(slab.color, -0.5)
 
         this.axis = slab.axis
         this.speed = slab.speed

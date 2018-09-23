@@ -57,6 +57,14 @@ export default class Config {
                 <section className="ChangelogSection">
                     <h3>Change Log</h3>
                     <div className="Release">
+                        <h4><label>{"v1.5.0"}</label> {"2018-09-31?"}</h4>
+                        <ul>
+                            <li>Added language support for Spanish, French, German, Italian, Japanese, Russian and Turkish.</li>
+                            <li>Changed the aspect ratio of the component overlays to match the panels. Re-introduced leaderboards to component overlays.</li>
+                            <li>Deprecated the old score tally system.</li>
+                        </ul>
+                    </div>
+                    <div className="Release">
                         <h4><label>{"v1.4.0"}</label> {"2018-08-31"}</h4>
                         <ul>
                             <li>Added a demo mode.</li>

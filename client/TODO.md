@@ -1,3 +1,5 @@
+- BUG!! Fix the z-fighting on Firefox.
+
 - TODO: Change the video_overlay to look like component.
 - TODO: Add the new onmousemove oncontext to components.
 - .....
